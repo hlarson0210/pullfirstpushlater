@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-function SideNav() {
+function SideNav(props) {
   return (
     <header>
       <ul id="slide-out" className="sidenav blue lighten-1">
@@ -15,10 +15,22 @@ function SideNav() {
           <div className="divider"></div>
         </li>
         <li><a className="subheader">Subheader</a></li>
-        <li><a href="#!"><i className="material-icons">cloud</i>My Libraries</a></li>
-        <li><a href="#!"><i className="material-icons">cloud_download</i>Explore Games</a></li>
-        
-        <li><a className="waves-effect" href="#!">Third Link With Waves</a></li>
+        <li>
+          <a href="#mylibraries"
+          onClick={() => props.handlePageChange("MyLibraries")}
+          className={props.currentPage === "MyLibraries" ? "nav-link active" : "nav-link"}>
+          <i className="material-icons">cloud</i>
+            My Libraries
+          </a>
+        </li>
+        <li>
+          <a href="#exploregames"
+          onClick={() => props.handlePageChange("ExploreGames")}
+          className={props.currentPage === "ExploreGames" ? "nav-link active" : "nav-link"}>
+          <i className="material-icons">cloud</i>
+            Explore Games
+          </a>
+        </li>
       </ul>
       <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons medium">menu</i></a>
     </header>

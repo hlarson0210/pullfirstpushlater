@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-function SignIn() {
+function SignIn(props) {
     return (
         <main>
             <div className="container center">
