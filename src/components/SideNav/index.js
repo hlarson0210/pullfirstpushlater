@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 function SideNav(props) {
@@ -15,22 +16,55 @@ function SideNav(props) {
           <div className="divider"></div>
         </li>
         <li><a className="subheader">Subheader</a></li>
-        <li>
-          <a href="#mylibraries"
-          onClick={() => props.handlePageChange("MyLibraries")}
-          className={props.currentPage === "MyLibraries" ? "nav-link active" : "nav-link"}>
-          <i className="material-icons">cloud</i>
-            My Libraries
-          </a>
+        <li className="nav-item">
+            <Link
+              to="/"
+              className={
+                window.location.pathname === "/" || window.location.pathname === "/signin"
+                  ? "nav-link active"
+                  : "nav-link"
+              }
+            >
+              Sign In
+            </Link>
         </li>
-        <li>
-          <a href="#exploregames"
-          onClick={() => props.handlePageChange("ExploreGames")}
-          className={props.currentPage === "ExploreGames" ? "nav-link active" : "nav-link"}>
-          <i className="material-icons">cloud</i>
-            Explore Games
-          </a>
+        <li className="nav-item">
+            <Link
+              to="/home"
+              className={
+                window.location.pathname === "/home"
+                  ? "nav-link active"
+                  : "nav-link"
+              }
+            >
+              Home
+            </Link>
         </li>
+        <li className="nav-item">
+            <Link
+              to="/mylibraries"
+              className={
+                window.location.pathname === "/mylibraries"
+                  ? "nav-link active"
+                  : "nav-link"
+              }
+            >
+              My Libraries
+            </Link>
+        </li>
+        <li className="nav-item">
+            <Link
+              to="/exploregames"
+              className={
+                window.location.pathname === "/exploregames"
+                  ? "nav-link active"
+                  : "nav-link"
+              }
+            >
+              Explore Games
+            </Link>
+        </li>
+
       </ul>
       <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons medium">menu</i></a>
     </header>
