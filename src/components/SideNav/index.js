@@ -66,7 +66,7 @@ function SideNav(props) {
         </li>
 
       </ul>
-      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons medium">menu</i></a>
+      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons small">menu</i></a>
     </header>
   );
 }
