@@ -1,9 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import SignIn from './pages/SignIn';
-import Home from './pages/Home';
-import MyLibraries from './pages/MyLibraries';
-import ExploreGames from './pages/ExploreGames';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import SignIn from './components/SignIn';
+import Home from './components/Home';
+import MyLibraries from './components/MyLibraries';
+import ExploreGames from './components/ExploreGames';
 import SideNav from './components/SideNav';
 import AppContainer from './components/AppContainer';
 import Footer from './components/Footer';
