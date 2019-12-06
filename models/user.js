@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: { type: String, required: true },
+  username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   firstName: String,
   lastName: String,
@@ -12,7 +12,10 @@ const userSchema = new Schema({
       ref: "Game"
     }
   ],
-  currentToken: String
+  currentToken: { 
+    type: String,
+    unique: true
+  }
 });
 
 const User = mongoose.model("User", userSchema);
