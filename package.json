@@ -22,5 +22,14 @@
     "express": "^4.16.3",
     "if-env": "^1.0.4",
     "mongoose": "^5.7.12"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hlarson0210/pullfirstpushlater.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hlarson0210/pullfirstpushlater/issues"
+  },
+  "homepage": "https://github.com/hlarson0210/pullfirstpushlater#readme"
 }

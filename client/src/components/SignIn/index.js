@@ -16,13 +16,13 @@ function SignIn(props) {
                         <div className="row">
                             <div className="input-field col s12">
                                 <input id="username" type="text" className="validate"></input>
-                                <label for="username">Username</label>
+                                <label htmlFor="username">Username</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
                                 <input id="password" type="password" className="validate"></input>
-                                <label for="password">Password</label>
+                                <label htmlFor="password">Password</label>
                             </div>
                         </div>
                     </form>
@@ -43,24 +43,24 @@ function SignIn(props) {
                         <form className="col s8 offset-s2">
                             <div className="row">
                                 <div className="input-field col s6">
-                                    <input id="first_name" type="text" className="validate"></input>
-                                    <label for="first_name">First Name</label>
+                                    <input id="first_name" type="text" className="validate firstname"></input>
+                                    <label htmlFor="first_name">First Name</label>
                                 </div>
                                 <div className="input-field col s6">
-                                    <input id="last_name" type="text" className="validate"></input>
-                                    <label for="last_name">Last Name</label>
+                                    <input id="last_name" type="text" className="validate lastname"></input>
+                                    <label htmlFor="last_name">Last Name</label>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field col s12">
-                                    <input id="username" type="text" className="validate"></input>
-                                    <label for="username">Username</label>
+                                    <input id="new_username" type="text" className="validate new_username"></input>
+                                    <label htmlFor="new_username">Username</label>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field col s12">
-                                    <input id="password" type="password" className="validate"></input>
-                                    <label for="password">Password</label>
+                                    <input id="new_password" type="password" className="validate new_password"></input>
+                                    <label htmlFor="new_password">Password</label>
                                 </div>
                             </div>
                         </form>
