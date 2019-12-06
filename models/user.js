@@ -11,7 +11,8 @@ const userSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "Game"
     }
-  ]
+  ],
+  currentToken: String
 });
 
 const User = mongoose.model("User", userSchema);
