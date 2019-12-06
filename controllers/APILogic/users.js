@@ -21,7 +21,7 @@ module.exports = {
                             username: req.body.username
                         }, {
                             currentToken: token
-                        }).then(res.json(token))
+                        }).then(res.json({token}))
                         .catch(err => res.status(422).json(err));
                 }
             }).catch(err => res.status(422).json(err));
