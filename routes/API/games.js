@@ -3,7 +3,12 @@ const gamesController = require("../../controllers/APILogic/games");
 
 // Matches with "/api/games"
 router.route("/")
-    .get(gamesController.findAll)
+    .get((req, res) => {
+        if (req.body.name) {
+            gamesController.find(req, res);
+        }
+        gamesController.findAll(req, res);
+    })
     .post(gamesController.update);
 
 // Matches with "/api/games/:id"

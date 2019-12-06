@@ -2,6 +2,14 @@ const db = require("../../models");
 
 // Defining methods for the gamesController
 module.exports = {
+    find: function (req, res) {
+        db.Game.find(
+            { "name": { $regex: req.body, $options: "i" } },
+            function(err,docs) { 
+            } 
+        ).then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+    },
     findAll: function (req, res) {
         db.Game
             .find(req.query)
