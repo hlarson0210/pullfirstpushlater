@@ -2,69 +2,147 @@ const db = require("../../models");
 
 const createFilter = (req) => {
 
-     // ********add mapping to searchable things**********
-     
     const filters = {
-        userId: req.user._id 
+        userId: req.user._id
     }
-    if(req.body.name) {
-        filters.name = { $regex: req.body.name, $options: "i" }
+
+    if (req.body.name) {
+        filters.name = {
+            $regex: req.body.name,
+            $options: "i"
+        }
     }
-    if(req.body.minPlayers) {
-        filters.minPlayers = 1
+
+    if (req.body.minPlayers) {
+        filters.minPlayers = req.body.minPlayers
     }
+
+    if (req.body.maxPlayers) {
+        filters.maxPlayers = req.body.maxPlayers
+    }
+
+    if (req.body.minPlaytime) {
+        filters.minPlaytime = req.body.minPlaytime
+    }
+
+    if (req.body.maxPlaytime) {
+        filters.maxPlaytime = req.body.maxPlaytime
+    }
+
+    if (req.body.minAge) {
+        filters.minAge = req.body.minAge
+    }
+
+    if (req.body.rating) {
+        filters.rating = req.body.rating
+    }
+
+    if (req.body.complexity) {
+        filters.complexity = req.body.complexity
+    }
+
     return filters
 }
 
 // Defining methods for the gamesController
 module.exports = {
     find: function (req, res) {
-        const query = req.body;
-        const filters = createFilter(req)
-        
-        db.Game.find(
-            filters,
-            // function(err,docs) { 
-            // } 
-        ).then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
+
+        db.User.findOne({
+            currentToken: req.body.token
+        }).then(user => {
+            req.user = user;
+            const filters = createFilter(req);
+
+            if (!user) {
+                return res.status(422).send("User not found!");
+            }
+
+            db.Game.find(filters)
+                .then(dbModel => res.json(dbModel))
+                .catch(err => res.status(422).json(err));
+        }).catch(error => res.status(422).json(error));
     },
-    create: (req, res) => {
+    create: function (req, res) {
         db.Game.create({
-            ...req.body,
-            userId: req.user._id
-        }).then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
+                ...req.body,
+                userId: req.user._id
+            }).then(function (newGame) {
+                return db.User.findOneAndUpdate({
+                    _id: req.user._id
+                }, {
+                    $push: {
+                        games: newGame
+                    }
+                });
+            }).then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
     },
     update: function (req, res) {
-        if(!req.body._id) {
-            module.exports.create(req, res);
-            return
-        }
-        db.Game.find({
-            _id: req.body._id,
-            userId: req.user._id
-        }).then(games => {
-            if(games.length === 0) {
+        db.User.findOne({
+            currentToken: req.body.token
+        }).then(user => {
+
+            if (!user) {
+                return res.status(422).send("User not found!");
+            }
+            req.user = user;
+
+            if (!req.body._id) {
                 module.exports.create(req, res);
                 return
-            } else {
-                db.Game.updateOne({_id: req.body._id,
-                    userId: req.user._id}, {
-                        ...req.body,
-                        userId: req.user._id
-                    }).then(dbModel => res.json(dbModel))
-                    .catch(err => res.status(422).json(err));
             }
-        })
+
+            db.Game.find({
+                _id: req.body._id,
+                userId: req.user._id
+            }).then(games => {
+                if (games.length === 0) {
+                    module.exports.create(req, res);
+                    return
+                } else {
+                    db.Game.updateOne({
+                            _id: req.body._id,
+                            userId: req.user._id
+                        }, {
+                            ...req.body,
+                            userId: req.user._id
+                        }).then(dbModel => res.json(dbModel))
+                        .catch(err => res.status(422).json(err));
+                }
+            }).catch(error => res.status(422).json(error));
+        });
     },
     remove: function (req, res) {
-        db.Game
-            .findById({
+        db.User.findOne({
+            currentToken: req.body.token
+        }).then(user => {
+            if (!user) {
+                return res.status(422).send("User not found!");
+            }
+            db.Game.find({
+                userId: user._id,
                 _id: req.params.id
-            })
-            .then(dbModel => dbModel.remove())
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+            }).then(game => {
+
+                if (!game) {
+                    return res.status(422).send("No game found!");
+                }
+
+                db.Game.remove({
+                        _id: game
+                    }).then(dbModel => {
+
+                        db.User.findByIdAndUpdate(user._id, { $pull: {"games": { $in: game[0]._id}}}, function (errors, model) {
+                            if (errors) {
+                                return res.status(422).json(errors);
+                            }
+                            res.json(model);
+                        });
+                    })
+                    .catch(errs => res.status(422).json(errs));
+
+            }).catch(err => res.status(422).json(err));
+        }).catch(error => res.status(422).json(error));
     }
 };
