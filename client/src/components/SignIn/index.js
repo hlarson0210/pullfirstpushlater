@@ -1,16 +1,18 @@
 import React from "react";
 import "./style.css";
 
-function SignIn(props) {
+
+
+/*function SignIn(props) {
     return (
         <main>
             <div className="container center">
-                {/* Title Row */}
+                {/* Title Row }
                 <div className="row">
                     <h1>Game Application</h1>
                     <h4>Hello sign into your account to access your game library</h4>
                 </div>
-                {/* Form Row */}
+                {/* Form Row }
                 <div className="row">
                     <form className="col s8 offset-s2">
                         <div className="row">
@@ -27,15 +29,15 @@ function SignIn(props) {
                         </div>
                     </form>
                 </div>
-                {/* Log in row */}
+                {/* Log in row }
                 <div className="row">
                     <a className="waves-effect waves-light btn-large blue lighten-1">Log In</a>
                     <p>Don't have an account?</p>
-                    {/* Modal Trigger */}
+                    {/* Modal Trigger }
                     <p><a className="modal-trigger" href="#modal1">Sign Up</a></p>
                 </div>
             </div>
-            {/* Modal Structure */}
+            {/* Modal Structure }
             <div id="modal1" className="modal">
                 <div className="modal-content center">
                     <h4>Sign Up</h4>
@@ -73,4 +75,4 @@ function SignIn(props) {
         </main>
     );
 }
-export default SignIn;
+export default SignIn;*/
