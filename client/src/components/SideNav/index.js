@@ -17,56 +17,67 @@ function SideNav(props) {
         </li>
         <li><a className="subheader">Subheader</a></li>
         <li className="nav-item">
-            <Link
-              to="/"
-              className={
-                window.location.pathname === "/" || window.location.pathname === "/signin"
-                  ? "nav-link active"
-                  : "nav-link"
-              }
-            >
-              Sign In
+          <Link
+            to="/"
+            className={
+              window.location.pathname === "/" || window.location.pathname === "/signin"
+                ? "nav-link active"
+                : "nav-link"
+            }
+          >
+            Sign In
             </Link>
         </li>
         <li className="nav-item">
-            <Link
-              to="/home"
-              className={
-                window.location.pathname === "/home"
-                  ? "nav-link active"
-                  : "nav-link"
-              }
-            >
-              Home
+          <Link
+            to="/home"
+            className={
+              window.location.pathname === "/home"
+                ? "nav-link active"
+                : "nav-link"
+            }
+          >
+            Home
             </Link>
         </li>
         <li className="nav-item">
-            <Link
-              to="/mylibraries"
-              className={
-                window.location.pathname === "/mylibraries"
-                  ? "nav-link active"
-                  : "nav-link"
-              }
-            >
-              My Libraries
+          <Link
+            to="/mylibraries"
+            className={
+              window.location.pathname === "/mylibraries"
+                ? "nav-link active"
+                : "nav-link"
+            }
+          >
+            My Libraries
             </Link>
         </li>
         <li className="nav-item">
-            <Link
-              to="/exploregames"
-              className={
-                window.location.pathname === "/exploregames"
-                  ? "nav-link active"
-                  : "nav-link"
-              }
-            >
-              Explore Games
+          <Link
+            to="/exploregames"
+            className={
+              window.location.pathname === "/exploregames"
+                ? "nav-link active"
+                : "nav-link"
+            }
+          >
+            Explore Games
             </Link>
         </li>
-
+        <li className="nav-item">
+          <Link
+            to="/addgames"
+            className={
+              window.location.pathname === "/addgames"
+                ? "nav-link active"
+                : "nav-link"
+            }
+          >
+            Add Games
+            </Link>
+        </li>
       </ul>
-      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons medium">menu</i></a>
+      <a href="#" data-target="slide-out" className="sidenav-trigger"><i className="material-icons small">menu</i></a>
     </header>
   );
 }

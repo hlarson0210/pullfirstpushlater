@@ -1,5 +1,5 @@
 import React from "react";
-import API from "../utils/game-api.js"
+import API from "../utils/game-api.js";
 import "./style.css";
 
 function ExploreGames() {
