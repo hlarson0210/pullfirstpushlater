@@ -65,18 +65,22 @@ module.exports = {
     },
     create: function (req, res) {
         db.Game.create({
-                ...req.body,
-                userId: req.user._id
-            }).then(function (newGame) {
-                return db.User.findOneAndUpdate({
-                    _id: req.user._id
-                }, {
-                    $push: {
-                        games: newGame
-                    }
-                });
-            }).then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+            ...req.body,
+            userId: req.user._id
+        }).then(function (newGame) {
+            db.User.findOneAndUpdate({
+                _id: req.user._id
+            }, {
+                $push: {
+                    games: newGame
+                }
+            }).then(dbModel => db.User.find({
+                _id: req.user._id
+            }).then(function (dbUser) {
+                res.json(dbUser)
+            }).catch(err => res.status(422).json(err)));
+
+        }).catch(error => res.status(422).json(error));
     },
     update: function (req, res) {
         db.User.findOne({
@@ -93,23 +97,25 @@ module.exports = {
                 return
             }
 
-            db.Game.find({
+
+            db.Game.findOneAndUpdate({
                 _id: req.body._id,
                 userId: req.user._id
-            }).then(games => {
-                if (games.length === 0) {
-                    module.exports.create(req, res);
-                    return
-                } else {
-                    db.Game.updateOne({
-                            _id: req.body._id,
-                            userId: req.user._id
-                        }, {
-                            ...req.body,
-                            userId: req.user._id
-                        }).then(dbModel => res.json(dbModel))
-                        .catch(err => res.status(422).json(err));
+            }, {
+                $set: {
+                    ...req.body,
+                    userId: req.user._id
                 }
+            }).then(game => {
+                if (!game) {
+                    return module.exports.create(req, res);
+                }
+                db.Game.find({
+                        _id: req.body._id,
+                        userId: req.user._id
+                    })
+                    .then(updatedGame => res.json(updatedGame))
+                    .catch(err => res.status(422).json(err))
             }).catch(error => res.status(422).json(error));
         });
     },
@@ -133,11 +139,21 @@ module.exports = {
                         _id: game
                     }).then(dbModel => {
 
-                        db.User.findByIdAndUpdate(user._id, { $pull: {"games": { $in: game[0]._id}}}, function (errors, model) {
+                        db.User.findByIdAndUpdate(user._id, {
+                            $pull: {
+                                "games": {
+                                    $in: game[0]._id
+                                }
+                            }
+                        }, function (errors, model) {
                             if (errors) {
                                 return res.status(422).json(errors);
                             }
-                            res.json(model);
+                            db.User.find({
+                                _id: user._id
+                            }).then(function (dbUser) {
+                                res.json(dbUser)
+                            }).catch(err => res.status(422).json(err));
                         });
                     })
                     .catch(errs => res.status(422).json(errs));
