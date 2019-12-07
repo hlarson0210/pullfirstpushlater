@@ -6,6 +6,64 @@ function MyLibraries() {
         <main>
             <div className="container center">
                 <h1>My Library</h1>
+                <ul className="collapsible">
+                    <li>
+                        <div className="collapsible-header">
+                            <i className="material-icons">search</i>
+                            Search for Games
+                    </div>
+                        <div className="row collapsible-body">
+                            <form className="col s12">
+                                <div className="row">
+                                    <div className="input-field col s12">
+                                        <input placeholder="Settlers of Catan" id="first_name" type="text" className="validate"></input>
+                                        <label for="first_name">Game</label>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="input-field col s3">
+                                        <input id="first_name" type="text" className="validate"></input>
+                                        <label for="first_name">Minimum Players</label>
+                                    </div>
+                                    <div className="input-field col s3">
+                                        <input id="last_name" type="text" className="validate"></input>
+                                        <label for="last_name">Maximum Players</label>
+                                    </div>
+                                    <div className="input-field col s3">
+                                        <input id="last_name" type="text" className="validate"></input>
+                                        <label for="last_name">Minimum Playtime</label>
+                                    </div>
+                                    <div className="input-field col s3">
+                                        <input id="last_name" type="text" className="validate"></input>
+                                        <label for="last_name">Maximum Playtime</label>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="input-field col s6">
+                                        <input id="first_name" type="text" className="validate"></input>
+                                        <label for="first_name">Ages</label>
+                                    </div>
+                                    <div className="input-field col s6">
+                                        <input id="last_name" type="text" className="validate"></input>
+                                        <label for="last_name">Rating</label>
+                                    </div>
+                                </div>
+                            </form>
+                            <div className="row">
+                                <div className="col s6">
+                                    <button className="btn waves-effect waves-light blue lighten-1" name="action">Search Games<i class="material-icons right">search</i>
+                                    </button>
+                                </div>
+                                <div className="col s6">
+                                    <button className="btn waves-effect waves-light blue lighten-1" name="action">Clear Search<i class="material-icons right">loop</i>
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </li>
+                </ul>
 
                 <div className="row">
                     <div className="col s4">
