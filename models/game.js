@@ -23,7 +23,8 @@ const gameSchema = new Schema({
     },
     rating: Schema.Types.Decimal128,
     rules: String,
-    complexity: String
+    complexity: String,
+    userId: String
 });
 
 const Game = mongoose.model("Game", gameSchema);
