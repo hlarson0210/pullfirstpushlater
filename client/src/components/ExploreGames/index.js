@@ -1,14 +1,14 @@
-import React from "react";
-import "./style.css";
+import React from 'react'
+import './style.css'
 
 function ExploreGames () {
-    return(
-        <main>
-            <div className="container center">
-                <h1>Explore Games</h1>
-            </div>
-        </main>
-    )
+  return (
+    <main>
+      <div className='container center'>
+        <h1>Explore Games</h1>
+      </div>
+    </main>
+  )
 }
 
-export default ExploreGames;
+export default ExploreGames

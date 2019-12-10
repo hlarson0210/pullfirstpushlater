@@ -1,0 +1,43 @@
+/* MENU BUTTON */
+.menu {
+  color: hsl(348, 100%, 55%);
+}
+
+h1 {
+  line-height: 0%;
+}
+
+/* LOGIN BUTTON */
+.login {
+  color: #ff1744;
+  font-weight: 900;
+  background-color: white;
+}
+
+.login:hover {
+  color: white;
+  background-color: #2b2b38;
+}
+
+/* FORM HEADER */
+h4 {
+  color: #ff1744;
+}
+
+/* FORM FOOTER TEXT */
+p {
+  font-size: 14px;
+  margin: 0px;
+  line-height: 2;
+}
+
+/* SIGN UP LINK */
+.sign-up {
+  color: white;
+  font-style: oblique;
+  font-size: 14px;
+}
+.sign-up:hover {
+  font-weight: 900;
+  text-decoration: underline;
+}
