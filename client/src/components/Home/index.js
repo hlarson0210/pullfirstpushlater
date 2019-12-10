@@ -81,29 +81,29 @@ export default Home */
 
 function Home (props) {
   return (
-    <div className='contenedor'>
-      <form className='vert-nav-form'>
+    <div className="contenedor">
+      <form className="vert-nav-form">
         <input
-          type='radio'
-          className='radio-btn'
-          id='Slide1'
-          name='slider'
-          titulo='Home'
-          autoFocus='autofocus'
+          type="radio"
+          className="radio-btn"
+          id="Slide1"
+          name="slider"
+          titulo="Home"
+          autoFocus="autofocus"
         />
         <input
-          type='radio'
-          className='radio-btn'
-          id='Slide2'
-          name='slider'
-          titulo='MyLibraries'
+          type="radio"
+          className="radio-btn"
+          id="Slide2"
+          name="slider"
+          titulo="MyLibraries"
         />
         <input
-          type='radio'
-          className='radio-btn'
-          id='Slide3'
-          name='slider'
-          titulo='ExploreGames'
+          type="radio"
+          className="radio-btn"
+          id="Slide3"
+          name="slider"
+          titulo="ExploreGames"
         />
         <input
           type='radio'
@@ -120,7 +120,7 @@ function Home (props) {
                 <SignIn />
               </h1>
             </div>
-            <div className='icon'>
+            <div className="icon">
               <span />
               <span />
             </div>
