@@ -29,10 +29,6 @@
     "mongoose": "^5.7.12",
     "node-sass": "^4.13.0",
     "sass": "^1.23.7",
-<<<<<<< HEAD
-    "sentry": "^0.1.2",
-=======
->>>>>>> f8c32b004fe11d78a37de911d1691280e147af16
     "uuid": "^3.3.3"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
