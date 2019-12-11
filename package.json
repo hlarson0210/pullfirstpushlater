@@ -23,11 +23,16 @@
     "dot-env": "0.0.1",
     "dotenv": "^8.2.0",
     "express": "^4.16.3",
+    "formik": "^2.0.7",
     "if-env": "^1.0.4",
+    "materialize-css": "^1.0.0-rc.2",
     "mongoose": "^5.7.12",
     "node-sass": "^4.13.0",
     "sass": "^1.23.7",
+<<<<<<< HEAD
     "sentry": "^0.1.2",
+=======
+>>>>>>> f8c32b004fe11d78a37de911d1691280e147af16
     "uuid": "^3.3.3"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",

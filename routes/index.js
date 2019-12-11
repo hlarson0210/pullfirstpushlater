@@ -1,7 +1,7 @@
 const path = require("path");
 const router = require("express").Router();
-const apiRoutes = require("./api");
 const bgaAPI = require("./bgaAPI");
+const apiRoutes = require("./API");
 
 // API Routes
 router.use("/api", apiRoutes);

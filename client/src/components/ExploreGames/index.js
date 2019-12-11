@@ -241,4 +241,4 @@ class ExploreGames extends React.Component {
     }
 }
 
-export default ExploreGames;
+export default ExploreGames
