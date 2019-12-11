@@ -52,7 +52,10 @@
       $(".sidenav").sidenav();
       $(".modal").modal();
       $(".slider").slider();
-      $(".collapsible").collapsible();
+
+      $(document).on("click", ".collapsible", function () {
+        $('.collapsible').collapsible();
+      });
     });
 
   </script>
