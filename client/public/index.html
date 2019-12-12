@@ -50,6 +50,12 @@
   <script>
     $(document).ready(function () {
       $(".sidenav").sidenav();
+      $(".modal").modal();
+      $(".slider").slider();
+
+      $(document).on("click", ".collapsible", function () {
+        $('.collapsible').collapsible();
+      });
     });
 
   </script>
