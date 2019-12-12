@@ -19,8 +19,6 @@ let container2 = {
     "margin": "2%"
 }
 
-console.log(' REACT_APP_API_BASE_URL', process.env.REACT_APP_API_BASE_URL)
-
 class ExploreGames extends React.Component {
     constructor(props) {
         super(props);
