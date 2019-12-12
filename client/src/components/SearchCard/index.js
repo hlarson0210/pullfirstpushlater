@@ -2,7 +2,7 @@ import React from "react";
 let style = {
     "height": "10em",
     "display": "block",
-    "overflow-y": "scroll",
+    "overflowY": "scroll",
     "transform": "translateY(0%)"
 }
 function SearchGames(props) {

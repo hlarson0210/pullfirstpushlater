@@ -11,7 +11,7 @@ function SideNav (props) {
             <a href='#user'>
               <img
                 className='circle'
-                src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+                src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='Stock Profile'
               />
             </a>
             <a href='#name'>
@@ -47,7 +47,7 @@ function SideNav (props) {
                 : 'nav-link'
             }
           >
-            My Libraries
+            My Library
           </Link>
         </li>
         <li className='nav-item'>
