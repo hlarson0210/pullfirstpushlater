@@ -43,7 +43,7 @@ function GameCard(props) {
     return (
         <div className="row">
             <div className="right col s12">
-                <li class="collection-item hoverable" key={props.name}>
+                <li className="collection-item hoverable" key={props.name}>
                     <div><a href={props.officialsite} target="_blank"><img className="left valign-wrapper" style={style2} src={props.image}></img></a></div> 
                     <div>{props.name}</div> 
                     <div>Price: ${props.price} | Rating: {props.rating}</div>
