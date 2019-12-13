@@ -11,8 +11,8 @@ const cors = require("cors");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-// Serve up static assets (usually on heroku)
 
+// Serve up static assets (usually on heroku)
 app.use(express.static(path.join(__dirname, "/client/build")));
 
 // Define API routes here
