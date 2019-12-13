@@ -40,9 +40,9 @@ function SideNav (props) {
         </li>
         <li className='nav-item'>
           <Link
-            to='/mylibraries'
+            to='/mylibrary'
             className={
-              window.location.pathname === '/mylibraries'
+              window.location.pathname === '/mylibrary'
                 ? 'nav-link active'
                 : 'nav-link'
             }

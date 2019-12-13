@@ -20,7 +20,7 @@ function Home (props) {
           className="radio-btn"
           id="Slide2"
           name="slider"
-          titulo="MyLibraries"
+          titulo="MyLibrary"
         />
         <input
           type="radio"
@@ -51,9 +51,9 @@ function Home (props) {
           </label>
           <label className='Slide' htmlFor='Slide2' id='Slide2'>
             <div className='content'>
-              <h1 className='my-libraries-title'>MY LIBRARIES</h1>
+              <h1 className='my-library-title'>MY LIBRARY</h1>
               <p>
-                <a href='./mylibraries'>take me there.</a>
+                <a href='./mylibrary'>take me there.</a>
               </p>
             </div>
           </label>
@@ -72,7 +72,7 @@ function Home (props) {
                 <div className='col s12 m6 l6'>
                   <div className='card'>
                     <div className='card-content'>
-                      <div className='card-title'>My Libraries</div>
+                      <div className='card-title'>My Library</div>
                     </div>
                   </div>
                 </div>
@@ -129,12 +129,12 @@ export default Home
               <input
                 type='radio'
                 name='slider'
-                value='MyLibraries'
-                checked={this.state.selectedOption === 'MyLibraries'}
+                value='MyLibrary'
+                checked={this.state.selectedOption === 'MyLibrary'}
                 onChange={this.handleOptionChange}
                 className='radio-btn'
               />
-              My Libraries
+              My Library
             </label>
           </div>
           <div className='vert-nav-form'>
