@@ -39,35 +39,29 @@ class ExploreGames extends React.Component {
     queryGame = () => {
         bgaApiCall.search(this.state.searchGames)
             .then(response => {
-                    this.setState({
-                        searchedGames: response,
-                        isLoaded: true,
-                        searchGames: ""
-                    });
+                this.setState({
+                    searchedGames: response,
+                    isLoaded: true,
+                    searchGames: ""
+                });
             }).catch(err => console.log(err));
     };
 
     loadPopularGames = () => {
         bgaApiCall.getPopularGames().then(response => {
-                this.setState({
-                    popularGames: response,
-                    isLoaded: true
-                })
-            }).catch(err => this.setState({
-                isLoaded: true,
-                error: err
-            }))
+            this.setState({
+                popularGames: response,
+                isLoaded: true
+            })
+        }).catch(err => this.setState({
+            isLoaded: true,
+            error: err
+        }))
     };
 
     handleInputChange = event => {
-        // Getting the value and name of the input which triggered the change
-        const {
-            value,
-            name
-        } = event.target;
+        const { value, name } = event.target;
 
-
-        // Updating the input's state
         this.setState({
             [name]: value
         })
@@ -92,138 +86,89 @@ class ExploreGames extends React.Component {
             searchedGames
         } = this.state;
         if (error) {
-            return <div > Error: {
+            return <div> Error: {
                 error.message
             } </div>;
         } else if (!isLoaded) {
-            return <div className = "center" > < h1 > Loading... </h1></div > ;
+            return <div className="center"><h1>Loading...</h1></div >;
         } else {
-            return ( 
+            return (
                 <main>
-                    <div className = "container left" style = {
-                        container
-                    }>
-                            <h1 className="center" > Explore Games </h1>
-                        <div className="row" >
-                        <div className="input-field col s8" >
-                        <input
-                            id="nameOfGame"
-                            type="text"
-                            value = {
-                                this.state.searchGames
-                            }
-                            placeholder = "search games here..."
-                            name = "searchGames"
-                            onChange = {
-                                this.handleInputChange
-                            }
-                            className = "validate">
-                        </input>
+                    <div className="container left" style={container}>
+                        <h1 className="center">Explore Games</h1>
+                        <div className="row">
+                            <div className="input-field col s8" >
+                                <input
+                                    id="nameOfGame"
+                                    type="text"
+                                    value={this.state.searchGames}
+                                    placeholder="search games here..."
+                                    name="searchGames"
+                                    onChange={this.handleInputChange}
+                                    className="validate">
+                                </input>
+                            </div>
+                            <button
+                                className="waves-effect waves-light btn searching blue lighten-1"
+                                onClick={this.handleFormSubmit}>
+                                <i className="material-icons left blue lighten-1">gesture</i>
+                                Search
+                            </button>
+                        </div>
+                        <div>
+                            <h4 className="center">Searched Games</h4>
+                        </div>
+                        <div className="row" style={style}>
+                            <div className="col s12">
+                                {searchedGames.map(item =>
+                                    <SearchGames
+                                        name={item.name}
+                                        key={item.name}
+                                        price={item.price}
+                                        rating={item.average_user_rating ? item.average_user_rating.toFixed(2) : ""}
+                                        minplaytime={item.min_playtime}
+                                        maxplaytime={item.max_playtime}
+                                        minage={item.min_age}
+                                        minplayers={item.min_players}
+                                        maxplayers={item.max_players}
+                                        officialsite={item.official_url}
+                                        description={item.description_preview}
+                                        image={item.images.small}
+                                        rules={item.rules_url} >
+                                    </SearchGames>
+                                )}
+                            </div>
+                        </div>
                     </div>
-                    <button
-                        className = "waves-effect waves-light btn searching blue lighten-1"
-                        onClick = {
-                            this.handleFormSubmit
-                        }>
-                        <i className = "material-icons left blue lighten-1" > gesture </i>
-                        Search
-                    </button >
-                    </div>
-                    <div>
-                        <h4 className = "center" > Searched Games </h4>
-                    </div >
-                    <div className = "row"
-                        style = {
-                            style
-                        }>
-                    <div className="col s12"
-                    > {
-                        searchedGames.map(item =>
-                            <SearchGames
-                                name={item.name}
-                                key={item.name}
-                                price={item.price}
-                                rating={item.average_user_rating ? item.average_user_rating.toFixed(2) : ""}
-                                minplaytime={item.min_playtime}
-                                maxplaytime={item.max_playtime}
-                                minage = {
-                                    item.min_age
-                                }
-                                minplayers = {
-                                    item.min_players
-                                }
-                                maxplayers = {
-                                    item.max_players
-                                }
-                                officialsite = {
-                                    item.official_url
-                                }
-                                description = {
-                                    item.description_preview
-                                }
-                                image = {
-                                    item.images.small
-                                }
-                                rules = {
-                                    item.rules_url
-                                } >
-                            </SearchGames>
-                        )
-                    } </div> </div > </div>
 
-                    <div className = "container right"
-                    style = {
-                        container2
-                    } >
-                    <div > <h4 className = "center" > Popular Games </h4></div >
-                    <div className = "row"
-                    style = {
-                        style
-                    } > <ul className = "collection" > {
-                        popularGames.map(item =>
-                            <GameCard name = {
-                                item.name
-                            }
-                            key = {
-                                item.name
-                            }
-                            price = {
-                                item.price
-                            }
-                            rating = {item.average_user_rating ? item.average_user_rating.toFixed(2) : ""}
-                            minplaytime = {
-                                item.min_playtime
-                            }
-                            maxplaytime = {
-                                item.max_playtime
-                            }
-                            minage = {
-                                item.min_age
-                            }
-                            minplayers = {
-                                item.min_players
-                            }
-                            maxplayers = {
-                                item.max_players
-                            }
-                            officialsite = {
-                                item.official_url
-                            }
-                            description = {
-                                item.description_preview
-                            }
-                            image = {
-                                item.images.thumb
-                            }
-                            rules = {
-                                item.rules_url
-                            } >
-                            </GameCard>
-                        )
-                    } </ul> </div> </div > </main>
-        );
+                    <div className="container right" style={container2}>
+                        <div> <h4 className="center">Popular Games</h4></div>
+                        <div className="row" style={style}>
+                            <ul className="collection">
+                                {popularGames.map(item =>
+                                    <GameCard
+                                        name={item.name}
+                                        key={item.name}
+                                        price={item.price}
+                                        rating={item.average_user_rating ? item.average_user_rating.toFixed(2) : ""}
+                                        minplaytime={item.min_playtime}
+                                        maxplaytime={item.max_playtime}
+                                        minage={item.min_age}
+                                        minplayers={item.min_players}
+                                        maxplayers={item.max_players}
+                                        officialsite={item.official_url}
+                                        description={item.description_preview}
+                                        image={item.images.thumb}
+                                        rules={item.rules_url}>
+                                    </GameCard>
+                                )}
+                            </ul>
+                        </div>
+                    </div>
+                </main>
+            );
+        }
     }
-}
 }
 
 export default ExploreGames
