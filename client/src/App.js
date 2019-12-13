@@ -14,6 +14,7 @@ function App () {
       <div>
         <SideNav />
         <AppContainer>
+          <Route exact path='/' component={Home} />
           <Route exact path='/Home' component={Home} />
           <Route exact path='/MyLibraries' component={MyLibraries} />
           <Route exact path='/ExploreGames' component={ExploreGames} />

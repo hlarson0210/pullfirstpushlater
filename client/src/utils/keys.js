@@ -1,5 +1,5 @@
 let keys = {
-    id: ""
-};
+  id: ''
+}
 
-export default keys;
+export default keys
