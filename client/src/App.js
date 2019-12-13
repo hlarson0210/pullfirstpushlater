@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './components/Home'
-import MyLibraries from './components/MyLibraries'
+import MyLibrary from './components/MyLibrary'
 import ExploreGames from './components/ExploreGames'
 import SideNav from './components/SideNav'
 import AppContainer from './components/AppContainer'
@@ -16,7 +16,7 @@ function App () {
         <AppContainer>
           <Route exact path='/' component={Home} />
           <Route exact path='/Home' component={Home} />
-          <Route exact path='/MyLibraries' component={MyLibraries} />
+          <Route exact path='/MyLibrary' component={MyLibrary} />
           <Route exact path='/ExploreGames' component={ExploreGames} />
         </AppContainer>
         <Footer />
