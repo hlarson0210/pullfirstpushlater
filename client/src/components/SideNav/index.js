@@ -27,9 +27,6 @@ class SideNav extends React.Component {
           <li>
             <div className='divider' />
           </li>
-          <li>
-            <a className='subheader'>Subheader</a>
-          </li>
           <li className='nav-item'>
             <Link
               to='/home'
@@ -65,6 +62,18 @@ class SideNav extends React.Component {
               }
             >
               Explore Games
+          </Link>
+          </li>
+          <li className='nav-item'>
+            <Link
+              to='/addgames'
+              className={
+                window.location.pathname === '/addgames'
+                  ? 'nav-link active'
+                  : 'nav-link'
+              }
+            >
+              Add Games
           </Link>
           </li>
         </ul>
