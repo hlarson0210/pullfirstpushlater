@@ -1,6 +1,6 @@
 import React from 'react'
 import GameCard from '../GameCard'
-import SearchGames from '../SearchCard'
+import SearchGames from '../SearchGames'
 import bgaApiCall from '../../utils/bgaApiCall'
 // Import Materialize
 import M from 'materialize-css'
