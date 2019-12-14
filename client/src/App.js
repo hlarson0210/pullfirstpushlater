@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './components/Home'
 import MyLibrary from './components/MyLibrary'
@@ -7,15 +7,17 @@ import SideNav from './components/SideNav'
 import AppContainer from './components/AppContainer'
 import Footer from './components/Footer'
 import './App.css'
-import {AppContext} from "./appContext";
+import { AppContext } from "./appContext";
 
 
 // function App() {
-  class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       update: this.update,
+      token: "",
+      name: "Sign in for your account"
     };
   }
 
