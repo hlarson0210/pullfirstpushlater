@@ -22,7 +22,7 @@ class MyLibrary extends React.Component {
 
         const gameObj = {
             name: this.state.name,
-            token: this.context.token
+            token: this.state.token
         };
         libraryAPI.findGames(gameObj).then(response => {
             this.setState({ games: response });
@@ -61,7 +61,7 @@ class MyLibrary extends React.Component {
             minAge: this.state.minAge,
             complexity: this.state.complexity,
             rating: this.state.rating,
-            token: this.context.token
+            token: this.state.tokens
         };
 
         libraryAPI.findGames(gameObj).then(response => {

@@ -103,7 +103,6 @@ class SignIn extends React.Component {
       userLogic.userSignIn(newUser).then(resp => {
 
         const fullName = userObj.firstName + " " + userObj.lastName
-        this.context.update({ token: resp.token, name: fullName });
       }).catch(error => console.log(error));
     }).catch(err => console.log(err));
   }
