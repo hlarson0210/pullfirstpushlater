@@ -97,7 +97,6 @@ module.exports = {
                 return
             }
 
-
             db.Game.findOneAndUpdate({
                 _id: req.body._id,
                 userId: req.user._id
@@ -107,6 +106,8 @@ module.exports = {
                     userId: req.user._id
                 }
             }).then(game => {
+                
+                // should never actually hit this if statement, this is entirely for a catch all
                 if (!game) {
                     return module.exports.create(req, res);
                 }
