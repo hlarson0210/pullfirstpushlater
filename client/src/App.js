@@ -24,23 +24,23 @@ class App extends Component {
     this.setState(newState);
   }
 
-  render() {
-    return (
-      <AppContext.Provider value={this.state}>
-        <Router>
-          <div>
-            <SideNav />
-            <AppContainer>
-              <Route exact path='/' component={Home} />
-              <Route exact path='/Home' component={Home} />
-              <Route exact path='/MyLibraries' component={MyLibrary} />
-              <Route exact path='/ExploreGames' component={ExploreGames} />
-            </AppContainer>
-            <Footer />
-          </div>
-        </Router>
-      </AppContext.Provider>
-    )
+  render () {
+  return (
+    <AppContext.Provider value={this.state}>
+      <Router>
+        <div>
+          <SideNav />
+          <AppContainer>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/Home' component={Home} />
+            <Route exact path='/MyLibrary' component={MyLibrary} />
+            <Route exact path='/ExploreGames' component={ExploreGames} />
+          </AppContainer>
+          <Footer />
+        </div>
+      </Router>
+    </AppContext.Provider>
+  )
   }
 }
 
