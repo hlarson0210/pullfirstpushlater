@@ -88,7 +88,6 @@ class AddGames extends React.Component {
                             <div className="row">
                                 <div className="input-field col s12">
                                     <input
-                                        placeholder="Name of Game"
                                         id="gameName"
                                         type="text"
                                         name="gameName"
