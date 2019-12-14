@@ -2,7 +2,7 @@ import React from "react";
 import GameCard from "../GameCard";
 import SearchGames from "../SearchCard";
 import bgaApiCall from "../../utils/bgaApiCall";
-import {AppContext} from "../../appContext";
+import { AppContext } from "../../appContext";
 
 let style = {
     "height": "85em",
@@ -63,9 +63,9 @@ class ExploreGames extends React.Component {
     };
 
     handleInputChange = event => {
-        const { value, name } = event.target;
+        const { name, value } = event.target;
 
-        this.context.update({ [name]: value })
+        // this.context.update({ [name]: value })
 
         this.setState({
             [name]: value
@@ -84,7 +84,7 @@ class ExploreGames extends React.Component {
     };
 
     render() {
-        console.log(this.context);
+        // console.log(this.context);
         const {
             error,
             isLoaded,

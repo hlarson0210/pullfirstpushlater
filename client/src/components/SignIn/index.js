@@ -2,8 +2,11 @@ import React from 'react'
 import LogoAnimation from '../LogoAnimation'
 import userLogic from '../../utils/API/userLogic'
 import './style.css'
+import { AppContext } from "../../appContext";
+
 
 class SignIn extends React.Component {
+  static contextType = AppContext;
   state = {
     error: null,
     username: '',
@@ -85,12 +88,16 @@ class SignIn extends React.Component {
       const newUser = {username: userObj.username, password: userObj.password};
 
       userLogic.userSignIn(newUser).then(resp => {
+
+        this.context.update({ token: resp.token });
+        
         console.log(resp)
         }).catch(error => console.log(error));
       }).catch(err => console.log(err));
   }
 
   render () {
+    console.log(this.context.token);
     return (
       <main>
         <div className='row'>
