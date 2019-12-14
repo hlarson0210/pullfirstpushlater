@@ -31,6 +31,7 @@
     "materialize-css": "^1.0.0-rc.2",
     "mongoose": "^5.7.12",
     "node-sass": "^4.13.0",
+    "react-scroll": "^1.7.14",
     "sass": "^1.23.7",
     "uuid": "^3.3.3"
   },

@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
-function AppContainer(props) {
-  return <main className="wrapper" {...props} />;
+function AppContainer (props) {
+  return <main {...props} />
 }
 
-export default AppContainer;
+export default AppContainer
