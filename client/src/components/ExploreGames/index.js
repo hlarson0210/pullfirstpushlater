@@ -22,6 +22,8 @@ let container2 = {
 
 class ExploreGames extends React.Component {
     static contextType = AppContext;
+    // call token: this.context.token
+    
     constructor(props) {
         super(props);
         this.state = {

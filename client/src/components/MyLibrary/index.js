@@ -2,8 +2,12 @@ import React from "react";
 import "./style.css";
 // Import Materialize
 import M from "materialize-css";
+import { AppContext } from "../../appContext";
 
 class MyLibrary extends React.Component {
+    static contextType = AppContext;
+    // call token: this.context.token
+
     componentDidMount() {
         // Auto initialize all the things!
         M.AutoInit();

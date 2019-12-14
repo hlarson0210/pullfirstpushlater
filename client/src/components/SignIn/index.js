@@ -7,6 +7,8 @@ import { AppContext } from "../../appContext";
 
 class SignIn extends React.Component {
   static contextType = AppContext;
+  // call token: this.context.token
+  
   state = {
     error: null,
     username: '',
@@ -90,7 +92,7 @@ class SignIn extends React.Component {
       userLogic.userSignIn(newUser).then(resp => {
 
         this.context.update({ token: resp.token });
-        
+
         console.log(resp)
         }).catch(error => console.log(error));
       }).catch(err => console.log(err));
