@@ -100,7 +100,7 @@ class AddGames extends React.Component {
                                     <input
                                         id="minPlayers"
                                         type="number"
-                                        min="0"
+                                        min="1"
                                         step="1"
                                         name="minPlayers"
                                         onChange={this.handleInputChange}
@@ -128,7 +128,7 @@ class AddGames extends React.Component {
                                     <input
                                         id="minPlaytime"
                                         type="number"
-                                        min="0"
+                                        min="1"
                                         step="1"
                                         name="minPlaytime"
                                         onChange={this.handleInputChange}
@@ -142,7 +142,7 @@ class AddGames extends React.Component {
                                     <input
                                         id="maxPlaytime"
                                         type="number"
-                                        min="0"
+                                        min="1"
                                         step="1"
                                         name="maxPlaytime"
                                         onChange={this.handleInputChange}
@@ -158,7 +158,7 @@ class AddGames extends React.Component {
                                     <input
                                         id="minAge"
                                         type="number"
-                                        min="0"
+                                        min="1"
                                         step="1"
                                         name="minAge"
                                         onChange={this.handleInputChange}
@@ -188,7 +188,7 @@ class AddGames extends React.Component {
                                         id="rating"
                                         type="number"
                                         min="0"
-                                        step=".1"
+                                        step=".01"
                                         name="rating"
                                         onChange={this.handleInputChange}
                                         value={this.state.rating}
