@@ -6,7 +6,7 @@ module.exports = {
     axios
       .get(
         'https://www.boardgameatlas.com/api/search?order_by=reddit_week_count&ascending=false&limit=10&client_id=' +
-          apiKey
+          'dGTAqjEDh1'
       )
       .then(response => res.json(response.data.games))
       .catch(err => res.json(err))
@@ -15,7 +15,7 @@ module.exports = {
     axios
       .get(
         'https://www.boardgameatlas.com/api/search?&ascending=false&limit=10&client_id=' +
-          apiKey +
+          'dGTAqjEDh1' +
           '&name=' +
           req.query.name
       )
