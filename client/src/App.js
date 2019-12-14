@@ -6,6 +6,7 @@ import ExploreGames from './components/ExploreGames'
 import SideNav from './components/SideNav'
 import AppContainer from './components/AppContainer'
 import Footer from './components/Footer'
+import AddGames from './components/AddGames'
 import './App.css'
 import { AppContext } from "./appContext";
 
@@ -36,6 +37,7 @@ class App extends Component {
             <Route exact path='/Home' component={Home} />
             <Route exact path='/MyLibrary' component={MyLibrary} />
             <Route exact path='/ExploreGames' component={ExploreGames} />
+            <Route exact path='/addgames' component={AddGames} />
           </AppContainer>
           <Footer />
         </div>
