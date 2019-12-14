@@ -58,7 +58,7 @@ class AddGames extends React.Component {
             rules: this.state.rules,
             image: this.state.image,
             complexity: this.state.complexity,
-            token: this.context.token
+            token: this.state.token
         }
 
         if (!gameObj.name) {
