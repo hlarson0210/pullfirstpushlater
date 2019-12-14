@@ -1,5 +1,5 @@
-const axios = require('axios');
-const apiKey = process.env.BGA_APIKEY;
+const axios = require('axios')
+const apiKey = process.env.BGA_APIKEY
 
 module.exports = {
   findPopular: function (req, res) {

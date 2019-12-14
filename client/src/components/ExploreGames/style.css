@@ -1,0 +1,33 @@
+#popular-games,
+#search-games {
+  display: block;
+}
+
+#search-games {
+  padding-left: 6em;
+}
+
+#popular-games {
+  width: 25%;
+  float: right;
+  padding-right: 6em;
+}
+#heading {
+  width: 100%;
+  align-content: left;
+  padding-left: 5em;
+}
+
+#search-bar {
+  padding-top: 2em;
+}
+
+#search-button {
+  padding-top: 1em;
+  float: left;
+}
+
+img {
+  padding-left: 2em;
+  padding-top: 2em;
+}
