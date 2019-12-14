@@ -16,9 +16,10 @@ class SignIn extends React.Component {
   }
 
   handleInputChange = event => {
+
     // Getting the value and name of the input which triggered the change
-    const value = event.target.value
-    const name = event.target.name
+    const value = event.target.value;
+    const name = event.target.name;
 
     if (value.slice(value.length - 1) === ' ') {
       alert("No spaces allowed");
@@ -28,12 +29,14 @@ class SignIn extends React.Component {
     // Updating the input's state
     this.setState({
       [name]: value
-    })
+    });
   }
 
   handleSignIn = event => {
+
     // Preventing the default behavior of the form submit (which is to refresh the page)
-    event.preventDefault()
+    event.preventDefault();
+    let badForm = false;
 
     const userObj = {
       username: this.state.username,
@@ -55,8 +58,10 @@ class SignIn extends React.Component {
   }
 
   handleSignUp = event => {
+    
     // Preventing the default behavior of the form submit (which is to refresh the page)
-    event.preventDefault()
+    event.preventDefault();
+    let badForm = false;
 
     const userObj = {
       username: this.state.newUsername,

@@ -1,10 +1,12 @@
 import React from "react";
+
 let style = {
     "height": "10em",
     "display": "block",
     "overflowY": "scroll",
     "transform": "translateY(0%)"
 }
+
 function SearchGames(props) {
     return (
         <div className="row">
