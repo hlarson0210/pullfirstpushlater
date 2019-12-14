@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './components/Home'
-import MyLibraries from './components/MyLibraries'
+import MyLibrary from './components/MyLibrary'
 import ExploreGames from './components/ExploreGames'
 import SideNav from './components/SideNav'
 import AppContainer from './components/AppContainer'
@@ -25,6 +25,7 @@ import {AppContext} from "./appContext";
 
   render () {
   return (
+<<<<<<< HEAD
     <AppContext.Provider value={this.state}>
       <Router>
         <div>
@@ -39,6 +40,20 @@ import {AppContext} from "./appContext";
         </div>
       </Router>
     </AppContext.Provider>
+=======
+    <Router>
+      <div>
+        <SideNav />
+        <AppContainer>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/Home' component={Home} />
+          <Route exact path='/MyLibrary' component={MyLibrary} />
+          <Route exact path='/ExploreGames' component={ExploreGames} />
+        </AppContainer>
+        <Footer />
+      </div>
+    </Router>
+>>>>>>> 7323d5add0ad4b94b7cc5de29cb93c2a871fde33
   )
   }
 }

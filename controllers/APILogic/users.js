@@ -48,7 +48,7 @@ module.exports = {
                     if (err) {
                         return res.status(422).json(err);
                     }
-                    
+
                     db.User
                         .create({
                             ...req.body,
@@ -57,6 +57,6 @@ module.exports = {
                         .then(dbModel => res.json(dbModel))
                         .catch(error => res.status(422).json(error));
                 });
-            })
+            }).catch(error => res.status(422).json(error))
     }
 }

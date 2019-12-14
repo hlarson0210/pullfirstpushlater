@@ -3,7 +3,7 @@ import "./style.css";
 // Import Materialize
 import M from "materialize-css";
 
-class MyLibraries extends React.Component {
+class MyLibrary extends React.Component {
     componentDidMount() {
         // Auto initialize all the things!
         M.AutoInit();
@@ -125,4 +125,4 @@ class MyLibraries extends React.Component {
     }
 }
 
-export default MyLibraries
+export default MyLibrary

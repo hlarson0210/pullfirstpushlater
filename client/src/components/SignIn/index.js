@@ -1,13 +1,18 @@
 import React from 'react'
 import LogoAnimation from '../LogoAnimation'
-import axios from 'axios'
+import userLogic from '../../utils/API/userLogic'
 import './style.css'
 
 class SignIn extends React.Component {
   state = {
     error: null,
     username: '',
-    password: ''
+    password: '',
+    newUsername: '',
+    newPassword: '',
+    newConfirmPassword: '',
+    newFirstName: '',
+    newLastName: ''
   }
 
   handleInputChange = event => {
@@ -15,12 +20,9 @@ class SignIn extends React.Component {
     const value = event.target.value
     const name = event.target.name
 
-    if (name === 'password') {
-      // value = value.substring(0, 8);
-      if (value.length === 8) {
-        event.preventDefault()
-        return
-      }
+    if (value.slice(value.length - 1) === ' ') {
+      alert("No spaces allowed");
+      return
     }
 
     // Updating the input's state
@@ -29,36 +31,63 @@ class SignIn extends React.Component {
     })
   }
 
-  handleFormSubmit = event => {
+  handleSignIn = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault()
 
-    if (!this.state.username) {
-      alert(`Please enter a username`)
-      this.setState({
-        password: ''
-      })
-    } else if (this.state.username.length < 4) {
-      alert(`Please enter a username that is 4 or more characters.`)
-      this.setState({
-        password: ''
-      })
-    } else if (this.state.password.length < 8) {
+    const userObj = {
+      username: this.state.username,
+      password: this.state.password
+    };
+
+    if (!userObj.username) {
+      alert(`Please enter your username`)
+      return
+    } else if (userObj.password.length === 0) {
       alert(
-        `Choose a more secure password that is more than 8 characters, ${
-          this.state.username
-        }`
+        `You must enter your password`
       )
-      this.setState({
-        password: ''
-      })
-    } else {
-      alert(`Hello ${this.state.username}`)
-      this.setState({
-        username: '',
-        password: ''
-      })
+      return
     }
+    userLogic.userSignIn(userObj).then(response => {
+      console.log(response);
+    }).catch(err => console.log(err));
+  }
+
+  handleSignUp = event => {
+    // Preventing the default behavior of the form submit (which is to refresh the page)
+    event.preventDefault()
+
+    const userObj = {
+      username: this.state.newUsername,
+      password: this.state.newPassword,
+      firstName: this.state.newFirstName,
+      lastName: this.state.newLastName
+    };
+
+    if (!userObj.username) {
+      alert(`Please enter a username`);
+      return
+    } else if (userObj.username.length < 4) {
+      alert(`Please enter a username that is 4 or more characters.`);
+      return
+    } else if (userObj.password.length < 8) {
+      alert(
+        `Your password must be at least 8 characters, ${
+          userObj.username
+        }`
+      );
+      return
+    } else if (userObj.password !== this.state.newConfirmPassword) {
+      alert(`Your passwords do not match, ${userObj.firstName}`);
+    }
+    userLogic.userSignUp(userObj).then(response => {
+      const newUser = {username: userObj.username, password: userObj.password};
+
+      userLogic.userSignIn(newUser).then(resp => {
+        console.log(resp)
+        }).catch(error => console.log(error));
+      }).catch(err => console.log(err));
   }
 
   render () {
@@ -81,7 +110,6 @@ class SignIn extends React.Component {
               </div>
               <div className='row username'>
                 <div className='input-field col s12 m12 l12'>
-                  <label>
                     <input
                       type='text'
                       value={this.state.username}
@@ -90,13 +118,13 @@ class SignIn extends React.Component {
                       onChange={this.handleInputChange}
                       className='validate username'
                     />
+                     <label>
                     Username
                   </label>
                 </div>
               </div>
               <div className='row password'>
                 <div className='input-field col s12 m12 l12'>
-                  <label>
                     <input
                       type='password'
                       value={this.state.password}
@@ -105,13 +133,14 @@ class SignIn extends React.Component {
                       onChange={this.handleInputChange}
                       className='validate password'
                     />
+                    <label>
                     Password
                   </label>
                 </div>
               </div>
               <button
                 className='waves-effect waves-light btn searching blue lighten-1'
-                onClick={this.handleFormSubmit}
+                onClick={this.handleSignIn}
               >
                 LOG IN
               </button>
@@ -139,6 +168,10 @@ class SignIn extends React.Component {
                         id='first_name'
                         type='text'
                         className='validate firstname'
+                        value={this.state.newFirstName}
+                        placeholder='First Name'
+                        name='newFirstName'
+                        onChange={this.handleInputChange}
                       />
                       <label htmlFor='first_name'>First Name</label>
                     </div>
@@ -147,6 +180,10 @@ class SignIn extends React.Component {
                         id='last_name'
                         type='text'
                         className='validate lastname'
+                        value={this.state.newLastName}
+                        placeholder='Last Name'
+                        name='newLastName'
+                        onChange={this.handleInputChange}
                       />
                       <label htmlFor='last_name'>Last Name</label>
                     </div>
@@ -157,6 +194,10 @@ class SignIn extends React.Component {
                         id='new_username'
                         type='text'
                         className='validate new_username'
+                        value={this.state.newUsername}
+                        placeholder='Username'
+                        name='newUsername'
+                        onChange={this.handleInputChange}
                       />
                       <label htmlFor='new_username'>Username</label>
                     </div>
@@ -167,8 +208,26 @@ class SignIn extends React.Component {
                         id='new_password'
                         type='password'
                         className='validate new_password'
+                        value={this.state.newPassword}
+                        placeholder='Password'
+                        name='newPassword'
+                        onChange={this.handleInputChange}
                       />
                       <label htmlFor='new_password'>Password</label>
+                    </div>
+                  </div>
+                  <div className='row'>
+                    <div className='input-field col s12'>
+                      <input
+                        id='confirm_password'
+                        type='password'
+                        className='validate new_password'
+                        value={this.state.newConfirmPassword}
+                        placeholder='Confirm Password'
+                        name='newConfirmPassword'
+                        onChange={this.handleInputChange}
+                      />
+                      <label htmlFor='confirm_password'>Confirm Password</label>
                     </div>
                   </div>
                 </form>
@@ -178,6 +237,7 @@ class SignIn extends React.Component {
               <a
                 href='#!'
                 className='modal-close waves-effect waves-green btn-flat'
+                onClick={this.handleSignUp}
               >
                 Submit
               </a>
