@@ -1,11 +1,21 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import './style.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import ls from 'local-storage';
 import { AppContext } from "../../appContext";
+import './style.css';
 
 class SideNav extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   static contextType = AppContext;
-  // call token: this.context.token
+  
+
+  logout = event => {
+    ls.remove("myGameLibrary_userToken");
+    ls.remove("myGameLibrary_userFullName");
+    this.props.history.history.push("/home");
+  }
 
   render() {
     return (
@@ -20,7 +30,7 @@ class SideNav extends React.Component {
                 />
               </a>
               <a href='#name'>
-                <span className='name white-text'>{this.context.name}</span>
+                <span className='name white-text'>{ls.get("myGameLibrary_userFullName") ? ls.get("myGameLibrary_userFullName") : "Hi User"}</span>
               </a>
             </div>
           </li>
@@ -66,6 +76,9 @@ class SideNav extends React.Component {
             >
               Explore Games
           </Link>
+          </li>
+          <li className='nav-item' onClick={this.logout}>
+              Log Out
           </li>
         </ul>
         <a href='#' data-target='slide-out' className='sidenav-trigger'>

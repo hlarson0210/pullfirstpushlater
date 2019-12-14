@@ -5,9 +5,16 @@ import M from "materialize-css";
 import './style.css';
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   componentDidMount() {
     M.AutoInit();
   };
+
+  redirect = (location) => {
+    this.props.history.push(location)
+  }
   
   render() {
     return (
@@ -47,7 +54,7 @@ class Home extends React.Component {
               <div className='content'>
                 <h1>
                   <strong />
-                  <SignIn />
+                  <SignIn locRedirect={this.redirect}/>
                 </h1>
               </div>
               <div className="icon">
