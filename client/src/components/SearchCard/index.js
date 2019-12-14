@@ -11,11 +11,11 @@ function SearchGames(props) {
             <div className="left">
                 < div className="card horizontal" key={props.name}>
                     <div className="card-image">
-                        <a href={props.officialsite} target="_blank"><img src={props.image}></img></a>
+                        <a href={props.officialsite} target="_blank" rel="noopener noreferrer"><img src={props.image}></img></a>
                     </div>
                     <div className="card-stacked">
                         <div className="card-content">
-                            <a href={props.officialsite} target="_blank"><h4 className="header">{props.name}</h4></a>
+                            <a href={props.officialsite} target="_blank" rel="noopener noreferrer"><h4 className="header">{props.name}</h4></a>
                             <p style={style}>{props.description}</p>
                         </div>
                         <div className="card-action">
@@ -24,8 +24,8 @@ function SearchGames(props) {
                             <div>Play Time: {props.minplaytime}-{props.maxplaytime}min</div>
                             <div>For ages {props.minage}+</div>
                             <div>Rating: {props.rating}</div>
-                            <a href={props.officialsite} target="_blank">Buy it here</a>
-                            <a href={props.rules} target="_blank">Rules</a>
+                            <a href={props.officialsite} target="_blank" rel="noopener noreferrer">Buy it here</a>
+                            <a href={props.rules} target="_blank" rel="noopener noreferrer">Rules</a>
                             <div className="btn-small blue lighten-1">
                                 <h6>Add to library</h6>
                             </div>
