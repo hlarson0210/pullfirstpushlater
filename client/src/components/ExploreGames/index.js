@@ -3,6 +3,7 @@ import GameCard from "../GameCard";
 import SearchGames from "../SearchGames";
 import bgaApiCall from "../../utils/bgaApiCall";
 import { AppContext } from "../../appContext";
+import ExampleApp from "../PopularGames";
 
 let style = {
     "height": "85em",
@@ -64,6 +65,10 @@ class ExploreGames extends React.Component {
         }))
     };
 
+    modalPopularGames = () => {
+
+    }
+
     handleInputChange = event => {
         const { name, value } = event.target;
 
@@ -124,6 +129,9 @@ class ExploreGames extends React.Component {
                             </button>
                         </div>
                         <div>
+                            <ExampleApp ></ExampleApp>
+                        </div>
+                        <div>
                             <h4 className="center">Searched Games</h4>
                         </div>
                         <div className="row" style={style}>
@@ -131,7 +139,7 @@ class ExploreGames extends React.Component {
                                 {searchedGames.map(item =>
                                     <SearchGames
                                         name={item.name}
-                                        key={item.name}
+                                        key={item.id}
                                         price={item.price}
                                         rating={item.average_user_rating ? item.average_user_rating.toFixed(2) : ""}
                                         minplaytime={item.min_playtime}
