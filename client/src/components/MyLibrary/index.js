@@ -44,6 +44,7 @@ class MyLibrary extends React.Component {
 
     handleInputChange = event => {
         const { name, value } = event.target;
+
         this.setState({
             [name]: value,
         });
@@ -205,9 +206,7 @@ class MyLibrary extends React.Component {
                                         <button className="btn waves-effect waves-light blue lighten-1" name="action" onClick={this.clearButton}>Clear Search<i className="material-icons right">loop</i>
                                         </button>
                                     </div>
-
                                 </div>
-
                             </div>
                         </li>
                     </ul>

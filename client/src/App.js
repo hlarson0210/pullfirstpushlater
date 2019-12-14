@@ -10,8 +10,6 @@ import AddGames from './components/AddGames';
 import { AppContext } from "./appContext";
 import './App.css';
 
-
-// function App() {
 class App extends Component {
   constructor(props) {
     super(props);
@@ -25,25 +23,25 @@ class App extends Component {
   }
 
   render () {
-  return (
-    <AppContext.Provider value={this.state}>
-      <Router>
-        <div>
-          <Route render={(history) => 
-            <SideNav history={history} />
-          } />
-          <AppContainer>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/Home' component={Home} />
-            <Route exact path='/MyLibrary' component={MyLibrary} />
-            <Route exact path='/ExploreGames' component={ExploreGames} />
-            <Route exact path='/addgames' component={AddGames} />
-          </AppContainer>
-          <Footer />
-        </div>
-      </Router>
-    </AppContext.Provider>
-  )
+    return (
+      <AppContext.Provider value={this.state}>
+        <Router>
+          <div>
+            <Route render={(history) => 
+              <SideNav history={history} />
+            } />
+            <AppContainer>
+              <Route exact path='/' component={Home} />
+              <Route exact path='/Home' component={Home} />
+              <Route exact path='/MyLibrary' component={MyLibrary} />
+              <Route exact path='/ExploreGames' component={ExploreGames} />
+              <Route exact path='/addgames' component={AddGames} />
+            </AppContainer>
+            <Footer />
+          </div>
+        </Router>
+      </AppContext.Provider>
+    )
   }
 }
 
