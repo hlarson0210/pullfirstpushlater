@@ -1,4 +1,5 @@
 import React from "react";
+import M from "materialize-css";
 import gameLogic from "../../utils/API/gameLogic";
 import ls from 'local-storage';
 import { AppContext } from "../../appContext";
@@ -8,6 +9,7 @@ class AddGames extends React.Component {
     static contextType = AppContext;
     
     componentDidMount() {
+        M.AutoInit();
         const userToken = ls.get("myGameLibrary_userToken");
 
         if (userToken) {
@@ -15,7 +17,7 @@ class AddGames extends React.Component {
         } else {
             alert("There was an error with your sign in, please log out and try again");
         }
-      }
+    }
 
     state = {
         error: null,
