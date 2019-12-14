@@ -23,7 +23,7 @@ let container2 = {
 class ExploreGames extends React.Component {
     static contextType = AppContext;
     // call token: this.context.token
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -86,7 +86,7 @@ class ExploreGames extends React.Component {
     };
 
     render() {
-        // console.log(this.context);
+        console.log(this.context.token);
         const {
             error,
             isLoaded,

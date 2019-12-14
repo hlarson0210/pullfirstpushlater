@@ -96,7 +96,8 @@ class SignIn extends React.Component {
 
       userLogic.userSignIn(newUser).then(resp => {
 
-        this.context.update({ token: resp.token });
+        const fullName = userObj.firstName + " " + userObj.lastName
+        this.context.update({ token: resp.token, name: fullName });
 
         console.log(resp)
         }).catch(error => console.log(error));

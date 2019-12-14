@@ -16,7 +16,8 @@ class App extends Component {
     super(props);
     this.state = {
       update: this.update,
-      token: ""
+      token: "",
+      name: "Sign in for your account"
     };
   }
 
