@@ -15,7 +15,7 @@ module.exports = {
                     return res.status(404).send("Username not found!");
                 }
 
-                bcrypt.compare(req.body.password, user.password, function(err, response) {
+                bcrypt.compare(req.body.password, user.password, function (err, response) {
                     if (err) {
                         return res.status(422).json(err);
                     }
@@ -24,16 +24,14 @@ module.exports = {
                         const token = uuidv4(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
 
                         db.User.updateOne({
-                                username: req.body.username
-                            }, {
-                                currentToken: token
-                            }).then(res.json({
-                                token
-                            }))
-                            .catch(error => res.status(422).json(error));
+                            username: req.body.username
+                        }, {
+                            currentToken: token
+                        }).then(res.json({currentToken: token, firstName: user.firstName, lastName: user.lastName})
+                        ).catch(error => res.status(422).json(error));
                     }
                 });
-                
+
             }).catch(err => res.status(422).json(err));
     },
     create: function (req, res) {

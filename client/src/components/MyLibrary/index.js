@@ -11,6 +11,7 @@ class MyLibrary extends React.Component {
 
     componentDidMount() {
         M.AutoInit();
+        // console.log("token", this.context.token);
 
         //on load display games
     };
@@ -41,8 +42,7 @@ class MyLibrary extends React.Component {
             name: this.state.name,
             token: this.context.token 
         };
-        console.log(this.state.name);
-        console.log(gameObj.token);
+        
         libraryAPI.findGames(gameObj).then(response => {
             this.setState({games: response}, () => console.log(this.state.games));
         }).catch(err => console.log(err))
