@@ -6,39 +6,39 @@ const createFilter = (req) => {
         userId: req.user._id
     }
 
-    if (req.body.name) {
+    if (req.query.name) {
         filters.name = {
-            $regex: req.body.name,
+            $regex: req.query.name,
             $options: "i"
         }
     }
 
-    if (req.body.minPlayers) {
-        filters.minPlayers = req.body.minPlayers
+    if (req.query.minPlayers) {
+        filters.minPlayers = req.query.minPlayers
     }
 
-    if (req.body.maxPlayers) {
-        filters.maxPlayers = req.body.maxPlayers
+    if (req.query.maxPlayers) {
+        filters.maxPlayers = req.query.maxPlayers
     }
 
-    if (req.body.minPlaytime) {
-        filters.minPlaytime = req.body.minPlaytime
+    if (req.query.minPlaytime) {
+        filters.minPlaytime = req.query.minPlaytime
     }
 
-    if (req.body.maxPlaytime) {
-        filters.maxPlaytime = req.body.maxPlaytime
+    if (req.query.maxPlaytime) {
+        filters.maxPlaytime = req.query.maxPlaytime
     }
 
-    if (req.body.minAge) {
-        filters.minAge = req.body.minAge
+    if (req.query.minAge) {
+        filters.minAge = req.query.minAge
     }
 
-    if (req.body.rating) {
-        filters.rating = req.body.rating
+    if (req.query.rating) {
+        filters.rating = req.query.rating
     }
 
-    if (req.body.complexity) {
-        filters.complexity = req.body.complexity
+    if (req.query.complexity) {
+        filters.complexity = req.query.complexity
     }
 
     return filters
@@ -47,16 +47,17 @@ const createFilter = (req) => {
 // Defining methods for the gamesController
 module.exports = {
     find: function (req, res) {
-
+        console.log(req)
         db.User.findOne({
-            currentToken: req.body.token
+            currentToken: req.query.token
         }).then(user => {
+            console.log(user);
+            if (!user) {
+                return res.status(404).send("User not found!");
+            }
+
             req.user = user;
             const filters = createFilter(req);
-
-            if (!user) {
-                return res.status(422).send("User not found!");
-            }
 
             db.Game.find(filters)
                 .then(dbModel => res.json(dbModel))
@@ -97,7 +98,6 @@ module.exports = {
                 return
             }
 
-
             db.Game.findOneAndUpdate({
                 _id: req.body._id,
                 userId: req.user._id
@@ -107,13 +107,15 @@ module.exports = {
                     userId: req.user._id
                 }
             }).then(game => {
+
+                // should never actually hit this if statement, this is entirely for a catch all
                 if (!game) {
                     return module.exports.create(req, res);
                 }
                 db.Game.find({
-                        _id: req.body._id,
-                        userId: req.user._id
-                    })
+                    _id: req.body._id,
+                    userId: req.user._id
+                })
                     .then(updatedGame => res.json(updatedGame))
                     .catch(err => res.status(422).json(err))
             }).catch(error => res.status(422).json(error));
@@ -136,26 +138,26 @@ module.exports = {
                 }
 
                 db.Game.remove({
-                        _id: game
-                    }).then(dbModel => {
+                    _id: game
+                }).then(dbModel => {
 
-                        db.User.findByIdAndUpdate(user._id, {
-                            $pull: {
-                                "games": {
-                                    $in: game[0]._id
-                                }
+                    db.User.findByIdAndUpdate(user._id, {
+                        $pull: {
+                            "games": {
+                                $in: game[0]._id
                             }
-                        }, function (errors, model) {
-                            if (errors) {
-                                return res.status(422).json(errors);
-                            }
-                            db.User.find({
-                                _id: user._id
-                            }).then(function (dbUser) {
-                                res.json(dbUser)
-                            }).catch(err => res.status(422).json(err));
-                        });
-                    })
+                        }
+                    }, function (errors, model) {
+                        if (errors) {
+                            return res.status(422).json(errors);
+                        }
+                        db.User.find({
+                            _id: user._id
+                        }).then(function (dbUser) {
+                            res.json(dbUser)
+                        }).catch(err => res.status(422).json(err));
+                    });
+                })
                     .catch(errs => res.status(422).json(errs));
 
             }).catch(err => res.status(422).json(err));

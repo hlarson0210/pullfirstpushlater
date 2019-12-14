@@ -100,7 +100,7 @@ class Home extends React.Component {
   }
 }
 
-export default Home
+export default Home;
 
 /* class Home extends Component {
   constructor (props) {
