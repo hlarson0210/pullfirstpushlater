@@ -1,8 +1,6 @@
 import axios from "axios";
 
-// TODO: Find way to move this to config
-const baseURL = process.env.REACT_APP_API_BASE_URL ? process.env.REACT_APP_API_BASE_URL : "http://localhost:3001/" // use when in DEV
-//const baseURL = "" // use when in PROD
+const baseURL = process.env.REACT_APP_API_BASE_URL ? process.env.REACT_APP_API_BASE_URL : "http://localhost:3001/"
 
 export default {
     getPopularGames: async function() {

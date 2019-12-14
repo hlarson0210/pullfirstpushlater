@@ -1,5 +1,5 @@
-const axios = require('axios')
-const apiKey = process.env.BGA_APIKEY
+const axios = require('axios');
+const apiKey = process.env.BGA_APIKEY;
 
 module.exports = {
   findPopular: function (req, res) {
@@ -12,7 +12,6 @@ module.exports = {
       .catch(err => res.json(err))
   },
   search: function (req, res, next) {
-    console.log('req', req)
     axios
       .get(
         'https://www.boardgameatlas.com/api/search?&ascending=false&limit=10&client_id=' +
