@@ -58,12 +58,17 @@ class SignIn extends React.Component {
       return
     }
     userLogic.userSignIn(userObj).then(response => {
-      console.log(response);
+      const newLocation = window.location.href + "mylibrary";
+      console.log(newLocation);
+      const fullName = response.firstName + " " + response.lastName;
+      this.context.update({ token: response.currentToken, name: fullName });
+      // window.location.href = newLocation;
+      this.setState({username: "", password: ""});
     }).catch(err => console.log(err));
   }
 
   handleSignUp = event => {
-    
+
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
     let badForm = false;
@@ -84,7 +89,7 @@ class SignIn extends React.Component {
     } else if (userObj.password.length < 8) {
       alert(
         `Your password must be at least 8 characters, ${
-          userObj.username
+        userObj.username
         }`
       );
       return
@@ -92,20 +97,17 @@ class SignIn extends React.Component {
       alert(`Your passwords do not match, ${userObj.firstName}`);
     }
     userLogic.userSignUp(userObj).then(response => {
-      const newUser = {username: userObj.username, password: userObj.password};
+      const newUser = { username: userObj.username, password: userObj.password };
 
       userLogic.userSignIn(newUser).then(resp => {
 
         const fullName = userObj.firstName + " " + userObj.lastName
         this.context.update({ token: resp.token, name: fullName });
-
-        console.log(resp)
-        }).catch(error => console.log(error));
-      }).catch(err => console.log(err));
+      }).catch(error => console.log(error));
+    }).catch(err => console.log(err));
   }
 
-  render () {
-    console.log(this.context.token);
+  render() {
     return (
       <main>
         <div className='row'>
@@ -125,30 +127,30 @@ class SignIn extends React.Component {
               </div>
               <div className='row username'>
                 <div className='input-field col s12 m12 l12'>
-                    <input
-                      type='text'
-                      value={this.state.username}
-                      placeholder='Username'
-                      name='username'
-                      onChange={this.handleInputChange}
-                      className='validate username'
-                    />
-                     <label>
+                  <input
+                    type='text'
+                    value={this.state.username}
+                    placeholder='Username'
+                    name='username'
+                    onChange={this.handleInputChange}
+                    className='validate username'
+                  />
+                  <label>
                     Username
                   </label>
                 </div>
               </div>
               <div className='row password'>
                 <div className='input-field col s12 m12 l12'>
-                    <input
-                      type='password'
-                      value={this.state.password}
-                      placeholder='Password'
-                      name='password'
-                      onChange={this.handleInputChange}
-                      className='validate password'
-                    />
-                    <label>
+                  <input
+                    type='password'
+                    value={this.state.password}
+                    placeholder='Password'
+                    name='password'
+                    onChange={this.handleInputChange}
+                    className='validate password'
+                  />
+                  <label>
                     Password
                   </label>
                 </div>

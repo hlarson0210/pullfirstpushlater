@@ -4,11 +4,11 @@ const baseURL = process.env.REACT_APP_API_BASE_URL ? process.env.REACT_APP_API_B
 
 export default {
     addGame: async function(gameObj) {
-        const response = await axios.post(`${baseURL}api/users/signin`, gameObj)
+        const response = await axios.post(`${baseURL}api/games`, gameObj)
         return response.data;
     },
-    findGames: async function(userObj) {
-        const response = await axios.post(`${baseURL}api/users/signup`, userObj);
+    findGames: async function(gameObj) {
+        const response = await axios.get(`${baseURL}api/games`, {params: gameObj});
         return response.data;
     }
 }

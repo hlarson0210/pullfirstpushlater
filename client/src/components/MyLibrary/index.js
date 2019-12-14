@@ -1,17 +1,67 @@
 import React from "react";
-import "./style.css";
-// Import Materialize
 import M from "materialize-css";
+import libraryAPI from "../../utils/API/gameLogic";
 import { AppContext } from "../../appContext";
+import "./style.css";
+
 
 class MyLibrary extends React.Component {
     static contextType = AppContext;
     // call token: this.context.token
 
     componentDidMount() {
-        // Auto initialize all the things!
         M.AutoInit();
-    }
+        // console.log("token", this.context.token);
+
+        //on load display games
+    };
+
+    state = {
+        games: [],
+        name: "",
+        minPlayers: "",
+        maxPlayers: "",
+        minPlaytime: "",
+        maxPlaytime: "",
+        minAge: "",
+        complexity: "",
+        rating: ""
+    };
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value,
+        }, () => console.log(this.state.name));
+    };
+
+    submitButton = (e) => {
+        e.preventDefault();
+        
+        const gameObj = {
+            name: this.state.name,
+            token: this.context.token 
+        };
+        
+        libraryAPI.findGames(gameObj).then(response => {
+            this.setState({games: response}, () => console.log(this.state.games));
+        }).catch(err => console.log(err))
+    };
+
+    clearButton = (e) => {
+        e.preventDefault();
+
+        this.setState({
+            name: "",
+            minPlayers: "",
+            maxPlayers: "",
+            minPlaytime: "",
+            maxPlaytime: "",
+            minAge: "",
+            complexity: "",
+            rating: ""
+        })
+    };
 
     render() {
         return (
@@ -28,46 +78,106 @@ class MyLibrary extends React.Component {
                                 <form className="col s12">
                                     <div className="row">
                                         <div className="input-field col s12">
-                                            <input placeholder="Settlers of Catan" id="first_name" type="text" className="validate"></input>
-                                            <label for="first_name">Game</label>
+                                            <input
+                                                value={this.state.name}
+                                                name="name"
+                                                onChange={this.handleInputChange}
+                                                type="text"
+                                                className="validate"
+                                            >
+                                            </input>
+                                            <label>Name of Game</label>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="input-field col s3">
-                                            <input id="first_name" type="text" className="validate"></input>
-                                            <label for="first_name">Minimum Players</label>
+                                            <input
+                                                value={this.state.minPlayers}
+                                                name="minPlayers"
+                                                onChange={this.handleInputChange}
+                                                type="text"
+                                                className="validate"
+                                            >
+                                            </input>
+                                            <label>Minimum Players</label>
                                         </div>
                                         <div className="input-field col s3">
-                                            <input id="last_name" type="text" className="validate"></input>
-                                            <label for="last_name">Maximum Players</label>
+                                            <input
+                                                value={this.state.maxPlayers}
+                                                name="maxPlayers"
+                                                onChange={this.handleInputChange}
+                                                type="text"
+                                                className="validate"
+                                            >
+                                            </input>
+                                            <label>Maximum Players</label>
                                         </div>
                                         <div className="input-field col s3">
-                                            <input id="last_name" type="text" className="validate"></input>
-                                            <label for="last_name">Minimum Playtime</label>
+                                            <input
+                                                value={this.state.minPlaytime}
+                                                name="minPlaytime"
+                                                onChange={this.handleInputChange}
+                                                type="text"
+                                                className="validate"
+                                            >
+                                            </input>
+                                            <label>Minimum Playtime</label>
                                         </div>
                                         <div className="input-field col s3">
-                                            <input id="last_name" type="text" className="validate"></input>
-                                            <label for="last_name">Maximum Playtime</label>
+                                            <input
+                                                value={this.state.maxPlaytime}
+                                                name="maxPlaytime"
+                                                onChange={this.handleInputChange}
+                                                type="text"
+                                                className="validate"
+                                            >
+                                            </input>
+                                            <label>Maximum Playtime</label>
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <div className="input-field col s6">
-                                            <input id="first_name" type="text" className="validate"></input>
-                                            <label for="first_name">Ages</label>
+                                        <div className="input-field col s4">
+                                            <input
+                                                value={this.state.minAge}
+                                                name="minAge"
+                                                onChange={this.handleInputChange}
+                                                type="text"
+                                                className="validate"
+                                            >
+                                            </input>
+                                            <label>Minimum Age</label>
                                         </div>
-                                        <div className="input-field col s6">
-                                            <input id="last_name" type="text" className="validate"></input>
-                                            <label for="last_name">Rating</label>
+                                        <div className="input-field col s4">
+                                            <input
+                                                value={this.state.complexity}
+                                                name="complexity"
+                                                onChange={this.handleInputChange}
+                                                type="text"
+                                                className="validate"
+                                            >
+                                            </input>
+                                            <label>Complexity</label>
+                                        </div>
+                                        <div className="input-field col s4">
+                                            <input
+                                                value={this.state.rating}
+                                                name="rating"
+                                                onChange={this.handleInputChange}
+                                                type="text"
+                                                className="validate"
+                                            >
+                                            </input>
+                                            <label>Rating</label>
                                         </div>
                                     </div>
                                 </form>
                                 <div className="row">
                                     <div className="col s6">
-                                        <button className="btn waves-effect waves-light blue lighten-1" name="action">Search Games<i class="material-icons right">search</i>
+                                        <button className="btn waves-effect waves-light blue lighten-1" name="action" onClick={this.submitButton}>Search Games<i className="material-icons right">search</i>
                                         </button>
                                     </div>
                                     <div className="col s6">
-                                        <button className="btn waves-effect waves-light blue lighten-1" name="action">Clear Search<i class="material-icons right">loop</i>
+                                        <button className="btn waves-effect waves-light blue lighten-1" name="action" onClick={this.clearButton}>Clear Search<i className="material-icons right">loop</i>
                                         </button>
                                     </div>
 
@@ -129,4 +239,4 @@ class MyLibrary extends React.Component {
     }
 }
 
-export default MyLibrary
+export default MyLibrary;

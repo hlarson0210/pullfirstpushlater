@@ -150,8 +150,7 @@ class AddGames extends React.Component {
                 </div>
             </main >
         )
-    }
-    
+    }  
 }
 
 export default AddGames;
