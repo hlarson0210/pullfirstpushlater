@@ -1,8 +1,12 @@
 import React from "react";
 import gameLogic from "../../utils/API/gameLogic";
 import "./style.css";
+import { AppContext } from "../../appContext";
 
 class AddGames extends React.Component {
+    static contextType = AppContext;
+    // call token: this.context.token
+    
     state = {
         error: null,
         userToken: "",

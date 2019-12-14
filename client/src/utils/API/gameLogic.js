@@ -7,8 +7,8 @@ export default {
         const response = await axios.post(`${baseURL}api/games`, gameObj)
         return response.data;
     },
-    findGames: async function(userObj) {
-        const response = await axios.get(`${baseURL}api/games`, {params: userObj});
+    findGames: async function(gameObj) {
+        const response = await axios.get(`${baseURL}api/games`, {params: gameObj});
         return response.data;
     }
 }

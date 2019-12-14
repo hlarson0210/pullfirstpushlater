@@ -1,10 +1,14 @@
 import React from "react";
 import M from "materialize-css";
 import libraryAPI from "../../utils/API/gameLogic";
+import { AppContext } from "../../appContext";
 import "./style.css";
 
 
 class MyLibrary extends React.Component {
+    static contextType = AppContext;
+    // call token: this.context.token
+
     componentDidMount() {
         M.AutoInit();
 
@@ -33,13 +37,13 @@ class MyLibrary extends React.Component {
     submitButton = (e) => {
         e.preventDefault();
         
-        const userObj = {
+        const gameObj = {
             name: this.state.name,
-            token: "b93b19ad-9b19-42a8-9d43-325e6c7b348b"  
+            token: this.context.token 
         };
         console.log(this.state.name);
-        console.log(userObj.token);
-        libraryAPI.findGames(userObj).then(response => {
+        console.log(gameObj.token);
+        libraryAPI.findGames(gameObj).then(response => {
             this.setState({games: response}, () => console.log(this.state.games));
         }).catch(err => console.log(err))
     };
@@ -235,4 +239,4 @@ class MyLibrary extends React.Component {
     }
 }
 
-export default MyLibrary
+export default MyLibrary;
