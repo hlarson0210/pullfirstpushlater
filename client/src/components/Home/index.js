@@ -6,11 +6,18 @@ import M from 'materialize-css'
 import './style.css'
 
 class Home extends React.Component {
-  componentDidMount () {
-    // Auto initialize all the things!
-    M.AutoInit()
+  constructor(props) {
+    super(props);
   }
-  render () {
+  componentDidMount() {
+    M.AutoInit();
+  };
+
+  redirect = (location) => {
+    this.props.history.push(location)
+  }
+  
+  render() {
     return (
       <div className='contenedor'>
         <form className='vert-nav-form'>
@@ -48,7 +55,7 @@ class Home extends React.Component {
               <div className='content'>
                 <h1>
                   <strong />
-                  <SignIn />
+                  <SignIn locRedirect={this.redirect}/>
                 </h1>
               </div>
               <div className='icon'>

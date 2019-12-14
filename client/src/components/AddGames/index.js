@@ -1,20 +1,24 @@
 import React from "react";
 import gameLogic from "../../utils/API/gameLogic";
-import "./style.css";
+import ls from 'local-storage';
 import { AppContext } from "../../appContext";
-import M from "materialize-css";
+import "./style.css";
 
 class AddGames extends React.Component {
     static contextType = AppContext;
-    // call token: this.context.token
-
+    
     componentDidMount() {
-        M.AutoInit();
-    };
+        const userToken = ls.get("myGameLibrary_userToken");
+
+        if (userToken) {
+            this.setState({token: userToken});
+        } else {
+            alert("There was an error with your sign in, please log out and try again");
+        }
+      }
 
     state = {
         error: null,
-        userToken: "",
         gameName: "",
         minPlayers: null,
         maxPlayers: null,
@@ -24,7 +28,8 @@ class AddGames extends React.Component {
         rating: null,
         rules: "",
         image: "",
-        complexity: ""
+        complexity: "",
+        token: ""
     }
 
     handleInputChange = event => {
@@ -83,7 +88,6 @@ class AddGames extends React.Component {
                             <div className="row">
                                 <div className="input-field col s12">
                                     <input
-                                        placeholder="Name of Game"
                                         id="gameName"
                                         type="text"
                                         name="gameName"

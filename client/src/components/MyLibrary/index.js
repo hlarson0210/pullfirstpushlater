@@ -1,24 +1,31 @@
 import React from "react";
 import M from "materialize-css";
 import libraryAPI from "../../utils/API/gameLogic";
-import LibraryCard from "../LibraryCard"
+import ls from 'local-storage';
+import LibraryCard from "../LibraryCard";
 import { AppContext } from "../../appContext";
 import "./style.css";
 
 
 class MyLibrary extends React.Component {
     static contextType = AppContext;
-    // call token: this.context.token
 
     componentDidMount() {
         M.AutoInit();
-        // console.log("token", this.context.token);
+        const userToken = ls.get("myGameLibrary_userToken");
+
+        if (userToken) {
+            this.setState({token: userToken});
+        } else {
+            alert("There was an error with your sign in, please log out and try again");
+        }
+
         const gameObj = {
             name: this.state.name,
             token: this.context.token
         };
         libraryAPI.findGames(gameObj).then(response => {
-            this.setState({ games: response }, () => console.log(this.state.games));
+            this.setState({ games: response });
         }).catch(err => console.log(err))
     };
 
@@ -31,19 +38,20 @@ class MyLibrary extends React.Component {
         maxPlaytime: "",
         minAge: "",
         complexity: "",
-        rating: ""
+        rating: "",
+        token: ""
     };
 
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
             [name]: value,
-        }, () => console.log(this.state.name));
+        });
     };
 
-    submitButton = (e) => {
-        e.preventDefault();
-
+    submitButton = event => {
+        event.preventDefault();
+        
         const gameObj = {
             name: this.state.name,
             minPlayers: this.state.minPlayers,
@@ -57,12 +65,12 @@ class MyLibrary extends React.Component {
         };
 
         libraryAPI.findGames(gameObj).then(response => {
-            this.setState({ games: response }, () => console.log(this.state.games));
+            this.setState({games: response});
         }).catch(err => console.log(err))
     };
 
-    clearButton = (e) => {
-        e.preventDefault();
+    clearButton = event => {
+        event.preventDefault();
 
         this.setState({
             name: "",
