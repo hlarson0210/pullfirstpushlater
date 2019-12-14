@@ -25,7 +25,6 @@ import {AppContext} from "./appContext";
 
   render () {
   return (
-<<<<<<< HEAD
     <AppContext.Provider value={this.state}>
       <Router>
         <div>
@@ -40,20 +39,6 @@ import {AppContext} from "./appContext";
         </div>
       </Router>
     </AppContext.Provider>
-=======
-    <Router>
-      <div>
-        <SideNav />
-        <AppContainer>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/Home' component={Home} />
-          <Route exact path='/MyLibrary' component={MyLibrary} />
-          <Route exact path='/ExploreGames' component={ExploreGames} />
-        </AppContainer>
-        <Footer />
-      </div>
-    </Router>
->>>>>>> 7323d5add0ad4b94b7cc5de29cb93c2a871fde33
   )
   }
 }
