@@ -1,6 +1,6 @@
 import React from "react";
 import M from "materialize-css";
-import libraryAPI from "../../utils/API/gamesLogic";
+import libraryAPI from "../../utils/API/gameLogic";
 import "./style.css";
 
 
@@ -27,43 +27,20 @@ class MyLibrary extends React.Component {
         const { name, value } = event.target;
         this.setState({
             [name]: value,
-        });
+        }, () => console.log(this.state.name));
     };
 
     submitButton = (e) => {
         e.preventDefault();
-        // if (this.state.name) {
-        // }
-        // if (this.state.minPlayers) {
-        // }
-        // if (this.state.maxPlayers) {
-        // }
-        // if (this.state.minPlaytime) {
-        // }
-        // if (this.state.maxPlaytime) {
-        // }
-        // if (this.state.minAge) {
-        // }
-        // if (this.state.complexity) {
-        // }
-        // if (this.state.rating) {
-        // }
-        //=========================================
-        //console.log(this.state.name);
         
-        //the issue is the games are not tied to the token but the ID. We need to figure out how to search by id so that we can use the token to get access to the id which gives us access to the library. 
-
-        //need the sign in to return an _id 
-    
         const userObj = {
-            userId: "5df402f99730093948810653",
             name: this.state.name,
-            currentToken: "a2d66b3f-4760-41f3-8839-90bd184be858"
-          };
-          console.log(this.state.name);
-          console.log(userObj.token);
-        libraryAPI.getLibraryGames(userObj).then(response => {
-            console.log(response)
+            token: "b93b19ad-9b19-42a8-9d43-325e6c7b348b"  
+        };
+        console.log(this.state.name);
+        console.log(userObj.token);
+        libraryAPI.findGames(userObj).then(response => {
+            this.setState({games: response}, () => console.log(this.state.games));
         }).catch(err => console.log(err))
     };
 
