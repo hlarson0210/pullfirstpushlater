@@ -6,9 +6,7 @@ import { AppContext } from "../../appContext";
 import './style.css';
 
 class SignIn extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
   static contextType = AppContext;
 
   state = {

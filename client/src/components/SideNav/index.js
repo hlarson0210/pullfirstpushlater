@@ -5,9 +5,6 @@ import { AppContext } from "../../appContext";
 import './style.css';
 
 class SideNav extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   static contextType = AppContext;
 
   logout = event => {
@@ -22,14 +19,14 @@ class SideNav extends React.Component {
         <ul id='slide-out' className='sidenav blue lighten-1'>
           <li>
             <div className='user=view'>
-              <a href='#user'>
+              <a>
                 <img
                   className='circle'
                   src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='Stock Profile'
                 />
               </a>
-              <a href='#name'>
-                <span className='name white-text'>{ls.get("myGameLibrary_userFullName") ? ls.get("myGameLibrary_userFullName") : "Hi User"}</span>
+              <a>
+                <span id="username" className='name white-text'>{ls.get("myGameLibrary_userFullName") ? ls.get("myGameLibrary_userFullName") : "Hi User"}</span>
               </a>
             </div>
           </li>
@@ -86,10 +83,10 @@ class SideNav extends React.Component {
           </Link>
           </li>
           <li className='nav-item' onClick={this.logout}>
-            <a class="nav-link" href="#">Log Out</a>
+            <a class="nav-link">Log Out</a>
           </li>
         </ul>
-        <a href='#' data-target='slide-out' className='sidenav-trigger'>
+        <a data-target='slide-out' className='sidenav-trigger'>
           <i className='material-icons small menu'>menu</i>
         </a>
       </header>

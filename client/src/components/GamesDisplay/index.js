@@ -5,9 +5,6 @@ import M from "materialize-css";
 
 
 class GamesDisplay extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         M.AutoInit();

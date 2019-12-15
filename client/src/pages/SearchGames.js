@@ -18,7 +18,7 @@ function SearchGames (props) {
               target='_blank'
               rel='noopener noreferrer'
             >
-              <img src={props.image}></img>
+              <img alt="" src={props.image}></img>
             </a>
           </div>
           <div className='card-stacked'>

@@ -1,13 +1,10 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import SignIn from '../SignIn'
 import M from 'materialize-css'
 import './style.css'
 
 class Home extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  
   componentDidMount() {
     M.AutoInit();
   };

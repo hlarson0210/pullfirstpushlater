@@ -1,9 +1,9 @@
 import React from 'react'
-let style = {
-  height: '10em',
-  overflowY: 'scroll',
-  transform: 'translateY(0%)'
-}
+// let style = {
+//   height: '10em',
+//   overflowY: 'scroll',
+//   transform: 'translateY(0%)'
+// }
 
 let style2 = {
   margin: '2%'
@@ -20,6 +20,7 @@ function GameCard (props) {
                 className='left valign-wrapper'
                 style={style2}
                 src={props.image}
+                alt=""
               ></img>
             </a>
           </div>
