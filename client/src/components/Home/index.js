@@ -63,7 +63,7 @@ class Home extends React.Component {
               <div className='content'>
                 <h1 className='my-library-title'>MY LIBRARY</h1>
                 <p className="take-me-there">
-                  <a href='./mylibrary'>take me there.</a>
+                  <a className='homeLink' href='./mylibrary'>take me there.</a>
                 </p>
               </div>
             </label>
@@ -71,7 +71,7 @@ class Home extends React.Component {
               <div className='content'>
                 <h1 className='explore-games-title'>EXPLORE GAMES</h1>
                 <p className="take-me-there">
-                  <a href='./exploregames'>take me there.</a>
+                  <a className='homeLink' href='./exploregames'>take me there.</a>
                 </p>
               </div>
             </label>

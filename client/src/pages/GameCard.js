@@ -1,6 +1,6 @@
 import React from 'react'
 let style = {
-  margin: '2%'
+  marginRight: '2%'
 }
 
 function GameCard (props) {
