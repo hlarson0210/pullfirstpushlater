@@ -217,7 +217,6 @@ class AddGames extends React.Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <h4>Input Rules here</h4>
                                 <div className="input-field col s12">
                                     <textarea
                                         id="rules"
@@ -228,7 +227,7 @@ class AddGames extends React.Component {
                                         className="materialize-textarea"
                                     >
                                     </textarea>
-                                    <label htmlFor="rules">Rules</label>
+                                    <label htmlFor="rules">Rules URL</label>
                                 </div>
                             </div>
                         </form>

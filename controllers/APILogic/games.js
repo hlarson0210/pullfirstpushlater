@@ -13,34 +13,32 @@ const createFilter = (req) => {
         }
     }
 
-    if (req.query.minPlayers) {
-        filters.minPlayers = req.query.minPlayers
-    }
-
-    if (req.query.maxPlayers) {
-        filters.maxPlayers = req.query.maxPlayers
+    if (req.query.numPlayers) {
+        filters.minPlayers = { $gte: req.query.numPlayers}
+        filters.maxPlayers = { $lte: req.query.numPlayers}
     }
 
     if (req.query.minPlaytime) {
-        filters.minPlaytime = req.query.minPlaytime
+        filters.minPlaytime = { $gte: req.query.minPlaytime }
     }
 
     if (req.query.maxPlaytime) {
-        filters.maxPlaytime = req.query.maxPlaytime
+        filters.maxPlaytime = { $lte: req.query.maxPlaytime }
     }
 
     if (req.query.minAge) {
-        filters.minAge = req.query.minAge
+        filters.minAge = { $gte: req.query.minAge }
     }
 
     if (req.query.rating) {
-        filters.rating = req.query.rating
+        filters.rating = { $gte: req.query.rating }
     }
 
     if (req.query.complexity) {
         filters.complexity = req.query.complexity
     }
 
+    console.log(filters)
     return filters
 }
 

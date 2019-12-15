@@ -161,7 +161,7 @@ class SignIn extends React.Component {
               >
                 LOG IN
               </button>
-              <div className='row'>
+              <div id="signUpDiv" className='row'>
                 <p>Don't have an account?</p>
                 <p>
                   <a className='modal-trigger link sign-up' href='#modal1'>

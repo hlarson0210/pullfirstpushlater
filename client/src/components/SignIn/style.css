@@ -41,3 +41,7 @@ p {
   font-weight: 900;
   text-decoration: underline;
 }
+
+#signUpDiv {
+  margin-top: .75rem
+}

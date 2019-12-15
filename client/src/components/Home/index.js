@@ -66,7 +66,7 @@ class Home extends React.Component {
             <label className='Slide' htmlFor='Slide2' id='Slide2'>
               <div className='content'>
                 <h1 className='my-library-title'>MY LIBRARY</h1>
-                <p>
+                <p className="take-me-there">
                   <a href='./mylibrary'>take me there.</a>
                 </p>
               </div>
@@ -74,7 +74,7 @@ class Home extends React.Component {
             <label className='Slide' htmlFor='Slide3' id='Slide3'>
               <div className='content'>
                 <h1 className='explore-games-title'>EXPLORE GAMES</h1>
-                <p>
+                <p className="take-me-there">
                   <a href='./exploregames'>take me there.</a>
                 </p>
               </div>
