@@ -1,5 +1,5 @@
 import React from 'react';
-import LogoAnimation from '../LogoAnimation';
+import LogoAnimation from '../../pages/LogoAnimation';
 import userLogic from '../../utils/API/userLogic';
 import ls from 'local-storage';
 import { AppContext } from "../../appContext";

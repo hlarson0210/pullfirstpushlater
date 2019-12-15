@@ -2,7 +2,7 @@ import React from "react";
 import M from "materialize-css";
 import libraryAPI from "../../utils/API/gameLogic";
 import ls from 'local-storage';
-import LibraryCard from "../LibraryCard";
+import GamesDisplay from "../../components/GamesDisplay";
 import { AppContext } from "../../appContext";
 import "./style.css";
 
@@ -22,7 +22,7 @@ class MyLibrary extends React.Component {
                     token: this.state.token
                 };
                 libraryAPI.findGames(gameObj).then(response => {
-                    this.setState({ games: response });
+                    this.setState({ games: response }, () => console.log("findgames1", this.state.games));
                 }).catch(err => console.log(err))
             });
         } else {
@@ -67,7 +67,7 @@ class MyLibrary extends React.Component {
         };
 
         libraryAPI.findGames(gameObj).then(response => {
-            this.setState({ games: response });
+            this.setState({ games: response }, () => console.log("findgames2", this.state.games));
             instances[0].close();
         }).catch(err => console.log(err));
 
@@ -125,7 +125,7 @@ class MyLibrary extends React.Component {
                                                 className="validate"
                                             >
                                             </input>
-                                            <label>Number of Players</label>
+                                            <label>Minimum Players</label>
                                         </div>
                                         <div className="input-field col s4">
                                             <input
@@ -212,19 +212,7 @@ class MyLibrary extends React.Component {
                         </li>
                     </ul>
                     <div className="row">
-                        {this.state.games.map(item =>
-                            <LibraryCard
-                                name={item.name}
-                                key={item.name}
-                                minPlaytime={item.minPlaytime}
-                                maxPlaytime={item.maxPlaytime}
-                                minPlayers={item.minPlayers}
-                                maxPlayers={item.maxPlayers}
-                                minAge={item.minAge}
-                                rating={item.rating.$numberDecimal}
-                            >
-                            </LibraryCard>
-                        )}
+                        <GamesDisplay games={this.state.games}></GamesDisplay>
                     </div>
                 </div>
             </main>

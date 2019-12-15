@@ -77,6 +77,14 @@ class AddGames extends React.Component {
             return
         }
 
+        if (!gameObj.maxPlaytime) {
+            gameObj.maxPlaytime = gameObj.minPlaytime;
+        }
+
+        if (!gameObj.maxPlayers) {
+            gameObj.maxPlayers = gameObj.minPlayers;
+        }
+
         gameLogic.addGame(gameObj);
     };
 

@@ -1,9 +1,9 @@
-import React from 'react'
-import GameCard from '../GameCard'
-import SearchGames from '../SearchGames'
-import bgaApiCall from '../../utils/bgaApiCall'
-import M from 'materialize-css'
-import './style.css'
+import React from 'react';
+import GameCard from '../../pages/GameCard';
+import SearchGames from '../../pages/SearchGames';
+import bgaApiCall from '../../utils/bgaApiCall';
+import M from 'materialize-css';
+import './style.css';
 
 class ExploreGames extends React.Component {
   constructor (props) {
@@ -117,7 +117,6 @@ class ExploreGames extends React.Component {
                 {searchedGames.map(item => (
                   <SearchGames
                     name={item.name}
-                    key={item.name}
                     price={item.price}
                     rating={
                       item.average_user_rating
@@ -148,7 +147,6 @@ class ExploreGames extends React.Component {
               {popularGames.map(item => (
                 <GameCard
                   name={item.name}
-                  key={item.name}
                   price={item.price}
                   rating={
                     item.average_user_rating

@@ -11,7 +11,7 @@ function SearchGames (props) {
   return (
     <div className='row'>
       <div className='left'>
-        <div className='card horizontal' key={props.name}>
+        <div className='card horizontal'>
           <div className='card-image'>
             <a
               href={props.officialsite}

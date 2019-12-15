@@ -5,7 +5,7 @@ import MyLibrary from './components/MyLibrary';
 import ExploreGames from './components/ExploreGames';
 import SideNav from './components/SideNav';
 import AppContainer from './components/AppContainer';
-import Footer from './components/Footer';
+import Footer from './pages/Footer';
 import AddGames from './components/AddGames';
 import { AppContext } from "./appContext";
 import './App.css';
