@@ -25,4 +25,3 @@ class GamesDisplay extends React.Component {
 }
 
 export default GamesDisplay;
-
