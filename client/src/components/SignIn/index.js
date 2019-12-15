@@ -87,6 +87,7 @@ class SignIn extends React.Component {
     } else if (userObj.password !== this.state.newConfirmPassword) {
       alert(`Your passwords do not match, ${userObj.firstName}`)
     }
+
     userLogic
       .userSignUp(userObj)
       .then(response => {
@@ -97,7 +98,12 @@ class SignIn extends React.Component {
 
         userLogic
           .userSignIn(newUser)
-          .then(resp => {})
+          .then(resp => {
+            const fullName = response.firstName + ' ' + response.lastName
+            ls.set('myGameLibrary_userToken', response.currentToken)
+            ls.set('myGameLibrary_userFullName', fullName.trim())
+            this.props.locRedirect('/mylibrary')
+          })
           .catch(error => console.log(error))
       })
       .catch(err => console.log(err))
