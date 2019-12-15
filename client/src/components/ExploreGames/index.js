@@ -2,7 +2,6 @@ import React from 'react';
 import GameCard from '../../pages/GameCard';
 import SearchGames from '../../pages/SearchGames';
 import bgaApiCall from '../../utils/bgaApiCall';
-import M from 'materialize-css';
 import './style.css';
 
 class ExploreGames extends React.Component {
@@ -19,8 +18,7 @@ class ExploreGames extends React.Component {
   }
 
   componentDidMount () {
-    this.loadPopularGames()
-    M.AutoInit()
+    this.loadPopularGames();
   }
 
   queryGame = () => {

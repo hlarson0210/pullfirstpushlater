@@ -1,14 +1,8 @@
 import React from "react";
 import NoGames from "../../pages/NoGames";
 import LibraryCard from "../../pages/LibraryCard";
-import M from "materialize-css";
-
 
 class GamesDisplay extends React.Component {
-
-    componentDidMount() {
-        M.AutoInit();
-    };
 
     render() {
         if (this.props.games.length === 0) {
@@ -24,6 +18,7 @@ class GamesDisplay extends React.Component {
                 maxPlayers={item.maxPlayers}
                 minAge={item.minAge}
                 rating={item.rating.$numberDecimal}
+                complexity={item.complexity}
             />
         )
     }

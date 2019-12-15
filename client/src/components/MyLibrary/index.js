@@ -11,8 +11,6 @@ class MyLibrary extends React.Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        M.AutoInit();
-
         const userToken = ls.get("myGameLibrary_userToken");
 
         if (userToken) {
@@ -27,7 +25,9 @@ class MyLibrary extends React.Component {
             });
         } else {
             alert("There was an error with your sign in, please log out and try again");
-        }        
+        }  
+        
+        M.AutoInit();
     };
 
     state = {
@@ -67,7 +67,7 @@ class MyLibrary extends React.Component {
         };
 
         libraryAPI.findGames(gameObj).then(response => {
-            this.setState({ games: response });
+            this.setState({ games: response } );
             instances[0].close();
         }).catch(err => console.log(err));
 

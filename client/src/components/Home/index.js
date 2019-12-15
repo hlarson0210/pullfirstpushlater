@@ -1,14 +1,9 @@
-import React from 'react'
-import SignIn from '../SignIn'
-import M from 'materialize-css'
-import './style.css'
+import React from 'react';
+import SignIn from '../SignIn';
+import './style.css';
 
 class Home extends React.Component {
   
-  componentDidMount() {
-    M.AutoInit();
-  };
-
   redirect = (location) => {
     this.props.history.push(location)
   }

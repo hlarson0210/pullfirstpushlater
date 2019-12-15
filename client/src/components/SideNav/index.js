@@ -2,15 +2,27 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ls from 'local-storage';
 import { AppContext } from "../../appContext";
+import M from "materialize-css";
 import './style.css';
 
 class SideNav extends React.Component {
   static contextType = AppContext;
 
+  componentDidMount() {
+    M.AutoInit();
+  }
+
+  closeNav = () => {
+    const elems = document.querySelectorAll('.sidenav');
+    const instances = M.Sidenav.init(elems);
+    instances[0].close();
+  }
+
   logout = event => {
     ls.remove("myGameLibrary_userToken");
     ls.remove("myGameLibrary_userFullName");
     this.props.history.history.push("/home");
+    this.closeNav();
   }
 
   render() {
@@ -42,6 +54,7 @@ class SideNav extends React.Component {
                   ? 'nav-link active'
                   : 'nav-link'
               }
+              onClick={this.closeNav}
             >
               Home
           </Link>
@@ -54,6 +67,7 @@ class SideNav extends React.Component {
                   ? 'nav-link active'
                   : 'nav-link'
               }
+              onClick={this.closeNav}
             >
               My Library
           </Link>
@@ -66,6 +80,7 @@ class SideNav extends React.Component {
                   ? 'nav-link active'
                   : 'nav-link'
               }
+              onClick={this.closeNav}
             >
               Explore Games
           </Link>
@@ -78,6 +93,7 @@ class SideNav extends React.Component {
                   ? 'nav-link active'
                   : 'nav-link'
               }
+              onClick={this.closeNav}
             >
               Add Games
           </Link>
