@@ -27,7 +27,15 @@
   float: left;
 }
 
-img {
-  padding-left: 2em;
-  padding-top: 2em;
+#popular-games .popularGameLI {
+  padding: 10px 15px;
+}
+
+#popular-games .row {
+  margin-bottom: 0;
+}
+
+.searchImage {
+  padding-top: 20px;
+  padding-left: 20px;
 }

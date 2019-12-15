@@ -1,14 +1,12 @@
 import React from 'react';
-import LogoAnimation from '../LogoAnimation';
+import LogoAnimation from '../../pages/LogoAnimation';
 import userLogic from '../../utils/API/userLogic';
 import ls from 'local-storage';
 import { AppContext } from "../../appContext";
 import './style.css';
 
 class SignIn extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
   static contextType = AppContext;
 
   state = {
@@ -60,7 +58,6 @@ class SignIn extends React.Component {
       return
     }
     userLogic.userSignIn(userObj).then(response => {
-      const newLocation = window.location.href + "mylibrary";
       const fullName = response.firstName + " " + response.lastName;
       ls.set("myGameLibrary_userToken", response.currentToken);
       ls.set("myGameLibrary_userFullName", fullName.trim());
@@ -99,10 +96,8 @@ class SignIn extends React.Component {
     }
     userLogic.userSignUp(userObj).then(response => {
       const newUser = { username: userObj.username, password: userObj.password };
-
+      
       userLogic.userSignIn(newUser).then(resp => {
-
-        const fullName = userObj.firstName + " " + userObj.lastName
       }).catch(error => console.log(error));
     }).catch(err => console.log(err));
   }
@@ -160,7 +155,7 @@ class SignIn extends React.Component {
               >
                 LOG IN
               </button>
-              <div className='row'>
+              <div id="signUpDiv" className='row'>
                 <p>Don't have an account?</p>
                 <p>
                   <a className='modal-trigger link sign-up' href='#modal1'>

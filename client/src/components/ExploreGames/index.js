@@ -1,9 +1,8 @@
-import React from 'react'
-import GameCard from '../GameCard'
-import SearchGames from '../SearchGames'
-import bgaApiCall from '../../utils/bgaApiCall'
-import M from 'materialize-css'
-import './style.css'
+import React from 'react';
+import GameCard from '../../pages/GameCard';
+import SearchGames from '../../pages/SearchGames';
+import bgaApiCall from '../../utils/bgaApiCall';
+import './style.css';
 
 class ExploreGames extends React.Component {
   constructor (props) {
@@ -19,8 +18,7 @@ class ExploreGames extends React.Component {
   }
 
   componentDidMount () {
-    this.loadPopularGames()
-    M.AutoInit()
+    this.loadPopularGames();
   }
 
   queryGame = () => {
@@ -114,10 +112,10 @@ class ExploreGames extends React.Component {
             <div className='row' id='search-games'>
               <div className='col s12 m12 l12'>
                 {' '}
-                {searchedGames.map(item => (
+                {searchedGames.map((item, index) => (
                   <SearchGames
                     name={item.name}
-                    key={item.name}
+                    key={index}
                     price={item.price}
                     rating={
                       item.average_user_rating
@@ -145,10 +143,10 @@ class ExploreGames extends React.Component {
             </div>
             <ul className='collection'>
               {' '}
-              {popularGames.map(item => (
+              {popularGames.map((item, index) => (
                 <GameCard
                   name={item.name}
-                  key={item.name}
+                  key={index}
                   price={item.price}
                   rating={
                     item.average_user_rating

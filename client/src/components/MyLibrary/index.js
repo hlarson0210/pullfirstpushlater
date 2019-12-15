@@ -2,7 +2,7 @@ import React from "react";
 import M from "materialize-css";
 import libraryAPI from "../../utils/API/gameLogic";
 import ls from 'local-storage';
-import LibraryCard from "../LibraryCard";
+import GamesDisplay from "../../components/GamesDisplay";
 import { AppContext } from "../../appContext";
 import "./style.css";
 
@@ -11,7 +11,6 @@ class MyLibrary extends React.Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        M.AutoInit();
         const userToken = ls.get("myGameLibrary_userToken");
 
         if (userToken) {
@@ -26,19 +25,20 @@ class MyLibrary extends React.Component {
             });
         } else {
             alert("There was an error with your sign in, please log out and try again");
-        }        
+        }  
+        
+        M.AutoInit();
     };
 
     state = {
         games: [],
         name: "",
-        minPlayers: "",
-        maxPlayers: "",
-        minPlaytime: "",
-        maxPlaytime: "",
-        minAge: "",
+        numPlayers: null,
+        minPlaytime: null,
+        maxPlaytime: null,
+        minAge: null,
         complexity: "",
-        rating: "",
+        minRating: null,
         token: ""
     };
 
@@ -53,21 +53,24 @@ class MyLibrary extends React.Component {
     submitButton = event => {
         event.preventDefault();
 
+        const elems = document.querySelectorAll('.collapsible');
+        const instances = M.Collapsible.init(elems);
         const gameObj = {
             name: this.state.name,
-            minPlayers: this.state.minPlayers,
-            maxPlayers: this.state.maxPlayers,
+            numPlayers: this.state.numPlayers,
             minPlaytime: this.state.maxPlaytime,
             maxPlaytime: this.state.minPlaytime,
             minAge: this.state.minAge,
             complexity: this.state.complexity,
-            rating: this.state.rating,
+            minRating: this.state.minRating,
             token: this.state.token
         };
 
         libraryAPI.findGames(gameObj).then(response => {
-            this.setState({ games: response });
-        }).catch(err => console.log(err))
+            this.setState({ games: response } );
+            instances[0].close();
+        }).catch(err => console.log(err));
+
     };
 
     clearButton = event => {
@@ -75,13 +78,12 @@ class MyLibrary extends React.Component {
 
         this.setState({
             name: "",
-            minPlayers: "",
-            maxPlayers: "",
-            minPlaytime: "",
-            maxPlaytime: "",
-            minAge: "",
+            numPlayers: null,
+            minPlaytime: null,
+            maxPlaytime: null,
+            minAge: null,
             complexity: "",
-            rating: ""
+            minRating: null,
         })
     };
 
@@ -89,13 +91,13 @@ class MyLibrary extends React.Component {
         return (
             <main>
                 <div className="container center">
-                    <h1>My Library</h1>
+                    <h1 id="myLibraryHeading">My Library</h1>
                     <ul className="collapsible">
                         <li>
                             <div className="collapsible-header">
                                 <i className="material-icons">search</i>
                                 Search for Games
-                        </div>
+                            </div>
                             <div className="row collapsible-body">
                                 <form className="col s12">
                                     <div className="row">
@@ -112,49 +114,44 @@ class MyLibrary extends React.Component {
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <div className="input-field col s3">
+                                        <div className="input-field col s4">
                                             <input
-                                                value={this.state.minPlayers}
-                                                name="minPlayers"
+                                                value={this.state.numPlayers}
+                                                name="numPlayers"
                                                 onChange={this.handleInputChange}
                                                 type="number"
+                                                step="1"
+                                                min="1"
                                                 className="validate"
                                             >
                                             </input>
                                             <label>Minimum Players</label>
                                         </div>
-                                        <div className="input-field col s3">
-                                            <input
-                                                value={this.state.maxPlayers}
-                                                name="maxPlayers"
-                                                onChange={this.handleInputChange}
-                                                type="number"
-                                                className="validate"
-                                            >
-                                            </input>
-                                            <label>Maximum Players</label>
-                                        </div>
-                                        <div className="input-field col s3">
+                                        <div className="input-field col s4">
                                             <input
                                                 value={this.state.minPlaytime}
                                                 name="minPlaytime"
                                                 onChange={this.handleInputChange}
                                                 type="number"
+                                                step="1"
+                                                min="1"
                                                 className="validate"
                                             >
                                             </input>
-                                            <label>`Min Playtime (Minutes)`</label>
+                                            <label>{`Min Playtime (Minutes)`}</label>
                                         </div>
-                                        <div className="input-field col s3">
+                                        <div className="input-field col s4">
                                             <input
                                                 value={this.state.maxPlaytime}
                                                 name="maxPlaytime"
                                                 onChange={this.handleInputChange}
                                                 type="number"
+                                                step="1"
+                                                min="1"
                                                 className="validate"
                                             >
                                             </input>
-                                            <label>`Max Playtime (Minutes)`</label>
+                                            <label>{`Max Playtime (Minutes)`}</label>
                                         </div>
                                     </div>
                                     <div className="row">
@@ -164,6 +161,8 @@ class MyLibrary extends React.Component {
                                                 name="minAge"
                                                 onChange={this.handleInputChange}
                                                 type="number"
+                                                step="1"
+                                                min="1"
                                                 className="validate"
                                             >
                                             </input>
@@ -186,14 +185,16 @@ class MyLibrary extends React.Component {
                                         </div>
                                         <div className="input-field col s4">
                                             <input
-                                                value={this.state.rating}
-                                                name="rating"
+                                                value={this.state.minRating}
+                                                name="minRating"
                                                 onChange={this.handleInputChange}
-                                                type="text"
+                                                type="number"
+                                                step=".01"
+                                                min="0"
                                                 className="validate"
                                             >
                                             </input>
-                                            <label>Rating</label>
+                                            <label>Minimum Rating</label>
                                         </div>
                                     </div>
                                 </form>
@@ -211,19 +212,7 @@ class MyLibrary extends React.Component {
                         </li>
                     </ul>
                     <div className="row">
-                        {this.state.games.map(item =>
-                            <LibraryCard
-                                name={item.name}
-                                key={item.name}
-                                minPlaytime={item.minPlaytime}
-                                maxPlaytime={item.maxPlaytime}
-                                minPlayers={item.minPlayers}
-                                maxPlayers={item.maxPlayers}
-                                minAge={item.minAge}
-                                rating={item.rating.$numberDecimal}
-                            >
-                            </LibraryCard>
-                        )}
+                        <GamesDisplay games={this.state.games}></GamesDisplay>
                     </div>
                 </div>
             </main>

@@ -1,17 +1,9 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import SignIn from '../SignIn'
-import M from 'materialize-css'
-import './style.css'
+import React from 'react';
+import SignIn from '../SignIn';
+import './style.css';
 
 class Home extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  componentDidMount() {
-    M.AutoInit();
-  };
-
+  
   redirect = (location) => {
     this.props.history.push(location)
   }
@@ -65,16 +57,16 @@ class Home extends React.Component {
             <label className='Slide' htmlFor='Slide2' id='Slide2'>
               <div className='content'>
                 <h1 className='my-library-title'>MY LIBRARY</h1>
-                <p>
-                  <a href='./mylibrary'>take me there.</a>
+                <p className="take-me-there">
+                  <a className='homeLink' href='./mylibrary'>take me there.</a>
                 </p>
               </div>
             </label>
             <label className='Slide' htmlFor='Slide3' id='Slide3'>
               <div className='content'>
                 <h1 className='explore-games-title'>EXPLORE GAMES</h1>
-                <p>
-                  <a href='./exploregames'>take me there.</a>
+                <p className="take-me-there">
+                  <a className='homeLink' href='./exploregames'>take me there.</a>
                 </p>
               </div>
             </label>
