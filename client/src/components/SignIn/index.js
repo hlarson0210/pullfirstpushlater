@@ -98,6 +98,10 @@ class SignIn extends React.Component {
       const newUser = { username: userObj.username, password: userObj.password };
       
       userLogic.userSignIn(newUser).then(resp => {
+        const fullName = response.firstName + " " + response.lastName;
+        ls.set("myGameLibrary_userToken", response.currentToken);
+        ls.set("myGameLibrary_userFullName", fullName.trim());
+        this.props.locRedirect("/mylibrary");
       }).catch(error => console.log(error));
     }).catch(err => console.log(err));
   }
