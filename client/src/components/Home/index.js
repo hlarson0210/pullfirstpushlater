@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import SignIn from '../SignIn'
-// Import Materialize
 import M from 'materialize-css'
 import './style.css'
 
@@ -108,79 +107,3 @@ class Home extends React.Component {
 }
 
 export default Home;
-
-/* class Home extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      selectedOption: 'Home'
-    }
-
-    handleOptionChange = changeEvent => {
-      this.setState({
-        selectedOption: changeEvent.target.value
-      })
-    }
-  }
-  render () {
-    return (
-      <div className='contenedor'>
-        <form>
-          <div className='vert-nav-form'>
-            <label>
-              <input
-                type='radio'
-                name='slider'
-                value='Home'
-                checked={this.state.selectedOption === 'Home'}
-                onChange={this.handleOptionChange}
-                className='radio-btn'
-              />
-              Home
-            </label>
-          </div>
-          <div className='vert-nav-form'>
-            <label>
-              <input
-                type='radio'
-                name='slider'
-                value='MyLibrary'
-                checked={this.state.selectedOption === 'MyLibrary'}
-                onChange={this.handleOptionChange}
-                className='radio-btn'
-              />
-              My Library
-            </label>
-          </div>
-          <div className='vert-nav-form'>
-            <label>
-              <input
-                type='radio'
-                name='slider'
-                value='ExploreGames'
-                checked={this.state.selectedOption === 'ExploreGames'}
-                onChange={this.handleOptionChange}
-                className='radio-btn'
-              />
-              Explore Games
-            </label>
-          </div>
-          <div className='vert-nav-form'>
-            <label>
-              <input
-                type='radio'
-                name='slider'
-                value='HowItWorks'
-                checked={this.state.selectedOption === 'HowItWorks'}
-                onChange={this.handleOptionChange}
-                className='radio-btn'
-              />
-              How It Works
-            </label>
-          </div>
-        </form>
-      </div>
-    )
-  }
-}
-export default Home */

@@ -16,7 +16,15 @@ class MyLibrary extends React.Component {
         const userToken = ls.get("myGameLibrary_userToken");
 
         if (userToken) {
-            this.setState({token: userToken});
+            this.setState({ token: userToken }, () => {
+                const gameObj = {
+                    name: this.state.name,
+                    token: this.state.token
+                };
+                libraryAPI.findGames(gameObj).then(response => {
+                    this.setState({ games: response });
+                }).catch(err => console.log(err))
+            });
         } else {
             alert("There was an error with your sign in, please log out and try again");
         }
@@ -45,6 +53,7 @@ class MyLibrary extends React.Component {
 
     handleInputChange = event => {
         const { name, value } = event.target;
+
         this.setState({
             [name]: value,
         });
@@ -52,7 +61,7 @@ class MyLibrary extends React.Component {
 
     submitButton = event => {
         event.preventDefault();
-        
+
         const gameObj = {
             name: this.state.name,
             minPlayers: this.state.minPlayers,
@@ -62,11 +71,11 @@ class MyLibrary extends React.Component {
             minAge: this.state.minAge,
             complexity: this.state.complexity,
             rating: this.state.rating,
-            token: this.context.token
+            token: this.state.token
         };
 
         libraryAPI.findGames(gameObj).then(response => {
-            this.setState({games: response});
+            this.setState({ games: response });
         }).catch(err => console.log(err))
     };
 
@@ -206,9 +215,7 @@ class MyLibrary extends React.Component {
                                         <button className="btn waves-effect waves-light blue lighten-1" name="action" onClick={this.clearButton}>Clear Search<i className="material-icons right">loop</i>
                                         </button>
                                     </div>
-
                                 </div>
-
                             </div>
                         </li>
                     </ul>
