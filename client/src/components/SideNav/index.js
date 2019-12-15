@@ -9,7 +9,6 @@ class SideNav extends React.Component {
     super(props);
   }
   static contextType = AppContext;
-  
 
   logout = event => {
     ls.remove("myGameLibrary_userToken");

@@ -11,7 +11,7 @@ module.exports = {
       .then(response => res.json(response.data.games))
       .catch(err => res.json(err))
   },
-  search: function (req, res, next) {
+  search: function (req, res) {
     axios
       .get(
         'https://www.boardgameatlas.com/api/search?&ascending=false&limit=10&client_id=' +
