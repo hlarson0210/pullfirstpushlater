@@ -1,44 +1,48 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import ls from 'local-storage';
-import { AppContext } from "../../appContext";
-import M from "materialize-css";
-import './style.css';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import ls from 'local-storage'
+import { AppContext } from '../../appContext'
+import M from 'materialize-css'
+import './style.css'
 
 class SideNav extends React.Component {
-  static contextType = AppContext;
+  static contextType = AppContext
 
-  componentDidMount() {
-    M.AutoInit();
+  componentDidMount () {
+    M.AutoInit()
   }
 
   closeNav = () => {
-    const elems = document.querySelectorAll('.sidenav');
-    const instances = M.Sidenav.init(elems);
-    instances[0].close();
+    const elems = document.querySelectorAll('.sidenav')
+    const instances = M.Sidenav.init(elems)
+    instances[0].close()
   }
 
   logout = event => {
-    ls.remove("myGameLibrary_userToken");
-    ls.remove("myGameLibrary_userFullName");
-    this.props.history.history.push("/home");
-    this.closeNav();
+    ls.remove('myGameLibrary_userToken')
+    ls.remove('myGameLibrary_userFullName')
+    this.props.history.history.push('/home')
+    this.closeNav()
   }
-
-  render() {
+  render () {
     return (
       <header>
-        <ul id='slide-out' className='sidenav blue lighten-1'>
+        <ul id='slide-out' className='sidenav'>
           <li>
             <div className='user=view'>
               <a>
                 <img
                   className='circle'
-                  src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='Stock Profile'
+                  src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+                  alt='Stock Profile'
                 />
               </a>
               <a>
-                <span id="username" className='name white-text'>{ls.get("myGameLibrary_userFullName") ? ls.get("myGameLibrary_userFullName") : "Hi User"}</span>
+                <span id='username' className='name white-text'>
+                  {ls.get('myGameLibrary_userFullName')
+                    ? ls.get('myGameLibrary_userFullName')
+                    : 'Hi User'}
+                </span>
               </a>
             </div>
           </li>
@@ -50,14 +54,14 @@ class SideNav extends React.Component {
               to='/home'
               className={
                 window.location.pathname === '/' ||
-                  window.location.pathname === '/home'
+                window.location.pathname === '/home'
                   ? 'nav-link active'
                   : 'nav-link'
               }
               onClick={this.closeNav}
             >
               Home
-          </Link>
+            </Link>
           </li>
           <li className='nav-item'>
             <Link
@@ -70,7 +74,7 @@ class SideNav extends React.Component {
               onClick={this.closeNav}
             >
               My Library
-          </Link>
+            </Link>
           </li>
           <li className='nav-item'>
             <Link
@@ -83,7 +87,7 @@ class SideNav extends React.Component {
               onClick={this.closeNav}
             >
               Explore Games
-          </Link>
+            </Link>
           </li>
           <li className='nav-item'>
             <Link
@@ -96,10 +100,10 @@ class SideNav extends React.Component {
               onClick={this.closeNav}
             >
               Add Games
-          </Link>
+            </Link>
           </li>
           <li className='nav-item' onClick={this.logout}>
-            <a className="nav-link">Log Out</a>
+            <a className='nav-link'>Log Out</a>
           </li>
         </ul>
         <a data-target='slide-out' className='sidenav-trigger'>

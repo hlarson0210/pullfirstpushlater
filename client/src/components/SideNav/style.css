@@ -1,12 +1,12 @@
 .circle {
-    height: 100px;
-    width: 100px;
+  height: 100px;
+  width: 100px;
 }
 
 header {
-    width: 100vw;
+  width: 100vw;
 }
 
 #username {
-    margin-left: 1rem;
+  margin-left: 1rem;
 }

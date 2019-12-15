@@ -1,14 +1,13 @@
-import React from 'react';
-import SignIn from '../SignIn';
-import './style.css';
+import React from 'react'
+import SignIn from '../SignIn'
+import './style.css'
 
 class Home extends React.Component {
-  
-  redirect = (location) => {
+  redirect = location => {
     this.props.history.push(location)
   }
-  
-  render() {
+
+  render () {
     return (
       <div className='contenedor'>
         <form className='vert-nav-form'>
@@ -46,7 +45,7 @@ class Home extends React.Component {
               <div className='content'>
                 <h1>
                   <strong />
-                  <SignIn locRedirect={this.redirect}/>
+                  <SignIn locRedirect={this.redirect} />
                 </h1>
               </div>
               <div className='icon'>
@@ -57,16 +56,20 @@ class Home extends React.Component {
             <label className='Slide' htmlFor='Slide2' id='Slide2'>
               <div className='content'>
                 <h1 className='my-library-title'>MY LIBRARY</h1>
-                <p className="take-me-there">
-                  <a className='homeLink' href='./mylibrary'>take me there.</a>
+                <p className='take-me-there'>
+                  <a className='homeLink' href='./mylibrary'>
+                    take me there.
+                  </a>
                 </p>
               </div>
             </label>
             <label className='Slide' htmlFor='Slide3' id='Slide3'>
               <div className='content'>
                 <h1 className='explore-games-title'>EXPLORE GAMES</h1>
-                <p className="take-me-there">
-                  <a className='homeLink' href='./exploregames'>take me there.</a>
+                <p className='take-me-there'>
+                  <a className='homeLink' href='./exploregames'>
+                    take me there.
+                  </a>
                 </p>
               </div>
             </label>
@@ -75,14 +78,14 @@ class Home extends React.Component {
                 <h1 className='how-it-works-title'>HOW IT WORKS</h1>
                 <div className='row'>
                   <div className='col s12 m6 l6'>
-                    <div className='card'>
+                    <div className='card my-library'>
                       <div className='card-content'>
                         <div className='card-title'>My Library</div>
                       </div>
                     </div>
                   </div>
                   <div className='col s12 m6 l6'>
-                    <div className='card'>
+                    <div className='card explore-games'>
                       <div className='card-content'>
                         <div className='card-title'>Explore Games</div>
                       </div>
@@ -98,4 +101,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default Home

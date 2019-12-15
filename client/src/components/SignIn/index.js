@@ -1,13 +1,12 @@
-import React from 'react';
-import LogoAnimation from '../../pages/LogoAnimation';
-import userLogic from '../../utils/API/userLogic';
-import ls from 'local-storage';
-import { AppContext } from "../../appContext";
-import './style.css';
+import React from 'react'
+import LogoAnimation from '../../pages/LogoAnimation'
+import userLogic from '../../utils/API/userLogic'
+import ls from 'local-storage'
+import { AppContext } from '../../appContext'
+import './style.css'
 
 class SignIn extends React.Component {
-
-  static contextType = AppContext;
+  static contextType = AppContext
 
   state = {
     error: null,
@@ -21,88 +20,90 @@ class SignIn extends React.Component {
   }
 
   handleInputChange = event => {
-
     // Getting the value and name of the input which triggered the change
-    const value = event.target.value;
-    const name = event.target.name;
+    const value = event.target.value
+    const name = event.target.name
 
     if (value.slice(value.length - 1) === ' ') {
-      alert("No spaces allowed");
+      alert('No spaces allowed')
       return
     }
 
     // Updating the input's state
     this.setState({
       [name]: value
-    });
+    })
   }
 
   handleSignIn = event => {
-
     // Preventing the default behavior of the form submit (which is to refresh the page)
-    event.preventDefault();
-    let badForm = false;
+    event.preventDefault()
+    let badForm = false
 
     const userObj = {
       username: this.state.username,
       password: this.state.password
-    };
+    }
 
     if (!userObj.username) {
       alert(`Please enter your username`)
       return
     } else if (userObj.password.length === 0) {
-      alert(
-        `You must enter your password`
-      )
+      alert(`You must enter your password`)
       return
     }
-    userLogic.userSignIn(userObj).then(response => {
-      const fullName = response.firstName + " " + response.lastName;
-      ls.set("myGameLibrary_userToken", response.currentToken);
-      ls.set("myGameLibrary_userFullName", fullName.trim());
-      this.props.locRedirect("/mylibrary");
-    }).catch(err => console.log(err));
+    userLogic
+      .userSignIn(userObj)
+      .then(response => {
+        const fullName = response.firstName + ' ' + response.lastName
+        ls.set('myGameLibrary_userToken', response.currentToken)
+        ls.set('myGameLibrary_userFullName', fullName.trim())
+        this.props.locRedirect('/mylibrary')
+      })
+      .catch(err => console.log(err))
   }
 
   handleSignUp = event => {
-
     // Preventing the default behavior of the form submit (which is to refresh the page)
-    event.preventDefault();
-    let badForm = false;
+    event.preventDefault()
+    let badForm = false
 
     const userObj = {
       username: this.state.newUsername,
       password: this.state.newPassword,
       firstName: this.state.newFirstName,
       lastName: this.state.newLastName
-    };
+    }
 
     if (!userObj.username) {
-      alert(`Please enter a username`);
+      alert(`Please enter a username`)
       return
     } else if (userObj.username.length < 4) {
-      alert(`Please enter a username that is 4 or more characters.`);
+      alert(`Please enter a username that is 4 or more characters.`)
       return
     } else if (userObj.password.length < 8) {
-      alert(
-        `Your password must be at least 8 characters, ${
-        userObj.username
-        }`
-      );
+      alert(`Your password must be at least 8 characters, ${userObj.username}`)
       return
     } else if (userObj.password !== this.state.newConfirmPassword) {
-      alert(`Your passwords do not match, ${userObj.firstName}`);
+      alert(`Your passwords do not match, ${userObj.firstName}`)
     }
-    userLogic.userSignUp(userObj).then(response => {
-      const newUser = { username: userObj.username, password: userObj.password };
-      
-      userLogic.userSignIn(newUser).then(resp => {
-      }).catch(error => console.log(error));
-    }).catch(err => console.log(err));
+    userLogic
+      .userSignUp(userObj)
+      .then(response => {
+        const newUser = {
+          username: userObj.username,
+          password: userObj.password
+        }
+
+        userLogic
+          .userSignIn(newUser)
+          .then(resp => {})
+          .catch(error => console.log(error))
+      })
+      .catch(err => console.log(err))
   }
 
-  render() {
+  render () {
     return (
       <main>
         <div className='row'>
@@ -124,14 +125,12 @@ class SignIn extends React.Component {
                   <input
                     type='text'
                     value={this.state.username}
-                    placeholder='Username'
+                    placeholder=''
                     name='username'
                     onChange={this.handleInputChange}
                     className='validate username'
                   />
-                  <label>
-                    Username
-                  </label>
+                  <label>Username</label>
                 </div>
               </div>
               <div className='row password'>
@@ -139,23 +138,21 @@ class SignIn extends React.Component {
                   <input
                     type='password'
                     value={this.state.password}
-                    placeholder='Password'
+                    placeholder=''
                     name='password'
                     onChange={this.handleInputChange}
                     className='validate password'
                   />
-                  <label>
-                    Password
-                  </label>
+                  <label>Password</label>
                 </div>
               </div>
               <button
-                className='waves-effect waves-light btn searching blue lighten-1'
+                className='waves-effect waves-light btn #455a64 blue-grey darken-2 searching'
                 onClick={this.handleSignIn}
               >
                 LOG IN
               </button>
-              <div id="signUpDiv" className='row'>
+              <div id='signUpDiv' className='row'>
                 <p>Don't have an account?</p>
                 <p>
                   <a className='modal-trigger link sign-up' href='#modal1'>

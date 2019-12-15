@@ -52,7 +52,7 @@ function SearchGames (props) {
               <a href={props.rules} target='_blank' rel='noopener noreferrer'>
                 Rules
               </a>
-              <div className='btn-small blue lighten-1'>
+              <div className='btn-small #ff1744 red accent-3 add'>
                 <h6>Add to library</h6>
               </div>
             </div>

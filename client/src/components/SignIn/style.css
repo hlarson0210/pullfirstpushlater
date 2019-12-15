@@ -1,27 +1,18 @@
 /* MENU BUTTON */
 .menu {
-  color: hsl(348, 100%, 55%);
+  color: white;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
 }
 
 h1 {
   line-height: 0%;
 }
 
-/* LOGIN BUTTON */
-.login {
-  color: #ff1744;
-  font-weight: 900;
-  background-color: white;
-}
-
-.login:hover {
-  color: white;
-  background-color: #2b2b38;
-}
-
 /* FORM HEADER */
 h4 {
-  color: #ff1744;
+  color: #263238;
 }
 
 /* FORM FOOTER TEXT */
@@ -43,7 +34,7 @@ p {
 }
 
 #signUpDiv {
-  margin-top: .75rem
+  margin-top: 0.75rem;
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -457,3 +448,11 @@ body {
 /*---------------------------------------------------------------------------------------*/
 /* END CUBE ANIMATIONS ------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------------*/
+
+label.active {
+  color: white;
+}
+
+.account {
+  padding-left: 1rem;
+}
