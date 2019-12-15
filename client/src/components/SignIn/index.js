@@ -114,7 +114,6 @@ class SignIn extends React.Component {
           <div className='col s12 m6 l6 app-name'>
             <LogoAnimation />
           </div>
-
           <div
             style={{ textAlign: 'left' }}
             className='col s12 m6 l6 sign-in-form'

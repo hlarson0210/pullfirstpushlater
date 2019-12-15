@@ -45,11 +45,9 @@ const createFilter = (req) => {
 // Defining methods for the gamesController
 module.exports = {
     find: function (req, res) {
-        console.log(req)
         db.User.findOne({
             currentToken: req.query.token
         }).then(user => {
-            console.log(user);
             if (!user) {
                 return res.status(404).send("User not found!");
             }
@@ -124,7 +122,7 @@ module.exports = {
             currentToken: req.body.token
         }).then(user => {
             if (!user) {
-                return res.status(422).send("User not found!");
+                return res.status(404).send("User not found!");
             }
             db.Game.find({
                 userId: user._id,
@@ -132,7 +130,7 @@ module.exports = {
             }).then(game => {
 
                 if (!game) {
-                    return res.status(422).send("No game found!");
+                    return res.status(404).send("No game found!");
                 }
 
                 db.Game.remove({
