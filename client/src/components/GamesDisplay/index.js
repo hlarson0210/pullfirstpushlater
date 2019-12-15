@@ -14,9 +14,10 @@ class GamesDisplay extends React.Component {
         if (this.props.games.length === 0) {
             return <NoGames />;
         }
-        return this.props.games.map(item =>
+        return this.props.games.map((item, index) =>
             <LibraryCard
                 name={item.name}
+                key={index}
                 minPlaytime={item.minPlaytime}
                 maxPlaytime={item.maxPlaytime}
                 minPlayers={item.minPlayers}

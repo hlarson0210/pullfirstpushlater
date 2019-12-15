@@ -83,7 +83,7 @@ class SideNav extends React.Component {
           </Link>
           </li>
           <li className='nav-item' onClick={this.logout}>
-            <a class="nav-link">Log Out</a>
+            <a className="nav-link">Log Out</a>
           </li>
         </ul>
         <a data-target='slide-out' className='sidenav-trigger'>

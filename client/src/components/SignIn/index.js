@@ -58,7 +58,6 @@ class SignIn extends React.Component {
       return
     }
     userLogic.userSignIn(userObj).then(response => {
-      const newLocation = window.location.href + "mylibrary";
       const fullName = response.firstName + " " + response.lastName;
       ls.set("myGameLibrary_userToken", response.currentToken);
       ls.set("myGameLibrary_userFullName", fullName.trim());
@@ -97,10 +96,8 @@ class SignIn extends React.Component {
     }
     userLogic.userSignUp(userObj).then(response => {
       const newUser = { username: userObj.username, password: userObj.password };
-
+      
       userLogic.userSignIn(newUser).then(resp => {
-
-        const fullName = userObj.firstName + " " + userObj.lastName
       }).catch(error => console.log(error));
     }).catch(err => console.log(err));
   }

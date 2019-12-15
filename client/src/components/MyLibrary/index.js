@@ -22,7 +22,7 @@ class MyLibrary extends React.Component {
                     token: this.state.token
                 };
                 libraryAPI.findGames(gameObj).then(response => {
-                    this.setState({ games: response }, () => console.log("findgames1", this.state.games));
+                    this.setState({ games: response });
                 }).catch(err => console.log(err))
             });
         } else {
@@ -67,7 +67,7 @@ class MyLibrary extends React.Component {
         };
 
         libraryAPI.findGames(gameObj).then(response => {
-            this.setState({ games: response }, () => console.log("findgames2", this.state.games));
+            this.setState({ games: response });
             instances[0].close();
         }).catch(err => console.log(err));
 
