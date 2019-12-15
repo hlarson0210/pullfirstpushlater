@@ -1,39 +1,47 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import SignIn from '../SignIn';
-import M from "materialize-css";
-import './style.css';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import SignIn from '../SignIn'
+// Import Materialize
+import M from 'materialize-css'
+import './style.css'
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   componentDidMount() {
     M.AutoInit();
   };
+
+  redirect = (location) => {
+    this.props.history.push(location)
+  }
   
   render() {
     return (
-      <div className="contenedor">
-        <form className="vert-nav-form">
+      <div className='contenedor'>
+        <form className='vert-nav-form'>
           <input
-            type="radio"
-            className="radio-btn"
-            id="Slide1"
-            name="slider"
-            titulo="Home"
-            autoFocus="autofocus"
+            type='radio'
+            className='radio-btn'
+            id='Slide1'
+            name='slider'
+            titulo='Home'
+            autoFocus='autofocus'
           />
           <input
-            type="radio"
-            className="radio-btn"
-            id="Slide2"
-            name="slider"
-            titulo="MyLibrary"
+            type='radio'
+            className='radio-btn'
+            id='Slide2'
+            name='slider'
+            titulo='MyLibrary'
           />
           <input
-            type="radio"
-            className="radio-btn"
-            id="Slide3"
-            name="slider"
-            titulo="ExploreGames"
+            type='radio'
+            className='radio-btn'
+            id='Slide3'
+            name='slider'
+            titulo='ExploreGames'
           />
           <input
             type='radio'
@@ -47,10 +55,10 @@ class Home extends React.Component {
               <div className='content'>
                 <h1>
                   <strong />
-                  <SignIn />
+                  <SignIn locRedirect={this.redirect}/>
                 </h1>
               </div>
-              <div className="icon">
+              <div className='icon'>
                 <span />
                 <span />
               </div>

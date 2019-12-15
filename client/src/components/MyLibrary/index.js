@@ -1,6 +1,8 @@
 import React from "react";
 import M from "materialize-css";
 import libraryAPI from "../../utils/API/gameLogic";
+import ls from 'local-storage';
+import LibraryCard from "../LibraryCard";
 import { AppContext } from "../../appContext";
 import "./style.css";
 import { lstat } from "fs";
@@ -8,13 +10,24 @@ import { lstat } from "fs";
 
 class MyLibrary extends React.Component {
     static contextType = AppContext;
-    // call token: this.context.token
 
     componentDidMount() {
         M.AutoInit();
-        // console.log("token", this.context.token);
+        const userToken = ls.get("myGameLibrary_userToken");
 
-        //on load display games
+        if (userToken) {
+            this.setState({token: userToken});
+        } else {
+            alert("There was an error with your sign in, please log out and try again");
+        }
+
+        const gameObj = {
+            name: this.state.name,
+            token: this.state.token
+        };
+        libraryAPI.findGames(gameObj).then(response => {
+            this.setState({ games: response });
+        }).catch(err => console.log(err))
     };
 
     state = {
@@ -26,31 +39,39 @@ class MyLibrary extends React.Component {
         maxPlaytime: "",
         minAge: "",
         complexity: "",
-        rating: ""
+        rating: "",
+        token: ""
     };
 
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
             [name]: value,
-        }, () => console.log(this.state.name));
+        });
     };
 
-    submitButton = (e) => {
-        e.preventDefault();
+    submitButton = event => {
+        event.preventDefault();
         
         const gameObj = {
             name: this.state.name,
-            token: this.context.token 
+            minPlayers: this.state.minPlayers,
+            maxPlayers: this.state.maxPlayers,
+            minPlaytime: this.state.maxPlaytime,
+            maxPlaytime: this.state.minPlaytime,
+            minAge: this.state.minAge,
+            complexity: this.state.complexity,
+            rating: this.state.rating,
+            token: this.context.token
         };
-        
+
         libraryAPI.findGames(gameObj).then(response => {
-            this.setState({games: response}, () => console.log(this.state.games));
+            this.setState({games: response});
         }).catch(err => console.log(err))
     };
 
-    clearButton = (e) => {
-        e.preventDefault();
+    clearButton = event => {
+        event.preventDefault();
 
         this.setState({
             name: "",
@@ -96,7 +117,7 @@ class MyLibrary extends React.Component {
                                                 value={this.state.minPlayers}
                                                 name="minPlayers"
                                                 onChange={this.handleInputChange}
-                                                type="text"
+                                                type="number"
                                                 className="validate"
                                             >
                                             </input>
@@ -107,7 +128,7 @@ class MyLibrary extends React.Component {
                                                 value={this.state.maxPlayers}
                                                 name="maxPlayers"
                                                 onChange={this.handleInputChange}
-                                                type="text"
+                                                type="number"
                                                 className="validate"
                                             >
                                             </input>
@@ -118,22 +139,22 @@ class MyLibrary extends React.Component {
                                                 value={this.state.minPlaytime}
                                                 name="minPlaytime"
                                                 onChange={this.handleInputChange}
-                                                type="text"
+                                                type="number"
                                                 className="validate"
                                             >
                                             </input>
-                                            <label>Minimum Playtime</label>
+                                            <label>`Min Playtime (Minutes)`</label>
                                         </div>
                                         <div className="input-field col s3">
                                             <input
                                                 value={this.state.maxPlaytime}
                                                 name="maxPlaytime"
                                                 onChange={this.handleInputChange}
-                                                type="text"
+                                                type="number"
                                                 className="validate"
                                             >
                                             </input>
-                                            <label>Maximum Playtime</label>
+                                            <label>`Max Playtime (Minutes)`</label>
                                         </div>
                                     </div>
                                     <div className="row">
@@ -142,22 +163,26 @@ class MyLibrary extends React.Component {
                                                 value={this.state.minAge}
                                                 name="minAge"
                                                 onChange={this.handleInputChange}
-                                                type="text"
+                                                type="number"
                                                 className="validate"
                                             >
                                             </input>
                                             <label>Minimum Age</label>
                                         </div>
                                         <div className="input-field col s4">
-                                            <input
-                                                value={this.state.complexity}
+                                            <select
+                                                id="complexity"
                                                 name="complexity"
                                                 onChange={this.handleInputChange}
-                                                type="text"
+                                                value={this.state.complexity}
                                                 className="validate"
                                             >
-                                            </input>
-                                            <label>Complexity</label>
+                                                <option value="" disabled selected>Choose the complexity</option>
+                                                <option value="Light">Light</option>
+                                                <option value="Medium">Medium</option>
+                                                <option value="Heavy">Heavy</option>
+                                            </select>
+                                            <label for="complexity">Complexity</label>
                                         </div>
                                         <div className="input-field col s4">
                                             <input
@@ -187,52 +212,20 @@ class MyLibrary extends React.Component {
                             </div>
                         </li>
                     </ul>
-
                     <div className="row">
-                        <div className="col s4">
-                            <div className="card horizontal">
-                                <div className="card-image">
-                                    <img src="https://lorempixel.com/100/190/nature/6" alt="something"></img>
-                                </div>
-                                <div className="card-stacked">
-                                    <div className="card-content">
-                                        <p>I am a very simple card. I am good at containing small bits of information.</p>
-                                    </div>
-                                    <div className="card-action">
-                                        <a href="https://www.youtube.com/">This is a link</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col s4">
-                            <div className="card horizontal">
-                                <div className="card-image">
-                                    <img src="https://lorempixel.com/100/190/nature/6" alt="something"></img>
-                                </div>
-                                <div className="card-stacked">
-                                    <div className="card-content">
-                                        <p>I am a very simple card. I am good at containing small bits of information.</p>
-                                    </div>
-                                    <div className="card-action">
-                                        <a href="https://www.youtube.com/">This is a link</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div className="col s4">
-                            <div className="card horizontal">
-                                <div className="card-image">
-                                    <img src="https://lorempixel.com/100/190/nature/6" alt="something"></img>
-                                </div>
-                                <div className="card-stacked">
-                                    <div className="card-content">
-                                        <p>I am a very simple card. I am good at containing small bits of information.</p>
-                                    </div>
-                                    <div className="card-action">
-                                        <a href="https://www.youtube.com/">This is a link</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {this.state.games.map(item =>
+                            <LibraryCard
+                                name={item.name}
+                                key={item.name}
+                                minPlaytime={item.minPlaytime}
+                                maxPlaytime={item.maxPlaytime}
+                                minPlayers={item.minPlayers}
+                                maxPlayers={item.maxPlayers}
+                                minAge={item.minAge}
+                                rating={item.rating.$numberDecimal}
+                            >
+                            </LibraryCard>
+                        )}
                     </div>
                 </div>
             </main>

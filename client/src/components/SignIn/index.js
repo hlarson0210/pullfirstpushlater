@@ -1,13 +1,15 @@
-import React from 'react'
-import LogoAnimation from '../LogoAnimation'
-import userLogic from '../../utils/API/userLogic'
-import './style.css'
+import React from 'react';
+import LogoAnimation from '../LogoAnimation';
+import userLogic from '../../utils/API/userLogic';
+import ls from 'local-storage';
 import { AppContext } from "../../appContext";
-
+import './style.css';
 
 class SignIn extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   static contextType = AppContext;
-  // call token: this.context.token
 
   state = {
     error: null,
@@ -59,11 +61,10 @@ class SignIn extends React.Component {
     }
     userLogic.userSignIn(userObj).then(response => {
       const newLocation = window.location.href + "mylibrary";
-      console.log(newLocation);
       const fullName = response.firstName + " " + response.lastName;
-      this.context.update({ token: response.currentToken, name: fullName });
-      // window.location.href = newLocation;
-      this.setState({username: "", password: ""});
+      ls.set("myGameLibrary_userToken", response.currentToken);
+      ls.set("myGameLibrary_userFullName", fullName.trim());
+      this.props.locRedirect("/mylibrary");
     }).catch(err => console.log(err));
   }
 
