@@ -184,7 +184,6 @@ class SignIn extends React.Component {
                         type='text'
                         className='validate firstname'
                         value={this.state.newFirstName}
-                        placeholder='First Name'
                         name='newFirstName'
                         onChange={this.handleInputChange}
                       />
@@ -196,7 +195,6 @@ class SignIn extends React.Component {
                         type='text'
                         className='validate lastname'
                         value={this.state.newLastName}
-                        placeholder='Last Name'
                         name='newLastName'
                         onChange={this.handleInputChange}
                       />
@@ -210,7 +208,6 @@ class SignIn extends React.Component {
                         type='text'
                         className='validate new_username'
                         value={this.state.newUsername}
-                        placeholder='Username'
                         name='newUsername'
                         onChange={this.handleInputChange}
                       />
@@ -224,7 +221,6 @@ class SignIn extends React.Component {
                         type='password'
                         className='validate new_password'
                         value={this.state.newPassword}
-                        placeholder='Password'
                         name='newPassword'
                         onChange={this.handleInputChange}
                       />
@@ -238,7 +234,6 @@ class SignIn extends React.Component {
                         type='password'
                         className='validate new_password'
                         value={this.state.newConfirmPassword}
-                        placeholder='Confirm Password'
                         name='newConfirmPassword'
                         onChange={this.handleInputChange}
                       />

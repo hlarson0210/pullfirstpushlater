@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 let style = {
   height: '10em',
@@ -7,9 +8,10 @@ let style = {
   transform: 'translateY(0%)'
 }
 
-function SearchGames (props) {
+
+function SearchGames(props) {
   return (
-    <div className='row'>
+    <div className='row' >
       <div className='left'>
         <div className='card horizontal'>
           <div className='card-image'>
@@ -53,7 +55,25 @@ function SearchGames (props) {
                 Rules
               </a>
               <div className='btn-small blue lighten-1'>
-                <h6>Add to library</h6>
+                <Link
+                  to='/addgames'
+                  onClick={() => {
+                    props.handleClick({
+                      gameName: props.name,
+                      minPlayers: props.minplayers,
+                      maxPlayers: props.maxplayers,
+                      minPlaytime: props.minplaytime,
+                      maxPlaytime: props.maxplaytime,
+                      minAge: props.minage,
+                      rating: props.rating,
+                      rules: props.rules,
+                      image: props.image,
+                      complexity: "",
+                    })
+                  }}
+                >
+                  <h6>Add to library</h6>
+                </Link>
               </div>
             </div>
           </div>

@@ -2,9 +2,11 @@ import React from 'react';
 import GameCard from '../../pages/GameCard';
 import SearchGames from '../../pages/SearchGames';
 import bgaApiCall from '../../utils/bgaApiCall';
+import { AppContext } from "../../appContext";
 import './style.css';
 
 class ExploreGames extends React.Component {
+  static contextType = AppContext;
   constructor(props) {
     super(props)
     this.state = {
@@ -17,14 +19,8 @@ class ExploreGames extends React.Component {
     }
   }
 
-<<<<<<< HEAD
-  componentDidMount() {
-    this.loadPopularGames()
-    M.AutoInit()
-=======
   componentDidMount () {
     this.loadPopularGames();
->>>>>>> 0ef630eda7ea37373fa5351627297913646ed31e
   }
 
   queryGame = () => {
@@ -137,6 +133,7 @@ class ExploreGames extends React.Component {
                     description={item.description_preview}
                     image={item.images.small}
                     rules={item.rules_url}
+                    handleClick={this.context.update}
                   ></SearchGames>
                 ))}{' '}
               </div>{' '}

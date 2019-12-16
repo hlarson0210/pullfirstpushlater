@@ -3,16 +3,17 @@ import gameLogic from "../../utils/API/gameLogic";
 import ls from 'local-storage';
 import M from "materialize-css";
 import { AppContext } from "../../appContext";
+import { Link } from 'react-router-dom';
 import "./style.css";
 
 class AddGames extends React.Component {
     static contextType = AppContext;
-    
+
     componentDidMount() {
         const userToken = ls.get("myGameLibrary_userToken");
 
         if (userToken) {
-            this.setState({token: userToken});
+            this.setState({ token: userToken });
         } else {
             alert("There was an error with your sign in, please log out and try again");
         }
@@ -22,15 +23,15 @@ class AddGames extends React.Component {
 
     state = {
         error: null,
-        gameName: "",
-        minPlayers: null,
-        maxPlayers: null,
-        minPlaytime: null,
-        maxPlaytime: null,
-        minAge: null,
-        rating: null,
-        rules: "",
-        image: "",
+        gameName: this.context.gameName,
+        minPlayers: this.context.minPlayers,
+        maxPlayers: this.context.maxPlayers,
+        minPlaytime: this.context.minPlaytime,
+        maxPlaytime: this.context.maxPlaytime,
+        minAge: this.context.minAge,
+        rating: this.context.rating,
+        rules: this.context.rules,
+        image: this.context.image,
         complexity: "",
         token: ""
     }
@@ -43,7 +44,7 @@ class AddGames extends React.Component {
         // Updating the input's state
         this.setState({
             [name]: value
-        }, () => {console.log(this.state)})
+        }, () => { console.log(this.state) })
     }
 
     handleFormSubmit = event => {
@@ -87,6 +88,18 @@ class AddGames extends React.Component {
         }
 
         gameLogic.addGame(gameObj);
+        this.context.update({
+            gameName: "",
+            minPlayers: "",
+            maxPlayers: "",
+            minPlaytime: "",
+            maxPlaytime: "",
+            minAge: "",
+            rating: "",
+            rules: "",
+            image: "",
+            complexity: "",
+        });
     };
 
     render() {

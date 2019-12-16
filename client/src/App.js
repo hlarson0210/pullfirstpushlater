@@ -15,6 +15,16 @@ class App extends Component {
     super(props);
     this.state = {
       update: this.update,
+      gameName: "",
+      minPlayers: null,
+      maxPlayers: null,
+      minPlaytime: null,
+      maxPlaytime: null,
+      minAge: null,
+      rating: null,
+      rules: "",
+      image: "",
+      complexity: "",
     };
   }
 
