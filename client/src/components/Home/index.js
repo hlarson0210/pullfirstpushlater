@@ -15,7 +15,7 @@ class Home extends React.Component {
   render () {
     return (
       <div className='contenedor'>
-        <form className='vert-nav-form'>
+        <div className='vert-nav-form'>
           <input
             type='radio'
             className='radio-btn'
@@ -100,7 +100,7 @@ class Home extends React.Component {
               </div>
             </label>
           </div>
-        </form>
+        </div>
       </div>
     )
   }

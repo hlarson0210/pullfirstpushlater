@@ -116,40 +116,56 @@ class SignIn extends React.Component {
           <div className='col s12 m6 l6 app-name'>
             <LogoAnimation />
           </div>
-          <div
-            style={{ textAlign: 'left' }}
-            className='col s12 m6 l6 sign-in-form'
-          >
+          <div className='col s12 m6 l6 sign-in-form'>
             <div className='container form'>
-              <div style={{ marginBottom: '50px' }} className='row'>
-                <h1 id='one' style={{ color: 'white' }}>
-                  BOARD
-                </h1>
+              <div id='form-header' className='row'>
+                <h1 id='one'>BOARD</h1>
               </div>
               <div className='row username'>
-                <div className='input-field col s12 m12 l12'>
+                <div
+                  id='input-username'
+                  className='input-field col s12 m12 l12'
+                >
                   <input
                     type='text'
                     value={this.state.username}
                     placeholder=''
                     name='username'
                     onChange={this.handleInputChange}
-                    className='validate username'
+                    className='validate'
                   />
                   <label>Username</label>
+                  <span
+                    class='helper-text'
+                    data-error='Username not found. Click the sign up link below to get started!'
+                    data-success='Success!'
+                  >
+                    Username must be more than 4 characters
+                  </span>
                 </div>
               </div>
               <div className='row password'>
-                <div className='input-field col s12 m12 l12'>
+                <div
+                  id='input-password'
+                  className='input-field col s12 m12 l12'
+                >
                   <input
                     type='password'
                     value={this.state.password}
                     placeholder=''
                     name='password'
                     onChange={this.handleInputChange}
-                    className='validate password'
+                    className='validate'
                   />
                   <label>Password</label>
+
+                  <span
+                    class='helper-text'
+                    data-error='hmm...wrong password.'
+                    data-success='Success!'
+                  >
+                    Password must be more than 8 characters
+                  </span>
                 </div>
               </div>
               <button
@@ -162,9 +178,7 @@ class SignIn extends React.Component {
                 <p>Don't have an account?</p>
                 <p>
                   <a className='modal-trigger link sign-up' href='#modal1'>
-                    <span className='wavy' data-content='SIGN UP'>
-                      Sign Up
-                    </span>
+                    <span data-content='SIGN UP'>SIGN UP</span>
                   </a>
                 </p>
               </div>
@@ -173,8 +187,8 @@ class SignIn extends React.Component {
           </div>
           <div id='modal1' className='modal'>
             <div className='modal-content center'>
-              <h4 style={{ color: 'black' }}>Sign Up</h4>
-              <div className='row'>
+              <h4 id='modal-title'>Sign Up</h4>
+              <div id='modal-form' className='row'>
                 <form className='col s8 offset-s2'>
                   <div className='row'>
                     <div className='input-field col s6'>
@@ -183,11 +197,13 @@ class SignIn extends React.Component {
                         type='text'
                         className='validate firstname'
                         value={this.state.newFirstName}
-                        placeholder='First Name'
+                        placeholder=''
                         name='newFirstName'
                         onChange={this.handleInputChange}
                       />
-                      <label htmlFor='first_name'>First Name</label>
+                      <label id='modal-label' htmlFor='first_name'>
+                        First Name
+                      </label>
                     </div>
                     <div className='input-field col s6'>
                       <input
@@ -195,11 +211,13 @@ class SignIn extends React.Component {
                         type='text'
                         className='validate lastname'
                         value={this.state.newLastName}
-                        placeholder='Last Name'
+                        placeholder=''
                         name='newLastName'
                         onChange={this.handleInputChange}
                       />
-                      <label htmlFor='last_name'>Last Name</label>
+                      <label id='modal-label' htmlFor='last_name'>
+                        Last Name
+                      </label>
                     </div>
                   </div>
                   <div className='row'>
@@ -209,11 +227,20 @@ class SignIn extends React.Component {
                         type='text'
                         className='validate new_username'
                         value={this.state.newUsername}
-                        placeholder='Username'
+                        placeholder=''
                         name='newUsername'
                         onChange={this.handleInputChange}
                       />
-                      <label htmlFor='new_username'>Username</label>
+                      <label id='modal-label' htmlFor='new_username'>
+                        Username
+                      </label>
+                      <span
+                        class='helper-text'
+                        data-error='Username must be more than 4 characters.'
+                        data-success='Success!'
+                      >
+                        Username must be more than 4 characters
+                      </span>
                     </div>
                   </div>
                   <div className='row'>
@@ -223,11 +250,20 @@ class SignIn extends React.Component {
                         type='password'
                         className='validate new_password'
                         value={this.state.newPassword}
-                        placeholder='Password'
+                        placeholder=''
                         name='newPassword'
                         onChange={this.handleInputChange}
                       />
-                      <label htmlFor='new_password'>Password</label>
+                      <label id='modal-label' htmlFor='new_password'>
+                        Password
+                      </label>
+                      <span
+                        class='helper-text'
+                        data-error='Password must be more than 8 characters.'
+                        data-success='Success!'
+                      >
+                        Password must be more than 8 characters
+                      </span>
                     </div>
                   </div>
                   <div className='row'>
@@ -237,20 +273,29 @@ class SignIn extends React.Component {
                         type='password'
                         className='validate new_password'
                         value={this.state.newConfirmPassword}
-                        placeholder='Confirm Password'
+                        placeholder=''
                         name='newConfirmPassword'
                         onChange={this.handleInputChange}
                       />
-                      <label htmlFor='confirm_password'>Confirm Password</label>
+                      <label id='modal-label' htmlFor='confirm_password'>
+                        Confirm Password
+                      </label>
+                      <span
+                        class='helper-text'
+                        data-error='Oops. Not the same as above. Try again.'
+                        data-success='Success!'
+                      >
+                        Password must match text entered above
+                      </span>
                     </div>
                   </div>
                 </form>
               </div>
             </div>
-            <div className='modal-footer'>
+            <div id='submit-modal'>
               <a
                 href='#!'
-                className='modal-close waves-effect waves-green btn-flat'
+                className='modal-close waves-effect btn-small #f44336 red center'
                 onClick={this.handleSignUp}
               >
                 Submit

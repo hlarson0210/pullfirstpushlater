@@ -49,7 +49,7 @@ class SideNav extends React.Component {
           <li>
             <div className='divider' />
           </li>
-          <li className='nav-item'>
+          <li style={{ color: 'white' }} className='nav-item'>
             <Link
               to='/home'
               className={

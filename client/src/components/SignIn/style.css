@@ -6,8 +6,8 @@
   padding-bottom: 1rem;
 }
 
-h1 {
-  line-height: 0%;
+.sign-in-form {
+  text-align: left;
 }
 
 /* FORM HEADER */
@@ -35,6 +35,189 @@ p {
 
 #signUpDiv {
   margin-top: 0.75rem;
+}
+
+.account {
+  padding-left: 1rem;
+}
+
+input {
+  color: white;
+}
+
+textarea.materialize-textarea:focus.valid ~ label {
+  color: #607d8b;
+}
+
+textarea.materialize-textarea:focus.invalid ~ label {
+  color: #607d8b;
+}
+
+#first_name,
+#last_name,
+#new_username,
+#new_password,
+#confirm_password {
+  color: white;
+}
+
+#logo-animate {
+  padding-top: 5rem;
+  padding-left: 2rem;
+}
+
+#form-header {
+  margin-bottom: 0px;
+  padding-left: 0.15em;
+}
+
+.username {
+  margin-bottom: 0.25em;
+}
+
+.password {
+  margin-bottom: 0em;
+}
+
+#one {
+  color: white;
+  margin-bottom: 0.25em;
+}
+
+#signUpDiv {
+  padding-left: 0.18em;
+  margin-top: 0.5em;
+}
+
+/* label color */
+.input-field label {
+  color: white;
+}
+/* label focus color */
+.input-field input[type="text"]:focus + label {
+  color: white;
+}
+
+/* label underline focus color */
+.input-field input[type="password"]:focus:enabled {
+  border-bottom: 1px solid white;
+  box-shadow: 0 1px 0 0#455a64;
+}
+
+/* valid color */
+.input-field input[type="password"].valid {
+  border-bottom: 1px solid white;
+  box-shadow: 0 1px 0 0 white;
+}
+/* invalid color */
+.input-field input[type="password"].invalid {
+  border-bottom: 1px solid red;
+  box-shadow: 0 1px 0 0 red;
+}
+
+/* label underline focus color */
+.input-field input[type="text"]:focus:enabled {
+  border-bottom: 1px solid white;
+  box-shadow: 0 1px 0 0#455a64;
+}
+
+/* valid color */
+.input-field input[type="text"].valid {
+  border-bottom: 1px solid white;
+  box-shadow: 0 1px 0 0 white;
+}
+/* invalid color */
+.input-field input[type="text"].invalid {
+  border-bottom: 1px solid red;
+  box-shadow: 0 1px 0 0 red;
+}
+
+/* helper text styling */
+.input-field .helper-text {
+  display: block;
+  font-size: 12px;
+  color: #455a64;
+  line-height: 12px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  float: left;
+}
+
+/* helper text styling on hover */
+.input-field .helper-text:hover {
+  color: #b0bec5;
+}
+
+#modal1 {
+  background-color: #263238;
+}
+.modal-content.center {
+  padding-top: 4rem;
+  padding-bottom: 0px;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+#submit-modal {
+  margin-left: 8.6rem;
+  margin-right: 8.58rem;
+  margin-bottom: 4rem;
+  padding-bottom: 4rem;
+  align-content: center;
+  background-color: #263238;
+  border-bottom-style: solid;
+  border-bottom-width: 0.25rem;
+  border-bottom-color: #455a64;
+  border-right-style: solid;
+  border-right-width: 0.25rem;
+  border-right-color: #455a64;
+  border-left-style: solid;
+  border-left-width: 0.25rem;
+  border-left-color: #455a64;
+}
+
+#modal-label,
+#modal-title {
+  color: #f44336;
+}
+
+#modal-label {
+  font-size: 18px;
+}
+
+#modal-title {
+  padding-bottom: 2rem;
+  padding-top: 4rem;
+  margin-right: 6rem;
+  margin-left: 6rem;
+  margin-bottom: 0rem;
+  background-color: #263238;
+  border-top-style: solid;
+  border-top-width: 0.25rem;
+  border-top-color: #455a64;
+  border-right-style: solid;
+  border-right-width: 0.25rem;
+  border-right-color: #455a64;
+  border-left-style: solid;
+  border-left-width: 0.25rem;
+  border-left-color: #455a64;
+}
+
+#text {
+  color: white;
+}
+
+#modal-form {
+  background-color: #263238;
+  padding-top: 2rem;
+  margin-right: 6rem;
+  margin-left: 6rem;
+  margin-bottom: 0rem;
+  border-right-style: solid;
+  border-right-width: 0.25rem;
+  border-right-color: #455a64;
+  border-left-style: solid;
+  border-left-width: 0.25rem;
+  border-left-color: #455a64;
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -78,7 +261,7 @@ body #wrap:before {
   height: 350%;
   left: -150%;
   top: -150%;
-  background: radial-gradient(ellipse at center, rgb(255, 23, 68) 0%, transparent 90%);
+  background: radial-gradient(#f44336, #263238, transparent);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -webkit-animation: fade 5s ease-in-out infinite alternate;
@@ -101,12 +284,12 @@ body #wrap:before {
     opacity: 1;
   }
   97.5% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75);
   }
   100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75);
   }
 }
 @keyframes fade {
@@ -121,12 +304,12 @@ body #wrap:before {
     opacity: 1;
   }
   97.5% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75);
   }
   100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75);
   }
 }
 
@@ -448,11 +631,3 @@ body {
 /*---------------------------------------------------------------------------------------*/
 /* END CUBE ANIMATIONS ------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------------*/
-
-label.active {
-  color: white;
-}
-
-.account {
-  padding-left: 1rem;
-}
