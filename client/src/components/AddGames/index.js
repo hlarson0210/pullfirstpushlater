@@ -7,12 +7,12 @@ import "./style.css";
 
 class AddGames extends React.Component {
     static contextType = AppContext;
-
+    
     componentDidMount() {
         const userToken = ls.get("myGameLibrary_userToken");
 
         if (userToken) {
-            this.setState({ token: userToken });
+            this.setState({token: userToken});
         } else {
             alert("There was an error with your sign in, please log out and try again");
         }
@@ -43,7 +43,7 @@ class AddGames extends React.Component {
         // Updating the input's state
         this.setState({
             [name]: value
-        }, () => { console.log(this.state) })
+        }, () => {console.log(this.state)})
     }
 
     handleFormSubmit = event => {

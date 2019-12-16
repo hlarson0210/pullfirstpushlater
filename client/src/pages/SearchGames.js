@@ -8,10 +8,9 @@ let style = {
   transform: 'translateY(0%)'
 }
 
-
-function SearchGames(props) {
+function SearchGames (props) {
   return (
-    <div className='row' >
+    <div className='row'>
       <div className='left'>
         <div className='card horizontal'>
           <div className='card-image'>

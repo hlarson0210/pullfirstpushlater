@@ -74,7 +74,7 @@ class ExploreGames extends React.Component {
     }
   }
 
-  render() {
+  render () {
     const { error, isLoaded, popularGames, searchedGames } = this.state
     if (error) {
       return <div> Error: {error.message} </div>
