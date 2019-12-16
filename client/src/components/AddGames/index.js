@@ -1,7 +1,7 @@
 import React from "react";
-import M from "materialize-css";
 import gameLogic from "../../utils/API/gameLogic";
 import ls from 'local-storage';
+import M from "materialize-css";
 import { AppContext } from "../../appContext";
 import "./style.css";
 
@@ -9,7 +9,6 @@ class AddGames extends React.Component {
     static contextType = AppContext;
     
     componentDidMount() {
-        M.AutoInit();
         const userToken = ls.get("myGameLibrary_userToken");
 
         if (userToken) {
@@ -17,6 +16,8 @@ class AddGames extends React.Component {
         } else {
             alert("There was an error with your sign in, please log out and try again");
         }
+
+        M.AutoInit();
     }
 
     state = {
@@ -42,7 +43,7 @@ class AddGames extends React.Component {
         // Updating the input's state
         this.setState({
             [name]: value
-        })
+        }, () => {console.log(this.state)})
     }
 
     handleFormSubmit = event => {
@@ -75,6 +76,14 @@ class AddGames extends React.Component {
         } else if (!gameObj.minAge) {
             alert(`Please enter a minimum age`);
             return
+        }
+
+        if (!gameObj.maxPlaytime) {
+            gameObj.maxPlaytime = gameObj.minPlaytime;
+        }
+
+        if (!gameObj.maxPlayers) {
+            gameObj.maxPlayers = gameObj.minPlayers;
         }
 
         gameLogic.addGame(gameObj);
@@ -217,7 +226,6 @@ class AddGames extends React.Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <h4>Input Rules here</h4>
                                 <div className="input-field col s12">
                                     <textarea
                                         id="rules"
@@ -228,7 +236,7 @@ class AddGames extends React.Component {
                                         className="materialize-textarea"
                                     >
                                     </textarea>
-                                    <label htmlFor="rules">Rules</label>
+                                    <label htmlFor="rules">Rules URL</label>
                                 </div>
                             </div>
                         </form>
