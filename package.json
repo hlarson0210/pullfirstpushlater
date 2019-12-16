@@ -27,9 +27,11 @@
     "express": "^4.16.3",
     "formik": "^2.0.7",
     "if-env": "^1.0.4",
+    "local-storage": "^2.0.0",
     "materialize-css": "^1.0.0-rc.2",
     "mongoose": "^5.7.12",
     "node-sass": "^4.13.0",
+    "react-scroll": "^1.7.14",
     "sass": "^1.23.7",
     "uuid": "^3.3.3"
   },

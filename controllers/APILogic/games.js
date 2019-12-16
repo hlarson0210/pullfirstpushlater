@@ -13,28 +13,25 @@ const createFilter = (req) => {
         }
     }
 
-    if (req.query.minPlayers) {
-        filters.minPlayers = req.query.minPlayers
-    }
-
-    if (req.query.maxPlayers) {
-        filters.maxPlayers = req.query.maxPlayers
+    if (req.query.numPlayers) {
+        filters.minPlayers = { $lte: req.query.numPlayers }
+        filters.maxPlayers = { $gte: req.query.numPlayers }
     }
 
     if (req.query.minPlaytime) {
-        filters.minPlaytime = req.query.minPlaytime
+        filters.minPlaytime = { $lte: req.query.minPlaytime }
     }
 
     if (req.query.maxPlaytime) {
-        filters.maxPlaytime = req.query.maxPlaytime
+        filters.maxPlaytime = { $gte: req.query.maxPlaytime }
     }
 
     if (req.query.minAge) {
-        filters.minAge = req.query.minAge
+        filters.minAge = { $lte: req.query.minAge }
     }
 
     if (req.query.rating) {
-        filters.rating = req.query.rating
+        filters.rating = { $gte: req.query.rating }
     }
 
     if (req.query.complexity) {
@@ -47,11 +44,9 @@ const createFilter = (req) => {
 // Defining methods for the gamesController
 module.exports = {
     find: function (req, res) {
-        console.log(req)
         db.User.findOne({
             currentToken: req.query.token
         }).then(user => {
-            console.log(user);
             if (!user) {
                 return res.status(404).send("User not found!");
             }
@@ -126,7 +121,7 @@ module.exports = {
             currentToken: req.body.token
         }).then(user => {
             if (!user) {
-                return res.status(422).send("User not found!");
+                return res.status(404).send("User not found!");
             }
             db.Game.find({
                 userId: user._id,
@@ -134,7 +129,7 @@ module.exports = {
             }).then(game => {
 
                 if (!game) {
-                    return res.status(422).send("No game found!");
+                    return res.status(404).send("No game found!");
                 }
 
                 db.Game.remove({

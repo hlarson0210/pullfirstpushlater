@@ -1,13 +1,13 @@
-import React from 'react'
-import LogoAnimation from '../LogoAnimation'
-import userLogic from '../../utils/API/userLogic'
-import './style.css'
+import React from 'react';
+import LogoAnimation from '../../pages/LogoAnimation';
+import userLogic from '../../utils/API/userLogic';
+import ls from 'local-storage';
 import { AppContext } from "../../appContext";
-
+import './style.css';
 
 class SignIn extends React.Component {
+
   static contextType = AppContext;
-  // call token: this.context.token
 
   state = {
     error: null,
@@ -58,12 +58,10 @@ class SignIn extends React.Component {
       return
     }
     userLogic.userSignIn(userObj).then(response => {
-      const newLocation = window.location.href + "mylibrary";
-      console.log(newLocation);
       const fullName = response.firstName + " " + response.lastName;
-      this.context.update({ token: response.currentToken, name: fullName });
-      // window.location.href = newLocation;
-      this.setState({username: "", password: ""});
+      ls.set("myGameLibrary_userToken", response.currentToken);
+      ls.set("myGameLibrary_userFullName", fullName.trim());
+      this.props.locRedirect("/mylibrary");
     }).catch(err => console.log(err));
   }
 
@@ -98,11 +96,12 @@ class SignIn extends React.Component {
     }
     userLogic.userSignUp(userObj).then(response => {
       const newUser = { username: userObj.username, password: userObj.password };
-
+      
       userLogic.userSignIn(newUser).then(resp => {
-
-        const fullName = userObj.firstName + " " + userObj.lastName
-        this.context.update({ token: resp.token, name: fullName });
+        const fullName = response.firstName + " " + response.lastName;
+        ls.set("myGameLibrary_userToken", response.currentToken);
+        ls.set("myGameLibrary_userFullName", fullName.trim());
+        this.props.locRedirect("/mylibrary");
       }).catch(error => console.log(error));
     }).catch(err => console.log(err));
   }
@@ -114,7 +113,6 @@ class SignIn extends React.Component {
           <div className='col s12 m6 l6 app-name'>
             <LogoAnimation />
           </div>
-
           <div
             style={{ textAlign: 'left' }}
             className='col s12 m6 l6 sign-in-form'
@@ -130,7 +128,6 @@ class SignIn extends React.Component {
                   <input
                     type='text'
                     value={this.state.username}
-                    placeholder='Username'
                     name='username'
                     onChange={this.handleInputChange}
                     className='validate username'
@@ -145,7 +142,6 @@ class SignIn extends React.Component {
                   <input
                     type='password'
                     value={this.state.password}
-                    placeholder='Password'
                     name='password'
                     onChange={this.handleInputChange}
                     className='validate password'
@@ -161,7 +157,7 @@ class SignIn extends React.Component {
               >
                 LOG IN
               </button>
-              <div className='row'>
+              <div id="signUpDiv" className='row'>
                 <p>Don't have an account?</p>
                 <p>
                   <a className='modal-trigger link sign-up' href='#modal1'>
@@ -186,7 +182,6 @@ class SignIn extends React.Component {
                         type='text'
                         className='validate firstname'
                         value={this.state.newFirstName}
-                        placeholder='First Name'
                         name='newFirstName'
                         onChange={this.handleInputChange}
                       />
@@ -198,7 +193,6 @@ class SignIn extends React.Component {
                         type='text'
                         className='validate lastname'
                         value={this.state.newLastName}
-                        placeholder='Last Name'
                         name='newLastName'
                         onChange={this.handleInputChange}
                       />
@@ -212,7 +206,6 @@ class SignIn extends React.Component {
                         type='text'
                         className='validate new_username'
                         value={this.state.newUsername}
-                        placeholder='Username'
                         name='newUsername'
                         onChange={this.handleInputChange}
                       />
@@ -226,7 +219,6 @@ class SignIn extends React.Component {
                         type='password'
                         className='validate new_password'
                         value={this.state.newPassword}
-                        placeholder='Password'
                         name='newPassword'
                         onChange={this.handleInputChange}
                       />
@@ -240,7 +232,6 @@ class SignIn extends React.Component {
                         type='password'
                         className='validate new_password'
                         value={this.state.newConfirmPassword}
-                        placeholder='Confirm Password'
                         name='newConfirmPassword'
                         onChange={this.handleInputChange}
                       />

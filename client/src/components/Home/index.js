@@ -1,39 +1,43 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import SignIn from '../SignIn';
 import M from "materialize-css";
 import './style.css';
 
 class Home extends React.Component {
+  
   componentDidMount() {
     M.AutoInit();
-  };
+  }
+
+  redirect = (location) => {
+    this.props.history.push(location)
+  }
   
   render() {
     return (
-      <div className="contenedor">
-        <form className="vert-nav-form">
+      <div className='contenedor'>
+        <form className='vert-nav-form'>
           <input
-            type="radio"
-            className="radio-btn"
-            id="Slide1"
-            name="slider"
-            titulo="Home"
-            autoFocus="autofocus"
+            type='radio'
+            className='radio-btn'
+            id='Slide1'
+            name='slider'
+            titulo='Home'
+            autoFocus='autofocus'
           />
           <input
-            type="radio"
-            className="radio-btn"
-            id="Slide2"
-            name="slider"
-            titulo="MyLibrary"
+            type='radio'
+            className='radio-btn'
+            id='Slide2'
+            name='slider'
+            titulo='MyLibrary'
           />
           <input
-            type="radio"
-            className="radio-btn"
-            id="Slide3"
-            name="slider"
-            titulo="ExploreGames"
+            type='radio'
+            className='radio-btn'
+            id='Slide3'
+            name='slider'
+            titulo='ExploreGames'
           />
           <input
             type='radio'
@@ -47,10 +51,10 @@ class Home extends React.Component {
               <div className='content'>
                 <h1>
                   <strong />
-                  <SignIn />
+                  <SignIn locRedirect={this.redirect}/>
                 </h1>
               </div>
-              <div className="icon">
+              <div className='icon'>
                 <span />
                 <span />
               </div>
@@ -58,16 +62,16 @@ class Home extends React.Component {
             <label className='Slide' htmlFor='Slide2' id='Slide2'>
               <div className='content'>
                 <h1 className='my-library-title'>MY LIBRARY</h1>
-                <p>
-                  <a href='./mylibrary'>take me there.</a>
+                <p className="take-me-there">
+                  <a className='homeLink' href='./mylibrary'>take me there.</a>
                 </p>
               </div>
             </label>
             <label className='Slide' htmlFor='Slide3' id='Slide3'>
               <div className='content'>
                 <h1 className='explore-games-title'>EXPLORE GAMES</h1>
-                <p>
-                  <a href='./exploregames'>take me there.</a>
+                <p className="take-me-there">
+                  <a className='homeLink' href='./exploregames'>take me there.</a>
                 </p>
               </div>
             </label>
@@ -100,79 +104,3 @@ class Home extends React.Component {
 }
 
 export default Home;
-
-/* class Home extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      selectedOption: 'Home'
-    }
-
-    handleOptionChange = changeEvent => {
-      this.setState({
-        selectedOption: changeEvent.target.value
-      })
-    }
-  }
-  render () {
-    return (
-      <div className='contenedor'>
-        <form>
-          <div className='vert-nav-form'>
-            <label>
-              <input
-                type='radio'
-                name='slider'
-                value='Home'
-                checked={this.state.selectedOption === 'Home'}
-                onChange={this.handleOptionChange}
-                className='radio-btn'
-              />
-              Home
-            </label>
-          </div>
-          <div className='vert-nav-form'>
-            <label>
-              <input
-                type='radio'
-                name='slider'
-                value='MyLibrary'
-                checked={this.state.selectedOption === 'MyLibrary'}
-                onChange={this.handleOptionChange}
-                className='radio-btn'
-              />
-              My Library
-            </label>
-          </div>
-          <div className='vert-nav-form'>
-            <label>
-              <input
-                type='radio'
-                name='slider'
-                value='ExploreGames'
-                checked={this.state.selectedOption === 'ExploreGames'}
-                onChange={this.handleOptionChange}
-                className='radio-btn'
-              />
-              Explore Games
-            </label>
-          </div>
-          <div className='vert-nav-form'>
-            <label>
-              <input
-                type='radio'
-                name='slider'
-                value='HowItWorks'
-                checked={this.state.selectedOption === 'HowItWorks'}
-                onChange={this.handleOptionChange}
-                className='radio-btn'
-              />
-              How It Works
-            </label>
-          </div>
-        </form>
-      </div>
-    )
-  }
-}
-export default Home */
