@@ -2,10 +2,12 @@ import React from 'react';
 import GameCard from '../../pages/GameCard';
 import SearchGames from '../../pages/SearchGames';
 import bgaApiCall from '../../utils/bgaApiCall';
+import { AppContext } from "../../appContext";
 import './style.css';
 
 class ExploreGames extends React.Component {
-  constructor (props) {
+  static contextType = AppContext;
+  constructor(props) {
     super(props)
     this.state = {
       error: null,
@@ -115,7 +117,7 @@ class ExploreGames extends React.Component {
                 {searchedGames.map((item, index) => (
                   <SearchGames
                     name={item.name}
-                    key={index}
+                    key={`s+${index}`}
                     price={item.price}
                     rating={
                       item.average_user_rating
@@ -131,6 +133,7 @@ class ExploreGames extends React.Component {
                     description={item.description_preview}
                     image={item.images.small}
                     rules={item.rules_url}
+                    handleClick={this.context.update}
                   ></SearchGames>
                 ))}{' '}
               </div>{' '}
@@ -146,7 +149,7 @@ class ExploreGames extends React.Component {
               {popularGames.map((item, index) => (
                 <GameCard
                   name={item.name}
-                  key={index}
+                  key={`p+${index}`}
                   price={item.price}
                   rating={
                     item.average_user_rating

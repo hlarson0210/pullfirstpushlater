@@ -22,15 +22,15 @@ class AddGames extends React.Component {
 
     state = {
         error: null,
-        gameName: "",
-        minPlayers: null,
-        maxPlayers: null,
-        minPlaytime: null,
-        maxPlaytime: null,
-        minAge: null,
-        rating: null,
-        rules: "",
-        image: "",
+        gameName: this.context.gameName,
+        minPlayers: this.context.minPlayers,
+        maxPlayers: this.context.maxPlayers,
+        minPlaytime: this.context.minPlaytime,
+        maxPlaytime: this.context.maxPlaytime,
+        minAge: this.context.minAge,
+        rating: this.context.rating,
+        rules: this.context.rules,
+        image: this.context.image,
         complexity: "",
         token: ""
     }
@@ -86,7 +86,34 @@ class AddGames extends React.Component {
             gameObj.maxPlayers = gameObj.minPlayers;
         }
 
-        gameLogic.addGame(gameObj);
+        gameLogic.addGame(gameObj).then(resp => {
+            this.context.update({
+                gameName: "",
+                minPlayers: "",
+                maxPlayers: "",
+                minPlaytime: "",
+                maxPlaytime: "",
+                minAge: "",
+                rating: "",
+                rules: "",
+                image: "",
+                complexity: ""
+            });
+            this.setState({
+                gameName: "",
+                minPlayers: "",
+                maxPlayers: "",
+                minPlaytime: "",
+                maxPlaytime: "",
+                minAge: "",
+                rating: "",
+                rules: "",
+                image: "",
+                complexity: ""
+            });
+        });
+        
+       
     };
 
     render() {
