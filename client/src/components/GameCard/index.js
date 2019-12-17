@@ -6,7 +6,7 @@ let style = {
 }
 
 let style2 = {
-  margin: '2%'
+  margin: '8px'
 }
 
 function GameCard (props) {
@@ -18,7 +18,7 @@ function GameCard (props) {
             <a href={props.officialsite} target='_blank'>
               <img
                 className='left valign-wrapper'
-                style={style2}
+                style={style}
                 src={props.image}
               ></img>
             </a>

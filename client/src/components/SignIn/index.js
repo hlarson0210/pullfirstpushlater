@@ -162,7 +162,7 @@ class SignIn extends React.Component {
                   <label>Password</label>
 
                   <span
-                    class='helper-text'
+                    className='helper-text'
                     data-error='hmm...wrong password.'
                     data-success='Success!'
                   >
@@ -238,7 +238,7 @@ class SignIn extends React.Component {
                         Username
                       </label>
                       <span
-                        class='helper-text'
+                        className='helper-text'
                         data-error='Username must be more than 4 characters.'
                         data-success='Success!'
                       >
@@ -261,7 +261,7 @@ class SignIn extends React.Component {
                         Password
                       </label>
                       <span
-                        class='helper-text'
+                        className='helper-text'
                         data-error='Password must be more than 8 characters.'
                         data-success='Success!'
                       >
@@ -284,7 +284,7 @@ class SignIn extends React.Component {
                         Confirm Password
                       </label>
                       <span
-                        class='helper-text'
+                        className='helper-text'
                         data-error='Oops. Not the same as above. Try again.'
                         data-success='Success!'
                       >
