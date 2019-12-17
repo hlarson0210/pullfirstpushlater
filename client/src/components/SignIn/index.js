@@ -131,6 +131,7 @@ class SignIn extends React.Component {
                     value={this.state.username}
                     name='username'
                     onChange={this.handleInputChange}
+                    placeholder=''
                     className='validate username'
                     autoComplete='username'
                   />
@@ -154,6 +155,7 @@ class SignIn extends React.Component {
                     value={this.state.password}
                     name='password'
                     onChange={this.handleInputChange}
+                    placeholder=''
                     className='validate password'
                     autoComplete='current-password'
                   />
@@ -290,7 +292,7 @@ class SignIn extends React.Component {
                       </span>
                     </div>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
             <div id='submit-modal'>
