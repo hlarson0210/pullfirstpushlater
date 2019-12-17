@@ -86,19 +86,34 @@ class AddGames extends React.Component {
             gameObj.maxPlayers = gameObj.minPlayers;
         }
 
-        gameLogic.addGame(gameObj);
-        this.context.update({
-            gameName: "",
-            minPlayers: "",
-            maxPlayers: "",
-            minPlaytime: "",
-            maxPlaytime: "",
-            minAge: "",
-            rating: "",
-            rules: "",
-            image: "",
-            complexity: "",
+        gameLogic.addGame(gameObj).then(resp => {
+            this.context.update({
+                gameName: "",
+                minPlayers: "",
+                maxPlayers: "",
+                minPlaytime: "",
+                maxPlaytime: "",
+                minAge: "",
+                rating: "",
+                rules: "",
+                image: "",
+                complexity: ""
+            });
+            this.setState({
+                gameName: "",
+                minPlayers: "",
+                maxPlayers: "",
+                minPlaytime: "",
+                maxPlaytime: "",
+                minAge: "",
+                rating: "",
+                rules: "",
+                image: "",
+                complexity: ""
+            });
         });
+        
+       
     };
 
     render() {

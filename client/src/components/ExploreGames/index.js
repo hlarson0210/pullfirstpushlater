@@ -117,7 +117,7 @@ class ExploreGames extends React.Component {
                 {searchedGames.map((item, index) => (
                   <SearchGames
                     name={item.name}
-                    key={index}
+                    key={`s+${index}`}
                     price={item.price}
                     rating={
                       item.average_user_rating
@@ -149,7 +149,7 @@ class ExploreGames extends React.Component {
               {popularGames.map((item, index) => (
                 <GameCard
                   name={item.name}
-                  key={index}
+                  key={`p+${index}`}
                   price={item.price}
                   rating={
                     item.average_user_rating
