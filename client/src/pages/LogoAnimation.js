@@ -2,7 +2,7 @@ import React from 'react'
 
 function LogoAnimation (props) {
   return (
-    <div className='container center'>
+    <div className='container center' id='logo-animate'>
       <div id='wrap'>
         <div className='cube'>
           <div className='front'>
