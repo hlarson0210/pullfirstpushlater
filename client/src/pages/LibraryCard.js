@@ -11,6 +11,18 @@ function LibraryCard(props) {
                     <p>Play Time: {props.minPlaytime} to {props.maxPlaytime} minutes</p>
                     <p>Minimum Age: {props.minAge}</p>
                     <p>Rating: {props.rating}</p>
+                    <button
+                        data-id={props.id}
+                        className="btn waves-effect waves-light blue-grey lighten-3"
+                        name="action"
+                    ><i className="material-icons">edit</i>
+                    </button>
+                    <button
+                        data-id={props.id}
+                        className="btn waves-effect waves-light blue-grey lighten-3"
+                        name="action"
+                    ><i className="material-icons">delete</i>
+                    </button>
                 </div>
             </div>
         </div>
