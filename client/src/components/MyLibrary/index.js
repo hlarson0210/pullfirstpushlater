@@ -33,12 +33,12 @@ class MyLibrary extends React.Component {
     state = {
         games: [],
         name: "",
-        numPlayers: null,
-        minPlaytime: null,
-        maxPlaytime: null,
-        minAge: null,
+        numPlayers: "",
+        minPlaytime: "",
+        maxPlaytime: "",
+        minAge: "",
         complexity: "",
-        minRating: null,
+        minRating: "",
         token: ""
     };
 
@@ -78,12 +78,12 @@ class MyLibrary extends React.Component {
 
         this.setState({
             name: "",
-            numPlayers: null,
-            minPlaytime: null,
-            maxPlaytime: null,
-            minAge: null,
+            numPlayers: "",
+            minPlaytime: "",
+            maxPlaytime: "",
+            minAge: "",
             complexity: "",
-            minRating: null,
+            minRating: "",
         })
     };
 

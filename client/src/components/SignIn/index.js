@@ -129,7 +129,6 @@ class SignIn extends React.Component {
                   <input
                     type='text'
                     value={this.state.username}
-                    placeholder=''
                     name='username'
                     onChange={this.handleInputChange}
                     className='validate username'
@@ -153,7 +152,6 @@ class SignIn extends React.Component {
                   <input
                     type='password'
                     value={this.state.password}
-                    placeholder=''
                     name='password'
                     onChange={this.handleInputChange}
                     className='validate password'
@@ -200,7 +198,6 @@ class SignIn extends React.Component {
                         type='text'
                         className='validate firstname'
                         value={this.state.newFirstName}
-                        placeholder=''
                         name='newFirstName'
                         onChange={this.handleInputChange}
                         autoComplete='name'
@@ -215,7 +212,6 @@ class SignIn extends React.Component {
                         type='text'
                         className='validate lastname'
                         value={this.state.newLastName}
-                        placeholder=''
                         name='newLastName'
                         onChange={this.handleInputChange}
                         autoComplete='family-name'
@@ -232,7 +228,6 @@ class SignIn extends React.Component {
                         type='text'
                         className='validate new_username'
                         value={this.state.newUsername}
-                        placeholder=''
                         name='newUsername'
                         onChange={this.handleInputChange}
                         autoComplete='username'
@@ -256,7 +251,6 @@ class SignIn extends React.Component {
                         type='password'
                         className='validate new_password'
                         value={this.state.newPassword}
-                        placeholder=''
                         name='newPassword'
                         onChange={this.handleInputChange}
                         autoComplete='new-password'
@@ -280,7 +274,6 @@ class SignIn extends React.Component {
                         type='password'
                         className='validate new_password'
                         value={this.state.newConfirmPassword}
-                        placeholder=''
                         name='newConfirmPassword'
                         onChange={this.handleInputChange}
                         autoComplete='new-password'
