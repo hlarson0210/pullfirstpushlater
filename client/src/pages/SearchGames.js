@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 let style = {
   height: '10em',
@@ -19,7 +19,7 @@ function SearchGames (props) {
               target='_blank'
               rel='noopener noreferrer'
             >
-              <img className="searchImage" alt="" src={props.image}></img>
+              <img className='searchImage' alt='' src={props.image}></img>
             </a>
           </div>
           <div className='card-stacked'>
@@ -67,7 +67,7 @@ function SearchGames (props) {
                       rating: props.rating,
                       rules: props.rules,
                       image: props.image,
-                      complexity: "",
+                      complexity: ''
                     })
                   }}
                 >

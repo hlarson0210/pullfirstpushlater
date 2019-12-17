@@ -103,7 +103,7 @@ class ExploreGames extends React.Component {
             </div>
             <div className='col s2 m2 l2' id='search-button'>
               <button
-                className='waves-effect waves-light btn-large searching blue lighten-1'
+                className='waves-effect waves-light btn-large searching'
                 onClick={this.handleFormSubmit}
               >
                 Search
