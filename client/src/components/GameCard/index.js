@@ -5,7 +5,7 @@ let style = {
   transform: 'translateY(0%)'
 }
 
-let style2 = {
+let style = {
   margin: '8px'
 }
 
