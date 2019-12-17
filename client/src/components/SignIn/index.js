@@ -132,7 +132,8 @@ class SignIn extends React.Component {
                     placeholder=''
                     name='username'
                     onChange={this.handleInputChange}
-                    className='validate'
+                    className='validate username'
+                    autoComplete='username'
                   />
                   <label>Username</label>
                   <span
@@ -155,7 +156,8 @@ class SignIn extends React.Component {
                     placeholder=''
                     name='password'
                     onChange={this.handleInputChange}
-                    className='validate'
+                    className='validate password'
+                    autoComplete='current-password'
                   />
                   <label>Password</label>
 
@@ -184,6 +186,7 @@ class SignIn extends React.Component {
               </div>
               <br />
             </div>
+            <br />
           </div>
           <div id='modal1' className='modal'>
             <div className='modal-content center'>
@@ -200,6 +203,7 @@ class SignIn extends React.Component {
                         placeholder=''
                         name='newFirstName'
                         onChange={this.handleInputChange}
+                        autoComplete='name'
                       />
                       <label id='modal-label' htmlFor='first_name'>
                         First Name
@@ -214,6 +218,7 @@ class SignIn extends React.Component {
                         placeholder=''
                         name='newLastName'
                         onChange={this.handleInputChange}
+                        autoComplete='family-name'
                       />
                       <label id='modal-label' htmlFor='last_name'>
                         Last Name
@@ -230,6 +235,7 @@ class SignIn extends React.Component {
                         placeholder=''
                         name='newUsername'
                         onChange={this.handleInputChange}
+                        autoComplete='username'
                       />
                       <label id='modal-label' htmlFor='new_username'>
                         Username
@@ -253,6 +259,7 @@ class SignIn extends React.Component {
                         placeholder=''
                         name='newPassword'
                         onChange={this.handleInputChange}
+                        autoComplete='new-password'
                       />
                       <label id='modal-label' htmlFor='new_password'>
                         Password
@@ -276,6 +283,7 @@ class SignIn extends React.Component {
                         placeholder=''
                         name='newConfirmPassword'
                         onChange={this.handleInputChange}
+                        autoComplete='new-password'
                       />
                       <label id='modal-label' htmlFor='confirm_password'>
                         Confirm Password
@@ -289,7 +297,7 @@ class SignIn extends React.Component {
                       </span>
                     </div>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
             <div id='submit-modal'>
