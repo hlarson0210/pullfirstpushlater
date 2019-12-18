@@ -2,7 +2,7 @@ import React from "react";
 
 function LibraryCard(props) {
     return (
-        <div className="card col s4" style={{ marginRight: '1%', marginLeft: '1%', width: '31%' }}>
+        <div className="card col s4" style={{ marginRight: '1%', marginLeft: '1%', width: '31%', height:'375px' }}>
             <div className="card-image waves-effect waves-block waves-light center">
                 <img className="activator" src={props.image} style={{ padding: '10px 0 0 0', width: '200px', height: '200px', marginLeft: 'auto', marginRight: 'auto' }}></img>
             </div>
