@@ -120,6 +120,7 @@ class AddGames extends React.Component {
         });
         
         M.updateTextFields();
+        M.toast({html: 'Game Added!'});
     };
 
     render() {

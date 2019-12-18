@@ -11,7 +11,7 @@ let style = {
 function SearchGames (props) {
   return (
     <div className='row'>
-      <div className='left'>
+      <div className='left col s12'>
         <div className='card horizontal'>
           <div className='card-image'>
             <a
