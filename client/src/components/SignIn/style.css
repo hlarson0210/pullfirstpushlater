@@ -45,14 +45,6 @@ input {
   color: white;
 }
 
-textarea.materialize-textarea:focus.valid ~ label {
-  color: #607d8b;
-}
-
-textarea.materialize-textarea:focus.invalid ~ label {
-  color: #607d8b;
-}
-
 #first_name,
 #last_name,
 #new_username,
@@ -98,36 +90,27 @@ textarea.materialize-textarea:focus.invalid ~ label {
   color: white;
 }
 
+/* helper-text focus color */
+.helper-text:focus {
+  color: white;
+}
+
 /* label underline focus color */
+.input-field input[type="text"]:focus:enabled,
 .input-field input[type="password"]:focus:enabled {
   border-bottom: 1px solid white;
-  box-shadow: 0 1px 0 0#455a64;
+  box-shadow: 0 1px 0 0 white;
 }
 
 /* valid color */
-.input-field input[type="password"].valid {
-  border-bottom: 1px solid white;
-  box-shadow: 0 1px 0 0 white;
+.input-field input[type="text"]:focus.valid:enabled,
+.input-field input[type="password"]:focus.valid:enabled {
+  border-bottom: 1px solid green;
+  box-shadow: 0 1px 0 0 green;
 }
 /* invalid color */
-.input-field input[type="password"].invalid {
-  border-bottom: 1px solid red;
-  box-shadow: 0 1px 0 0 red;
-}
-
-/* label underline focus color */
-.input-field input[type="text"]:focus:enabled {
-  border-bottom: 1px solid white;
-  box-shadow: 0 1px 0 0#455a64;
-}
-
-/* valid color */
-.input-field input[type="text"].valid {
-  border-bottom: 1px solid white;
-  box-shadow: 0 1px 0 0 white;
-}
-/* invalid color */
-.input-field input[type="text"].invalid {
+.input-field input[type="text"].invalid:focus:enabled,
+.input-field input[type="password"].invalid:focus:enabled {
   border-bottom: 1px solid red;
   box-shadow: 0 1px 0 0 red;
 }
@@ -147,6 +130,7 @@ textarea.materialize-textarea:focus.invalid ~ label {
   color: #b0bec5;
 }
 
+/* modal styling */
 #modal1 {
   background-color: #263238;
 }
