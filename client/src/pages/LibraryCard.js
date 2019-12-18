@@ -21,6 +21,7 @@ function LibraryCard(props) {
                 </div>
                 <div >
                     <button
+                        onClick={() => props.onUpdate(props.id)}
                         data-id={props.id}
                         className="btn waves-effect waves-light blue-grey lighten-3 col s4"
                         name="action"
@@ -28,6 +29,7 @@ function LibraryCard(props) {
                     ><i className="material-icons">edit</i>
                     </button>
                     <button
+                        onClick={() => props.onDelete(props.id)}
                         data-id={props.id}
                         className="btn waves-effect waves-light blue-grey lighten-3 col s4"
                         name="action"

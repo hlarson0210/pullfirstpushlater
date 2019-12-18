@@ -37,6 +37,10 @@ const createFilter = (req) => {
     if (req.query.complexity) {
         filters.complexity = req.query.complexity
     }
+    
+    if (req.query._id) {
+        filters._id = req.query._id
+    }
 
     return filters
 }
@@ -86,6 +90,7 @@ module.exports = {
             if (!user) {
                 return res.status(422).send("User not found!");
             }
+            
             req.user = user;
 
             if (!req.body._id) {
@@ -118,14 +123,15 @@ module.exports = {
     },
     remove: function (req, res) {
         db.User.findOne({
-            currentToken: req.body.token
+            currentToken: req.query.token
         }).then(user => {
+            
             if (!user) {
                 return res.status(404).send("User not found!");
             }
             db.Game.find({
                 userId: user._id,
-                _id: req.params.id
+                _id: req.query.id
             }).then(game => {
 
                 if (!game) {

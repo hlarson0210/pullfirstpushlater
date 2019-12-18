@@ -45,7 +45,7 @@ class AddGames extends React.Component {
         // Updating the input's state
         this.setState({
             [name]: value
-        }, () => {console.log(this.state)})
+        })
     }
 
     handleFormSubmit = event => {
@@ -64,6 +64,10 @@ class AddGames extends React.Component {
             image: this.state.image,
             complexity: this.state.complexity,
             token: this.state.token
+        }
+        
+        if (this.context.userId) {
+            gameObj._id = this.context._id;
         }
 
         if (!gameObj.name) {
@@ -88,7 +92,7 @@ class AddGames extends React.Component {
             gameObj.maxPlayers = gameObj.minPlayers;
         }
 
-        gameLogic.addGame(gameObj).then(resp => {
+        gameLogic.saveGame(gameObj).then(resp => {
             this.context.update({
                 gameName: "",
                 minPlayers: "",
@@ -274,7 +278,7 @@ class AddGames extends React.Component {
                                 <button
                                     className="btn waves-effect waves-light blue lighten-1"
                                     name="action"
-                                    onClick={this.handleFormSubmit}>Add Game<i className="material-icons right">add_circle</i>
+                                    onClick={this.handleFormSubmit}>Save Game<i className="material-icons right">add_circle</i>
                                 </button>
                             </div>
                         </div>

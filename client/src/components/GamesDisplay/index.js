@@ -1,8 +1,18 @@
 import React from "react";
 import NoGames from "../../pages/NoGames";
 import LibraryCard from "../../pages/LibraryCard";
+import { AppContext } from "../../appContext";
 
 class GamesDisplay extends React.Component {
+    static contextType = AppContext;
+
+    checkDelete = gameID => {
+        return this.props.onDelete(gameID);
+    }
+
+    checkUpdate = gameID => {
+        return this.props.onUpdate(gameID);
+    }
 
     render() {
         if (this.props.games.length === 0) {
@@ -22,6 +32,8 @@ class GamesDisplay extends React.Component {
                 complexity={item.complexity}
                 rules={item.rules}
                 image={item.image}
+                onUpdate={this.checkUpdate}
+                onDelete={this.checkDelete}
             />
         )
     }
