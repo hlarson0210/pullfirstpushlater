@@ -20,6 +20,8 @@ class GamesDisplay extends React.Component {
                 minAge={item.minAge}
                 rating={item.rating.$numberDecimal}
                 complexity={item.complexity}
+                rules={item.rules}
+                image={item.image}
             />
         )
     }
