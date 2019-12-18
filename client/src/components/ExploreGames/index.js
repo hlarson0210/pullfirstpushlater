@@ -103,6 +103,11 @@ class ExploreGames extends React.Component {
                   className='validate'
                 ></input>
               </div>
+              <div className='col s2 m2 l2' id='search-button'>
+              <button className='waves-effect waves-light btn-large searching blue lighten-1' onClick={this.handleFormSubmit}>
+                Search
+              </button>
+            </div>
             </div>
             {/* popular games column */}
             <div className='col s4 m4 l4' id='popular-games'>

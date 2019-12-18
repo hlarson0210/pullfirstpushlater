@@ -19,7 +19,6 @@ class AddGames extends React.Component {
 
         M.AutoInit();
         M.updateTextFields();
-
     }
 
     state = {

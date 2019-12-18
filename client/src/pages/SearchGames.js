@@ -64,7 +64,7 @@ function SearchGames (props) {
                       minPlaytime: props.minplaytime,
                       maxPlaytime: props.maxplaytime,
                       minAge: props.minage,
-                      rating: props.rating,
+                      rating: props.rating ? props.rating : null,
                       rules: props.rules,
                       image: props.image,
                       complexity: ''
