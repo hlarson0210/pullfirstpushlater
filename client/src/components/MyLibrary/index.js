@@ -39,6 +39,7 @@ class MyLibrary extends React.Component {
         minAge: "",
         complexity: "",
         minRating: "",
+        rules: "",
         token: ""
     };
 
@@ -67,7 +68,7 @@ class MyLibrary extends React.Component {
         };
 
         libraryAPI.findGames(gameObj).then(response => {
-            this.setState({ games: response },() => console.log(this.state.games));
+            this.setState({ games: response });
             instances[0].close();
         }).catch(err => console.log(err));
 
@@ -85,6 +86,44 @@ class MyLibrary extends React.Component {
             complexity: "",
             minRating: "",
         })
+    };
+
+    handleDelete = (dropID) => {
+        const gameObj = {
+            id: dropID,
+            token: this.state.token
+        };
+
+        libraryAPI.deleteGame(gameObj).then(response => {
+            libraryAPI.findGames(
+                {token: this.state.token}
+            ).then(resp => this.setState({ games: resp })).catch(error => console.log(error))
+        }).catch(err => console.log(err));
+    };
+
+    handleUpdate = (updateID) => {
+        libraryAPI.findGames({
+            token: this.state.token,
+            _id: updateID
+        }).then(response => {
+            const game = response[0];
+            this.context.update({
+                _id: updateID,
+                image: game.image,
+                gameName: game.name,
+                minPlayers: game.minPlayers,
+                maxPlayers: game.maxPlayers,
+                minPlaytime: game.minPlaytime,
+                maxPlaytime: game.maxPlaytime,
+                minAge: game.minAge,
+                rating: game.rating,
+                rules: game.rules,
+                complexity: game.complexity,
+                userId: game.userId
+            });
+            this.props.history.push("/addgames");
+        }).catch(err => console.log(err));
+
     };
 
     render() {
@@ -212,7 +251,7 @@ class MyLibrary extends React.Component {
                         </li>
                     </ul>
                     <div className="row">
-                        <GamesDisplay games={this.state.games}></GamesDisplay>
+                        <GamesDisplay onUpdate={this.handleUpdate} onDelete={this.handleDelete} games={this.state.games}></GamesDisplay>
                     </div>
                 </div>
             </main>

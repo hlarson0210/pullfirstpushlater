@@ -25,6 +25,8 @@ class App extends Component {
       rules: "",
       image: "",
       complexity: "",
+      _id: "",
+      userId: ""
     };
   }
 

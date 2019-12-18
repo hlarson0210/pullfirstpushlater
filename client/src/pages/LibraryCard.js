@@ -12,12 +12,14 @@ function LibraryCard(props) {
                     <p>Minimum Age: {props.minAge}</p>
                     <p>Rating: {props.rating}</p>
                     <button
+                        onClick={() => props.onUpdate(props.id)}
                         data-id={props.id}
                         className="btn waves-effect waves-light blue-grey lighten-3"
                         name="action"
                     ><i className="material-icons">edit</i>
                     </button>
                     <button
+                        onClick={() => props.onDelete(props.id)}
                         data-id={props.id}
                         className="btn waves-effect waves-light blue-grey lighten-3"
                         name="action"
