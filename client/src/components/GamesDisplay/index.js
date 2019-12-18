@@ -1,6 +1,7 @@
 import React from "react";
 import NoGames from "../../pages/NoGames";
 import LibraryCard from "../../pages/LibraryCard";
+import './style.css';
 
 class GamesDisplay extends React.Component {
 
@@ -19,6 +20,7 @@ class GamesDisplay extends React.Component {
                 minAge={item.minAge}
                 rating={item.rating.$numberDecimal}
                 complexity={item.complexity}
+                rules={item.rules}
             />
         )
     }
