@@ -1,38 +1,36 @@
+.loading,
+.error {
+  color: white;
+  text-align: center;
+}
+.page-container {
+  padding-left: 8em;
+  padding-right: 6em;
+  margin: 0em;
+}
+.title {
+  color: white;
+}
+
+.sub-title {
+  color: white;
+}
 #popular-games,
 #search-games {
   display: block;
 }
 
-#search-games {
-  padding-left: 6em;
-}
-
 #popular-games {
-  width: 25%;
-  float: right;
-  padding-right: 6em;
-}
-#heading {
-  width: 100%;
-  align-content: left;
-  padding-left: 5em;
+  padding-left: 8px;
 }
 
 #search-bar {
   padding-top: 2em;
 }
 
-#search-button {
-  padding-top: 1em;
-  float: left;
-}
-
-#popular-games .popularGameLI {
-  padding: 10px 15px;
-}
-
-#popular-games .row {
-  margin-bottom: 0;
+#popular-games {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .searchImage {

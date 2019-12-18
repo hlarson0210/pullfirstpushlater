@@ -1,13 +1,13 @@
-import React from 'react';
-import GameCard from '../../pages/GameCard';
-import SearchGames from '../../pages/SearchGames';
-import bgaApiCall from '../../utils/bgaApiCall';
-import { AppContext } from "../../appContext";
-import './style.css';
+import React from 'react'
+import GameCard from '../../pages/GameCard'
+import SearchGames from '../../pages/SearchGames'
+import bgaApiCall from '../../utils/bgaApiCall'
+import { AppContext } from '../../appContext'
+import './style.css'
 
 class ExploreGames extends React.Component {
-  static contextType = AppContext;
-  constructor(props) {
+  static contextType = AppContext
+  constructor (props) {
     super(props)
     this.state = {
       error: null,
@@ -19,8 +19,8 @@ class ExploreGames extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.loadPopularGames();
+  componentDidMount () {
+    this.loadPopularGames()
   }
 
   queryGame = () => {
@@ -74,50 +74,48 @@ class ExploreGames extends React.Component {
     }
   }
 
-  render() {
+  render () {
     const { error, isLoaded, popularGames, searchedGames } = this.state
     if (error) {
-      return <div className='center'><h1> Error: {error.message} ☹ </h1> </div>
+      return <div className='container error'> Error: {error.message} </div>
     } else if (!isLoaded) {
       return (
-        <div className='center'>
+        <div className='loading'>
           {' '}
           <h1> Loading... </h1>
         </div>
       )
     } else {
       return (
-        <main>
-          <div className='row center' id='heading'>
-            <h1 className='center'> Explore Games </h1>
-            <div className='input-field col s10 m10 l10' id='search-bar'>
-              <input
-                id='nameOfGame'
-                type='text'
-                value={this.state.searchGames}
-                placeholder='search games here...'
-                name='searchGames'
-                onChange={this.handleInputChange}
-                className='validate'
-              ></input>
+        <div className='page-container'>
+          <div className='row one'>
+            <div className='col s8 m8 l8'>
+              <h1 className='title'> Explore Games </h1>
+              {/* begin explore games search bar */}
+              <div className='input-field col s12 m12 l12' id='search-bar'>
+                <input
+                  id='nameOfGame'
+                  type='text'
+                  value={this.state.searchGames}
+                  placeholder='search games here...'
+                  name='searchGames'
+                  onChange={this.handleInputChange}
+                  className='validate'
+                ></input>
+              </div>
             </div>
-            <div className='col s2 m2 l2' id='search-button'>
-              <button
-                className='waves-effect waves-light btn-large searching'
-                onClick={this.handleFormSubmit}
-              >
-                Search
-              </button>
-            </div>
-          </div>
-          <div className='container left'>
-            <div className='row' id='search-games'>
-              <div className='col s12 m12 l12'>
+            {/* popular games column */}
+            <div className='col s4 m4 l4' id='popular-games'>
+              <div>
                 {' '}
-                {searchedGames.map((item, index) => (
-                  <SearchGames
+                <h4 className='sub-title'> Popular Games </h4>
+              </div>
+              <ul className='collection'>
+                {' '}
+                {popularGames.map((item, index) => (
+                  <GameCard
                     name={item.name}
-                    key={`s+${index}`}
+                    key={`p+${index}`}
                     price={item.price}
                     rating={
                       item.average_user_rating
@@ -131,25 +129,21 @@ class ExploreGames extends React.Component {
                     maxplayers={item.max_players}
                     officialsite={item.official_url}
                     description={item.description_preview}
-                    image={item.images.small}
+                    image={item.images.thumb}
                     rules={item.rules_url}
-                    handleClick={this.context.update}
-                  ></SearchGames>
+                  ></GameCard>
                 ))}{' '}
-              </div>{' '}
+              </ul>{' '}
             </div>{' '}
           </div>
-          <div className='col s3 m3 l3' id='popular-games'>
-            <div>
+          {/* begin results row */}
+          <div className='row' id='search-games'>
+            <div className='col s8 m8 l8'>
               {' '}
-              <h4 className='center'> Popular Games </h4>
-            </div>
-            <ul className='collection'>
-              {' '}
-              {popularGames.map((item, index) => (
-                <GameCard
+              {searchedGames.map((item, index) => (
+                <SearchGames
                   name={item.name}
-                  key={`p+${index}`}
+                  key={`s+${index}`}
                   price={item.price}
                   rating={
                     item.average_user_rating
@@ -163,13 +157,14 @@ class ExploreGames extends React.Component {
                   maxplayers={item.max_players}
                   officialsite={item.official_url}
                   description={item.description_preview}
-                  image={item.images.thumb}
+                  image={item.images.small}
                   rules={item.rules_url}
-                ></GameCard>
+                  handleClick={this.context.update}
+                ></SearchGames>
               ))}{' '}
-            </ul>{' '}
+            </div>{' '}
           </div>{' '}
-        </main>
+        </div>
       )
     }
   }
