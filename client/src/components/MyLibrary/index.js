@@ -67,7 +67,7 @@ class MyLibrary extends React.Component {
         };
 
         libraryAPI.findGames(gameObj).then(response => {
-            this.setState({ games: response } );
+            this.setState({ games: response },() => console.log(this.state.games));
             instances[0].close();
         }).catch(err => console.log(err));
 

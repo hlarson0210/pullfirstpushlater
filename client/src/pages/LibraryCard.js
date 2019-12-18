@@ -27,13 +27,26 @@ function LibraryCard(props) {
             <div className="card-reveal">
                 <span className="card-title grey-text text-darken-4">{props.name}<i className="material-icons right">close</i></span>
                 <p>Complexity: {props.complexity}</p>
-                    <p>Players: {props.minPlayers} to {props.maxPlayers}</p>
-                    <p>Play Time: {props.minPlaytime} to {props.maxPlaytime} minutes</p>
-                    <p>Minimum Age: {props.minAge}</p>
-                    <p>Rating: {props.rating}</p>
-                    <a href={props.rules} target="_blank" rel="noopener noreferrer">Link to Rules</a>
+                <p>Players: {props.minPlayers} to {props.maxPlayers}</p>
+                <p>Play Time: {props.minPlaytime} to {props.maxPlaytime} minutes</p>
+                <p>Minimum Age: {props.minAge}</p>
+                <p>Rating: {props.rating}</p>
+                <a href={props.rules} target="_blank" rel="noopener noreferrer">Link to Rules</a>
+                <button
+                    data-id={props.id}
+                    className="btn waves-effect waves-light blue-grey lighten-3"
+                    name="action"
+                ><i className="material-icons">edit</i>
+                </button>
+                <button
+                    data-id={props.id}
+                    className="btn waves-effect waves-light blue-grey lighten-3"
+                    name="action"
+                ><i className="material-icons">delete</i>
+                </button>
             </div>
         </div>
+
     );
 }
 

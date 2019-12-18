@@ -19,7 +19,7 @@ class ExploreGames extends React.Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.loadPopularGames();
   }
 
@@ -74,10 +74,10 @@ class ExploreGames extends React.Component {
     }
   }
 
-  render () {
+  render() {
     const { error, isLoaded, popularGames, searchedGames } = this.state
     if (error) {
-      return <div> Error: {error.message} </div>
+      return <div className='center'><h1> Error: {error.message} ☹ </h1> </div>
     } else if (!isLoaded) {
       return (
         <div className='center'>
