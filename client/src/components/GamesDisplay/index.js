@@ -12,6 +12,7 @@ class GamesDisplay extends React.Component {
             <LibraryCard
                 name={item.name}
                 key={index}
+                id={item._id}
                 minPlaytime={item.minPlaytime}
                 maxPlaytime={item.maxPlaytime}
                 minPlayers={item.minPlayers}

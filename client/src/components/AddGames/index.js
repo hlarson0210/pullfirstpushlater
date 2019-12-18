@@ -18,6 +18,8 @@ class AddGames extends React.Component {
         }
 
         M.AutoInit();
+        M.updateTextFields();
+
     }
 
     state = {
@@ -113,7 +115,7 @@ class AddGames extends React.Component {
             });
         });
         
-       
+        M.updateTextFields();
     };
 
     render() {
@@ -124,7 +126,7 @@ class AddGames extends React.Component {
                     <div className="row">
                         <form className="col s12">
                             <div className="row">
-                                <div className="input-field col s12">
+                                <div className="input-field col s12 active">
                                     <input
                                         id="gameName"
                                         type="text"
@@ -138,7 +140,7 @@ class AddGames extends React.Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="input-field col s3">
+                                <div className="input-field col s3 active">
                                     <input
                                         id="minPlayers"
                                         type="number"
@@ -152,7 +154,7 @@ class AddGames extends React.Component {
                                     </input>
                                     <label htmlFor="minPlayers">Minimum Players</label>
                                 </div>
-                                <div className="input-field col s3">
+                                <div className="input-field col s3 active">
                                     <input
                                         id="maxPlayers"
                                         type="number"
@@ -166,7 +168,7 @@ class AddGames extends React.Component {
                                     </input>
                                     <label htmlFor="maxPlayers">Maximum Players</label>
                                 </div>
-                                <div className="input-field col s3">
+                                <div className="input-field col s3 active">
                                     <input
                                         id="minPlaytime"
                                         type="number"
@@ -180,7 +182,7 @@ class AddGames extends React.Component {
                                     </input>
                                     <label htmlFor="minPlaytime">Minimum Playtime</label>
                                 </div>
-                                <div className="input-field col s3">
+                                <div className="input-field col s3 active">
                                     <input
                                         id="maxPlaytime"
                                         type="number"
@@ -196,7 +198,7 @@ class AddGames extends React.Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="input-field col s3">
+                                <div className="input-field col s3 active">
                                     <input
                                         id="minAge"
                                         type="number"
@@ -210,7 +212,7 @@ class AddGames extends React.Component {
                                     </input>
                                     <label htmlFor="minAge">Minimum Age</label>
                                 </div>
-                                <div className="input-field col s3">
+                                <div className="input-field col s3 active">
                                     <select
                                         id="complexity"
                                         name="complexity"
@@ -225,7 +227,7 @@ class AddGames extends React.Component {
                                     </select>
                                     <label htmlFor="complexity">Complexity</label>
                                 </div>
-                                <div className="input-field col s3">
+                                <div className="input-field col s3 active">
                                     <input
                                         id="rating"
                                         type="number"
@@ -239,7 +241,7 @@ class AddGames extends React.Component {
                                     </input>
                                     <label htmlFor="rating">Rating</label>
                                 </div>
-                                <div className="input-field col s3">
+                                <div className="input-field col s3 active">
                                     <input
                                         id="image"
                                         type="text"
@@ -253,7 +255,7 @@ class AddGames extends React.Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="input-field col s12">
+                                <div className="input-field col s12 active">
                                     <textarea
                                         id="rules"
                                         palceholder="Rules text goes here"
