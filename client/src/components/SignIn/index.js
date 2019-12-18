@@ -122,11 +122,9 @@ class SignIn extends React.Component {
                 <h1 id='one'>BOARD</h1>
               </div>
               <div className='row username'>
-                <div
-                  id='input-username'
-                  className='input-field col s12 m12 l12'
-                >
+                <div className='input-field col s12 m12 l12'>
                   <input
+                    pattern='.{4,}'
                     type='text'
                     value={this.state.username}
                     name='username'
@@ -134,23 +132,22 @@ class SignIn extends React.Component {
                     placeholder=''
                     className='validate username'
                     autoComplete='username'
+                    required
                   />
-                  <label>Username</label>
+                  <label className='active'>Username</label>
                   <span
-                    class='helper-text'
-                    data-error='Username not found. Click the sign up link below to get started!'
+                    className='helper-text'
+                    data-error='Username must be at least 4 characters long'
                     data-success='Success!'
                   >
-                    Username must be more than 4 characters
+                    Username must be at least 4 characters long
                   </span>
                 </div>
               </div>
               <div className='row password'>
-                <div
-                  id='input-password'
-                  className='input-field col s12 m12 l12'
-                >
+                <div className='input-field col s12 m12 l12'>
                   <input
+                    pattern='.{8,}'
                     type='password'
                     value={this.state.password}
                     name='password'
@@ -158,15 +155,16 @@ class SignIn extends React.Component {
                     placeholder=''
                     className='validate password'
                     autoComplete='current-password'
+                    required
                   />
-                  <label>Password</label>
+                  <label className='active'>Password</label>
 
                   <span
                     className='helper-text'
-                    data-error='hmm...wrong password.'
+                    data-error='Password must be at least 8 characters long'
                     data-success='Success!'
                   >
-                    Password must be more than 8 characters
+                    Password must be at least 8 characters long
                   </span>
                 </div>
               </div>
