@@ -1,14 +1,14 @@
-import React from 'react';
-import GameCard from '../../pages/GameCard';
-import SearchGames from '../../pages/SearchGames';
-import bgaApiCall from '../../utils/bgaApiCall';
-import M from "materialize-css";
-import { AppContext } from '../../appContext';
-import './style.css';
+import React from 'react'
+import GameCard from '../../pages/GameCard'
+import SearchGames from '../../pages/SearchGames'
+import bgaApiCall from '../../utils/bgaApiCall'
+import M from 'materialize-css'
+import { AppContext } from '../../appContext'
+import './style.css'
 
 class ExploreGames extends React.Component {
   static contextType = AppContext
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       error: null,
@@ -20,8 +20,8 @@ class ExploreGames extends React.Component {
     }
   }
 
-  componentDidMount() {
-    M.Toast.dismissAll();
+  componentDidMount () {
+    M.Toast.dismissAll()
     this.loadPopularGames()
   }
 
@@ -76,7 +76,7 @@ class ExploreGames extends React.Component {
     }
   }
 
-  render() {
+  render () {
     const { error, isLoaded, popularGames, searchedGames } = this.state
     if (error) {
       return <div className='container error'> Error: {error.message} </div>
@@ -106,9 +106,12 @@ class ExploreGames extends React.Component {
                 ></input>
               </div>
               <div className='col s2 m2 l2' id='search-button'>
-                <button className='waves-effect waves-light btn-large searching blue lighten-1' onClick={this.handleFormSubmit}>
+                <button
+                  className='waves-effect waves-light btn-small searching #f44336 red'
+                  onClick={this.handleFormSubmit}
+                >
                   Search
-              </button>
+                </button>
               </div>
             </div>
           </div>

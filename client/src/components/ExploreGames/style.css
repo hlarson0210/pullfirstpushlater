@@ -6,25 +6,18 @@
 .page-container {
   padding-left: 8em;
   padding-right: 6em;
+  padding-bottom: 2em;
   margin: 0em;
   background-color: #263238;
 }
 
-/*#search-games {
-  padding-bottom: 4rem;
-  background-image: url("https://cdn.vox-cdn.com/thumbor/YUY2OLUwYV2gNZurrYESzsVJ9_Q=/0x0:1500x1000/1200x800/filters:focal(0x0:1500x1000)/cdn.vox-cdn.com/uploads/chorus_image/image/48637757/rebellion_close_up_watermark.0.0.jpg");
-  background-size: cover;
-  opacity: 0.2;
-  filter: alpha(opacity=20);
-}*/
 .title {
   color: white;
 }
 
 .sub-title {
   color: #263238;
-  font-weight: bolder;
-  font-size: 22px;
+  font-weight: bold;
   text-align: left;
   padding-bottom: 0.5em;
   padding-left: 0.5em;
@@ -38,20 +31,27 @@
 
 #nameOfGame {
   background: transparent;
+  color: white;
 }
 
 #search-bar {
   padding-top: 2em;
 }
 
+#search-button {
+  display: inline-block;
+  padding: 0;
+}
+
 #popular-games {
   margin-top: 0.5em;
-
   background-color: #eceff1;
 }
 
 #searchCardImage {
   display: inline-block;
+  max-width: 50%;
+  min-width: 50%;
 }
 
 .searchImage {
@@ -66,7 +66,7 @@
 
 .card-horizontial {
   background-color: rgba(255, 255, 255, 1);
-  padding: 0.5em 1em 0.5em 1em;
+  padding: 0.5em 1em 0em 0.5em;
   overflow: hidden;
   border-top-color: #cfd8dc;
   border-top-width: 2px;
@@ -75,7 +75,6 @@
 
 .card-horizontial:hover {
   border-color: #263238;
-  background-color: #eceff1;
 }
 
 .card-action a {
@@ -94,17 +93,12 @@
   text-decoration: underline;
 }
 
-img {
-  width: 50%;
-  margin: 0.5em;
-}
-
 img.searchImage {
   padding: auto;
 }
 
 .card-image {
-  padding-right: 1em;
+  padding-top: 0.5em;
   background-color: white;
 }
 
@@ -141,7 +135,7 @@ img.searchImage {
   color: #78909c;
 }
 
-h6.add-to-library {
+h6.add-to-library-button {
   margin-bottom: 0.5em;
   color: white;
 }
@@ -153,4 +147,11 @@ h6.add-to-library {
 td {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
+}
+
+h4.header {
+  margin-top: 0;
+  text-shadow: 2px 2px 2px #b0bec5;
+  font-size: 28px;
+  font-weight: bold;
 }

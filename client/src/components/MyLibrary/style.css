@@ -1,4 +1,59 @@
 #myLibraryHeading {
   margin-bottom: 3.5rem;
+  margin-top: 0;
+  padding-top: 1em;
   color: white;
+}
+
+#library-input,
+#library-label {
+  color: #263238;
+}
+
+#lib-row {
+  padding-bottom: 2em;
+}
+
+#library {
+  padding-bottom: 2em;
+}
+
+#library-input input.select-dropdown.dropdown-trigger {
+  font-family: inherit;
+  font-size: 15px;
+  color: #263238;
+}
+
+#search-games {
+  background-color: #37474f;
+  color: white;
+  text-align: left;
+  font-family: "Open Sans", sans-serif;
+}
+
+.card-content,
+.card-reveal {
+  text-align: left;
+}
+
+.card-content {
+  padding-bottom: 0;
+}
+
+img.activator {
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+span.card-title {
+  font-weight: bolder;
+  margin-bottom: 0.5em;
+}
+
+p.libcardstats {
+  text-align: right;
+}
+
+img {
+  background-image: url("https://image.flaticon.com/icons/png/512/103/103226.png");
 }

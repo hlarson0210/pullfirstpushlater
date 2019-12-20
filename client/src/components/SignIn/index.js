@@ -21,13 +21,12 @@ class SignIn extends React.Component {
     newLastName: ''
   }
 
-componentDidMount () {
-  M.AutoInit();
-  M.updateTextFields();
-}
+  componentDidMount () {
+    M.AutoInit()
+    M.updateTextFields()
+  }
 
   handleInputChange = event => {
-    
     // Getting the value and name of the input which triggered the change
     const value = event.target.value
     const name = event.target.name
@@ -49,35 +48,46 @@ componentDidMount () {
       username: this.state.username,
       password: this.state.password
     }
-    const usernameInputElem = $("#usernameInput");
-    const passwordInputElem = $("#passwordInput");
+    const usernameInputElem = $('#usernameInput')
+    const passwordInputElem = $('#passwordInput')
 
     if (!userObj.username) {
-      $(usernameInputElem).siblings(".helper-text").text("-").attr("data-error", "Please enter your username");
-      $(usernameInputElem).addClass("invalid");
-      badForm = true;           
+      $(usernameInputElem)
+        .siblings('.helper-text')
+        .text('-')
+        .attr('data-error', 'Please enter your username')
+      $(usernameInputElem).addClass('invalid')
+      badForm = true
     } else {
-      $(usernameInputElem).siblings(".helper-text").attr("data-error","").text("");
-      $(usernameInputElem).removeClass("invalid");
+      $(usernameInputElem)
+        .siblings('.helper-text')
+        .attr('data-error', '')
+        .text('')
+      $(usernameInputElem).removeClass('invalid')
     }
-    
+
     if (userObj.password.length === 0) {
-      $(passwordInputElem).siblings(".helper-text").text("-").attr("data-error", "Please enter your password");
-      $(passwordInputElem).addClass("invalid");
-      badForm = true;
+      $(passwordInputElem)
+        .siblings('.helper-text')
+        .text('-')
+        .attr('data-error', 'Please enter your password')
+      $(passwordInputElem).addClass('invalid')
+      badForm = true
     } else {
-      $(passwordInputElem).siblings(".helper-text").attr("data-error","").text("");
-      $(passwordInputElem).removeClass("invalid");
+      $(passwordInputElem)
+        .siblings('.helper-text')
+        .attr('data-error', '')
+        .text('')
+      $(passwordInputElem).removeClass('invalid')
     }
 
     if (badForm) {
-      return false;
+      return false
     }
-    return true;
+    return true
   }
 
   handleSignIn = event => {
-
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault()
 
@@ -88,14 +98,14 @@ componentDidMount () {
       }
 
       userLogic
-      .userSignIn(userObj)
-      .then(response => {
-        const fullName = response.firstName + ' ' + response.lastName
-        ls.set('myGameLibrary_userToken', response.currentToken)
-        ls.set('myGameLibrary_userFullName', fullName.trim())
-        this.props.locRedirect('/mylibrary')
-      })
-      .catch(err => alert(err.response.data))
+        .userSignIn(userObj)
+        .then(response => {
+          const fullName = response.firstName + ' ' + response.lastName
+          ls.set('myGameLibrary_userToken', response.currentToken)
+          ls.set('myGameLibrary_userFullName', fullName.trim())
+          this.props.locRedirect('/mylibrary')
+        })
+        .catch(err => alert(err.response.data))
     }
   }
 
@@ -109,54 +119,77 @@ componentDidMount () {
       lastName: this.state.newLastName
     }
 
-    const newUsernameInputElem = $("#new_username");
-    const newPasswordInputElem = $("#new_password");
-    const newConfirmPasswordInputElem = $("#confirm_password");
-    
+    const newUsernameInputElem = $('#new_username')
+    const newPasswordInputElem = $('#new_password')
+    const newConfirmPasswordInputElem = $('#confirm_password')
+
     if (!userObj.username) {
-      $(newUsernameInputElem).siblings(".helper-text").text("-").attr("data-error", "You must enter a username");
-      $(newUsernameInputElem).addClass("invalid");
-      badForm = true;           
+      $(newUsernameInputElem)
+        .siblings('.helper-text')
+        .text('-')
+        .attr('data-error', 'You must enter a username')
+      $(newUsernameInputElem).addClass('invalid')
+      badForm = true
     } else if (userObj.username.length <= 3) {
-      $(newUsernameInputElem).siblings(".helper-text").text("-").attr("data-error", "Username must be at least 4 characters");
-      $(newUsernameInputElem).addClass("invalid");
-      badForm = true;
+      $(newUsernameInputElem)
+        .siblings('.helper-text')
+        .text('-')
+        .attr('data-error', 'Username must be at least 4 characters')
+      $(newUsernameInputElem).addClass('invalid')
+      badForm = true
     } else {
-      $(newUsernameInputElem).siblings(".helper-text").attr("data-error","").text("");
-      $(newUsernameInputElem).removeClass("invalid");
+      $(newUsernameInputElem)
+        .siblings('.helper-text')
+        .attr('data-error', '')
+        .text('')
+      $(newUsernameInputElem).removeClass('invalid')
     }
-    
+
     if (userObj.password.length === 0) {
-      $(newPasswordInputElem).siblings(".helper-text").text("-").attr("data-error", "You must enter a password");
-      $(newPasswordInputElem).addClass("invalid");
-      badForm = true;
+      $(newPasswordInputElem)
+        .siblings('.helper-text')
+        .text('-')
+        .attr('data-error', 'You must enter a password')
+      $(newPasswordInputElem).addClass('invalid')
+      badForm = true
     } else if (userObj.password.length <= 7) {
-      $(newPasswordInputElem).siblings(".helper-text").text("-").attr("data-error", "Password must be at least 8 characters");
-      $(newPasswordInputElem).addClass("invalid");
-      badForm = true;
+      $(newPasswordInputElem)
+        .siblings('.helper-text')
+        .text('-')
+        .attr('data-error', 'Password must be at least 8 characters')
+      $(newPasswordInputElem).addClass('invalid')
+      badForm = true
     } else {
-      $(newPasswordInputElem).siblings(".helper-text").attr("data-error","").text("");
-      $(newPasswordInputElem).removeClass("invalid");
+      $(newPasswordInputElem)
+        .siblings('.helper-text')
+        .attr('data-error', '')
+        .text('')
+      $(newPasswordInputElem).removeClass('invalid')
     }
 
     if (userObj.password !== this.state.newConfirmPassword) {
-      $(newConfirmPasswordInputElem).siblings(".helper-text").text("-").attr("data-error", "Your passwords do not match");
-      $(newConfirmPasswordInputElem).addClass("invalid");
-      badForm = true;
+      $(newConfirmPasswordInputElem)
+        .siblings('.helper-text')
+        .text('-')
+        .attr('data-error', 'Your passwords do not match')
+      $(newConfirmPasswordInputElem).addClass('invalid')
+      badForm = true
     } else {
-      $(newConfirmPasswordInputElem).siblings(".helper-text").attr("data-error","").text("");
-      $(newConfirmPasswordInputElem).removeClass("invalid");
+      $(newConfirmPasswordInputElem)
+        .siblings('.helper-text')
+        .attr('data-error', '')
+        .text('')
+      $(newConfirmPasswordInputElem).removeClass('invalid')
     }
 
     if (badForm) {
-      return false;
+      return false
     }
-    M.Modal.getInstance($("#signUpModal")).close();
-    return true;
+    M.Modal.getInstance($('#signUpModal')).close()
+    return true
   }
 
   handleSignUp = event => {
-   
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault()
 
@@ -169,24 +202,24 @@ componentDidMount () {
       }
 
       userLogic
-      .userSignUp(userObj)
-      .then(response => {
-        const newUser = {
-          username: userObj.username,
-          password: userObj.password
-        }
+        .userSignUp(userObj)
+        .then(response => {
+          const newUser = {
+            username: userObj.username,
+            password: userObj.password
+          }
 
-        userLogic
-          .userSignIn(newUser)
-          .then(resp => {
-            const fullName = resp.firstName + ' ' + resp.lastName
-            ls.set('myGameLibrary_userToken', resp.currentToken)
-            ls.set('myGameLibrary_userFullName', fullName.trim())
-            this.props.locRedirect('/mylibrary')
-          })
-          .catch(error => alert(error.response.data))
-      })
-      .catch(err => alert(err.response.data))
+          userLogic
+            .userSignIn(newUser)
+            .then(resp => {
+              const fullName = resp.firstName + ' ' + resp.lastName
+              ls.set('myGameLibrary_userToken', resp.currentToken)
+              ls.set('myGameLibrary_userFullName', fullName.trim())
+              this.props.locRedirect('/mylibrary')
+            })
+            .catch(error => alert(error.response.data))
+        })
+        .catch(err => alert(err.response.data))
     }
   }
 
@@ -205,7 +238,7 @@ componentDidMount () {
               <div className='row username'>
                 <div className='input-field col s12 m12 l12'>
                   <input
-                    id="usernameInput"
+                    id='usernameInput'
                     pattern='.{4,}'
                     type='text'
                     value={this.state.username}
@@ -217,16 +250,13 @@ componentDidMount () {
                     required
                   />
                   <label className='active'>Username</label>
-                  <span
-                    className='helper-text'
-                  >
-                  </span>
+                  <span className='helper-text'></span>
                 </div>
               </div>
               <div className='row password'>
                 <div className='input-field col s12 m12 l12'>
                   <input
-                    id="passwordInput"
+                    id='passwordInput'
                     pattern='.{8,}'
                     type='password'
                     value={this.state.password}
@@ -238,10 +268,7 @@ componentDidMount () {
                     required
                   />
                   <label className='active'>Password</label>
-                  <span
-                    className='helper-text'
-                  >
-                  </span>
+                  <span className='helper-text'></span>
                 </div>
               </div>
               <button
@@ -268,7 +295,7 @@ componentDidMount () {
               <div id='modal-form' className='row'>
                 <form className='col s8 offset-s2'>
                   <div className='row'>
-                    <div className='input-field col s6'>
+                    <div id='signup-input' className='input-field col s6'>
                       <input
                         id='first_name'
                         type='text'
@@ -282,7 +309,7 @@ componentDidMount () {
                         First Name
                       </label>
                     </div>
-                    <div className='input-field col s6'>
+                    <div id='signup-input' className='input-field col s6'>
                       <input
                         id='last_name'
                         type='text'
@@ -298,7 +325,7 @@ componentDidMount () {
                     </div>
                   </div>
                   <div className='row'>
-                    <div className='input-field col s12'>
+                    <div id='signup-input' className='input-field col s12'>
                       <input
                         id='new_username'
                         type='text'
@@ -311,14 +338,11 @@ componentDidMount () {
                       <label id='modal-label' htmlFor='new_username'>
                         Username
                       </label>
-                      <span
-                        className='helper-text'
-                      >
-                      </span>
+                      <span className='helper-text'></span>
                     </div>
                   </div>
                   <div className='row'>
-                    <div className='input-field col s12'>
+                    <div id='signup-input' className='input-field col s12'>
                       <input
                         id='new_password'
                         type='password'
@@ -331,14 +355,11 @@ componentDidMount () {
                       <label className='modal-label' htmlFor='new_password'>
                         Password
                       </label>
-                      <span
-                        className='helper-text'
-                      >
-                      </span>
+                      <span className='helper-text'></span>
                     </div>
                   </div>
                   <div className='row'>
-                    <div className='input-field col s12'>
+                    <div id='signup-input' className='input-field col s12'>
                       <input
                         id='confirm_password'
                         type='password'
@@ -351,10 +372,7 @@ componentDidMount () {
                       <label className='modal-label' htmlFor='confirm_password'>
                         Confirm Password
                       </label>
-                      <span
-                        className='helper-text'
-                      >
-                      </span>
+                      <span className='helper-text'></span>
                     </div>
                   </div>
                 </form>
