@@ -12,10 +12,7 @@ const userSchema = new Schema({
       ref: "Game"
     }
   ],
-  currentToken: { 
-    type: String,
-    unique: true
-  }
+  currentToken: String
 });
 
 const User = mongoose.model("User", userSchema);

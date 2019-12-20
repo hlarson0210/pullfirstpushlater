@@ -33,7 +33,7 @@ class ExploreGames extends React.Component {
           searchGames: ''
         })
       })
-      .catch(err => console.log(err))
+      .catch(err => alert(err.response.data))
   }
 
   loadPopularGames = () => {

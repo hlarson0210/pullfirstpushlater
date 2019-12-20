@@ -21,7 +21,7 @@ class MyLibrary extends React.Component {
                 };
                 libraryAPI.findGames(gameObj).then(response => {
                     this.setState({ games: response });
-                }).catch(err => console.log(err))
+                }).catch(err => alert(err.response.data))
             });
         } else {
             alert("There was an error with your sign in, please log out and try again");
@@ -70,7 +70,7 @@ class MyLibrary extends React.Component {
         libraryAPI.findGames(gameObj).then(response => {
             this.setState({ games: response });
             instances[0].close();
-        }).catch(err => console.log(err));
+        }).catch(err => alert(err.response.data));
 
     };
 
@@ -97,8 +97,8 @@ class MyLibrary extends React.Component {
         libraryAPI.deleteGame(gameObj).then(response => {
             libraryAPI.findGames(
                 {token: this.state.token}
-            ).then(resp => this.setState({ games: resp })).catch(error => console.log(error))
-        }).catch(err => console.log(err));
+            ).then(resp => this.setState({ games: resp })).catch(error => alert(error.response.data))
+        }).catch(err => alert(err.response.data));
     };
 
     handleUpdate = (updateID) => {
@@ -122,7 +122,7 @@ class MyLibrary extends React.Component {
                 userId: game.userId
             });
             this.props.history.push("/addgames");
-        }).catch(err => console.log(err));
+        }).catch(err => alert(err.response.data));
 
     };
 
