@@ -138,7 +138,7 @@ class SignIn extends React.Component {
                   <span
                     className='helper-text'
                     data-error='Username must be at least 4 characters long'
-                    data-success='Success!'
+                    data-success=''
                   >
                     Username must be at least 4 characters long
                   </span>
@@ -162,7 +162,7 @@ class SignIn extends React.Component {
                   <span
                     className='helper-text'
                     data-error='Password must be at least 8 characters long'
-                    data-success='Success!'
+                    data-success=''
                   >
                     Password must be at least 8 characters long
                   </span>
@@ -238,7 +238,7 @@ class SignIn extends React.Component {
                       <span
                         className='helper-text'
                         data-error='Username must be more than 4 characters.'
-                        data-success='Success!'
+                        data-success=''
                       >
                         Username must be more than 4 characters
                       </span>
@@ -261,7 +261,7 @@ class SignIn extends React.Component {
                       <span
                         className='helper-text'
                         data-error='Password must be more than 8 characters.'
-                        data-success='Success!'
+                        data-success=''
                       >
                         Password must be more than 8 characters
                       </span>
@@ -284,7 +284,7 @@ class SignIn extends React.Component {
                       <span
                         className='helper-text'
                         data-error='Oops. Not the same as above. Try again.'
-                        data-success='Success!'
+                        data-success=''
                       >
                         Password must match text entered above
                       </span>
@@ -301,13 +301,6 @@ class SignIn extends React.Component {
               >
                 Submit
               </a>
-            </div>
-            <div id='modal1' className='modal'>
-              <div className='modal-content center'>
-                <div className='card'>
-                  <h4>SIGN UP</h4>
-                </div>
-              </div>
             </div>
           </div>
         </div>

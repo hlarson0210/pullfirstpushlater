@@ -7,21 +7,37 @@
   padding-left: 8em;
   padding-right: 6em;
   margin: 0em;
+  background-color: #263238;
 }
+
+/*#search-games {
+  padding-bottom: 4rem;
+  background-image: url("https://cdn.vox-cdn.com/thumbor/YUY2OLUwYV2gNZurrYESzsVJ9_Q=/0x0:1500x1000/1200x800/filters:focal(0x0:1500x1000)/cdn.vox-cdn.com/uploads/chorus_image/image/48637757/rebellion_close_up_watermark.0.0.jpg");
+  background-size: cover;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+}*/
 .title {
   color: white;
 }
 
 .sub-title {
-  color: white;
+  color: #263238;
+  font-weight: bolder;
+  font-size: 22px;
+  text-align: left;
+  padding-bottom: 0.5em;
+  padding-left: 0.5em;
+  text-shadow: 2px 2px 2px #b0bec5;
 }
+
 #popular-games,
 #search-games {
   display: block;
 }
 
-#popular-games {
-  padding-left: 8px;
+#nameOfGame {
+  background: transparent;
 }
 
 #search-bar {
@@ -29,11 +45,112 @@
 }
 
 #popular-games {
-  padding-left: 5px;
-  padding-right: 5px;
+  margin-top: 0.5em;
+
+  background-color: #eceff1;
+}
+
+#searchCardImage {
+  display: inline-block;
 }
 
 .searchImage {
   padding-top: 20px;
   padding-left: 20px;
+}
+
+.collection {
+  border: none;
+  background-color: transparent;
+}
+
+.card-horizontial {
+  background-color: rgba(255, 255, 255, 1);
+  padding: 0.5em 1em 0.5em 1em;
+  overflow: hidden;
+  border-top-color: #cfd8dc;
+  border-top-width: 2px;
+  border-top-style: solid;
+}
+
+.card-horizontial:hover {
+  border-color: #263238;
+  background-color: #eceff1;
+}
+
+.card-action a {
+  line-height: 3;
+  color: #263238;
+}
+
+.name,
+.price,
+.rating,
+.buyhere {
+  text-align: right;
+}
+
+.buyhere {
+  text-decoration: underline;
+}
+
+img {
+  width: 50%;
+  margin: 0.5em;
+}
+
+img.searchImage {
+  padding: auto;
+}
+
+.card-image {
+  padding-right: 1em;
+  background-color: white;
+}
+
+#searchCardContent {
+  background-color: #eceff1;
+}
+
+#searchCardAction {
+  background-color: #eceff1;
+}
+
+.collapsible-body {
+  background-color: white;
+}
+
+.name {
+  margin-bottom: 5px;
+  font-weight: bolder;
+  font-size: 16px;
+}
+
+.price,
+.rating {
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+}
+
+.card-action a:hover {
+  color: #f44336;
+  font-weight: bold;
+}
+
+#searchCardAction a {
+  color: #78909c;
+}
+
+h6.add-to-library {
+  margin-bottom: 0.5em;
+  color: white;
+}
+
+.btn {
+  display: block;
+}
+
+td {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
 }

@@ -3,7 +3,7 @@ import React from 'react'
 function Footer () {
   return (
     <footer className='page-footer #f44336 red'>
-      <div className='container'>
+      <div className='container' style={{ paddingTop: '0.5em' }}>
         <div className='row footerMargin'>
           <ul className='col s12 center footerMargin'>
             <a
