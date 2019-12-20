@@ -17,7 +17,7 @@ module.exports = {
 
                 bcrypt.compare(req.body.password, user.password, function (err, response) {
                     if (err) {
-                        return res.status(422).json(err);
+                        return res.status(401).send("There was a problem verifying your password.");
                     }
 
                     if (response) {
@@ -28,11 +28,11 @@ module.exports = {
                         }, {
                             currentToken: token
                         }).then(res.json({currentToken: token, firstName: user.firstName, lastName: user.lastName})
-                        ).catch(error => res.status(422).json(error));
+                        ).catch(error => res.status(400).send("There was problem signing you in. Please try again."));
                     }
                 });
 
-            }).catch(err => res.status(422).json(err));
+            }).catch(err => res.status(400).send("There was a problem with your sign in request. Please try again."));
     },
     create: function (req, res) {
         db.User
@@ -44,7 +44,7 @@ module.exports = {
                 }
                 bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
                     if (err) {
-                        return res.status(422).json(err);
+                        return res.status(400).send("There was an error encrypting your password. Nothing was saved in our database.");
                     }
 
                     db.User
@@ -53,8 +53,8 @@ module.exports = {
                             password: hash
                         })
                         .then(dbModel => res.json(dbModel))
-                        .catch(error => res.status(422).json(error));
+                        .catch(error => res.status(400).send("There was a problem creating your user. Nothing was saved in our database."));
                 });
-            }).catch(error => res.status(422).json(error))
+            }).catch(error => res.status(400).send("There was a problem with your sign up request. Please try again. Nothing was saved in our database."))
     }
 }

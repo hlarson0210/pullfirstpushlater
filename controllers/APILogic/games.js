@@ -60,8 +60,8 @@ module.exports = {
 
             db.Game.find(filters)
                 .then(dbModel => res.json(dbModel))
-                .catch(err => res.status(422).json(err));
-        }).catch(error => res.status(422).json(error));
+                .catch(err => res.status(400).send("There was a problem with your game search request. Please try again."));
+        }).catch(error => res.status(400).send("There was a problem with initializing your request. Please try again."));
     },
     create: function (req, res) {
         db.Game.create({
@@ -78,9 +78,9 @@ module.exports = {
                 _id: req.user._id
             }).then(function (dbUser) {
                 res.json(dbUser)
-            }).catch(err => res.status(422).json(err)));
+            }).catch(err => res.status(400).send("There was a responding with the user's updated games list.")));
 
-        }).catch(error => res.status(422).json(error));
+        }).catch(error => res.status(400).send("There was a problem saving the new game. Please try again."));
     },
     update: function (req, res) {
         db.User.findOne({
@@ -88,7 +88,7 @@ module.exports = {
         }).then(user => {
 
             if (!user) {
-                return res.status(422).send("User not found!");
+                return res.status(404).send("User not found!");
             }
             
             req.user = user;
@@ -117,9 +117,9 @@ module.exports = {
                     userId: req.user._id
                 })
                     .then(updatedGame => res.json(updatedGame))
-                    .catch(err => res.status(422).json(err))
-            }).catch(error => res.status(422).json(error));
-        });
+                    .catch(err => res.status(400).send("There was a problem finding the updated game."))
+            }).catch(error => res.status(404).send("There was a problem updating the game. Nothing was saved to the database."));
+        }).catch(error => res.status(400).send("There was a problem with initializing your request. Please try again."));
     },
     remove: function (req, res) {
         db.User.findOne({
@@ -156,12 +156,12 @@ module.exports = {
                             _id: user._id
                         }).then(function (dbUser) {
                             res.json(dbUser)
-                        }).catch(err => res.status(422).json(err));
+                        }).catch(err => res.status(404).send("There was problem reloading your user after deleting the game."));
                     });
                 })
-                    .catch(errs => res.status(422).json(errs));
+                    .catch(errs => res.status(400).send("There was a problem removing this game from your library. Please try again."));
 
-            }).catch(err => res.status(422).json(err));
-        }).catch(error => res.status(422).json(error));
+            }).catch(err => res.status(404).send("There was a problem finding a game to remove. Nothing was removed your library."));
+        }).catch(error => res.status(400).send("There was a problem with initializing your request. Please try again."));
     }
 };

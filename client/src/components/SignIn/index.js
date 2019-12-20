@@ -2,6 +2,8 @@ import React from 'react'
 import LogoAnimation from '../../pages/LogoAnimation'
 import userLogic from '../../utils/API/userLogic'
 import ls from 'local-storage'
+import $ from 'jquery'
+import M from 'materialize-css'
 import { AppContext } from '../../appContext'
 import './style.css'
 
@@ -19,7 +21,13 @@ class SignIn extends React.Component {
     newLastName: ''
   }
 
+componentDidMount () {
+  M.AutoInit();
+  M.updateTextFields();
+}
+
   handleInputChange = event => {
+    
     // Getting the value and name of the input which triggered the change
     const value = event.target.value
     const name = event.target.name
@@ -35,24 +43,51 @@ class SignIn extends React.Component {
     })
   }
 
-  handleSignIn = event => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    event.preventDefault()
+  signInValidation = () => {
     let badForm = false
-
     const userObj = {
       username: this.state.username,
       password: this.state.password
     }
+    const usernameInputElem = $("#usernameInput");
+    const passwordInputElem = $("#passwordInput");
 
     if (!userObj.username) {
-      alert(`Please enter your username`)
-      return
-    } else if (userObj.password.length === 0) {
-      alert(`You must enter your password`)
-      return
+      $(usernameInputElem).siblings(".helper-text").text("-").attr("data-error", "Please enter your username");
+      $(usernameInputElem).addClass("invalid");
+      badForm = true;           
+    } else {
+      $(usernameInputElem).siblings(".helper-text").attr("data-error","").text("");
+      $(usernameInputElem).removeClass("invalid");
     }
-    userLogic
+    
+    if (userObj.password.length === 0) {
+      $(passwordInputElem).siblings(".helper-text").text("-").attr("data-error", "Please enter your password");
+      $(passwordInputElem).addClass("invalid");
+      badForm = true;
+    } else {
+      $(passwordInputElem).siblings(".helper-text").attr("data-error","").text("");
+      $(passwordInputElem).removeClass("invalid");
+    }
+
+    if (badForm) {
+      return false;
+    }
+    return true;
+  }
+
+  handleSignIn = event => {
+
+    // Preventing the default behavior of the form submit (which is to refresh the page)
+    event.preventDefault()
+
+    if (this.signInValidation()) {
+      const userObj = {
+        username: this.state.username,
+        password: this.state.password
+      }
+
+      userLogic
       .userSignIn(userObj)
       .then(response => {
         const fullName = response.firstName + ' ' + response.lastName
@@ -60,12 +95,11 @@ class SignIn extends React.Component {
         ls.set('myGameLibrary_userFullName', fullName.trim())
         this.props.locRedirect('/mylibrary')
       })
-      .catch(err => console.log(err))
+      .catch(err => alert(err.response.data))
+    }
   }
 
-  handleSignUp = event => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    event.preventDefault()
+  signUpValidation = () => {
     let badForm = false
 
     const userObj = {
@@ -75,20 +109,66 @@ class SignIn extends React.Component {
       lastName: this.state.newLastName
     }
 
+    const newUsernameInputElem = $("#new_username");
+    const newPasswordInputElem = $("#new_password");
+    const newConfirmPasswordInputElem = $("#confirm_password");
+    
     if (!userObj.username) {
-      alert(`Please enter a username`)
-      return
-    } else if (userObj.username.length < 4) {
-      alert(`Please enter a username that is 4 or more characters.`)
-      return
-    } else if (userObj.password.length < 8) {
-      alert(`Your password must be at least 8 characters, ${userObj.username}`)
-      return
-    } else if (userObj.password !== this.state.newConfirmPassword) {
-      alert(`Your passwords do not match, ${userObj.firstName}`)
+      $(newUsernameInputElem).siblings(".helper-text").text("-").attr("data-error", "You must enter a username");
+      $(newUsernameInputElem).addClass("invalid");
+      badForm = true;           
+    } else if (userObj.username.length <= 3) {
+      $(newUsernameInputElem).siblings(".helper-text").text("-").attr("data-error", "Username must be at least 4 characters");
+      $(newUsernameInputElem).addClass("invalid");
+      badForm = true;
+    } else {
+      $(newUsernameInputElem).siblings(".helper-text").attr("data-error","").text("");
+      $(newUsernameInputElem).removeClass("invalid");
+    }
+    
+    if (userObj.password.length === 0) {
+      $(newPasswordInputElem).siblings(".helper-text").text("-").attr("data-error", "You must enter a password");
+      $(newPasswordInputElem).addClass("invalid");
+      badForm = true;
+    } else if (userObj.password.length <= 7) {
+      $(newPasswordInputElem).siblings(".helper-text").text("-").attr("data-error", "Password must be at least 8 characters");
+      $(newPasswordInputElem).addClass("invalid");
+      badForm = true;
+    } else {
+      $(newPasswordInputElem).siblings(".helper-text").attr("data-error","").text("");
+      $(newPasswordInputElem).removeClass("invalid");
     }
 
-    userLogic
+    if (userObj.password !== this.state.newConfirmPassword) {
+      $(newConfirmPasswordInputElem).siblings(".helper-text").text("-").attr("data-error", "Your passwords do not match");
+      $(newConfirmPasswordInputElem).addClass("invalid");
+      badForm = true;
+    } else {
+      $(newConfirmPasswordInputElem).siblings(".helper-text").attr("data-error","").text("");
+      $(newConfirmPasswordInputElem).removeClass("invalid");
+    }
+
+    if (badForm) {
+      return false;
+    }
+    M.Modal.getInstance($("#signUpModal")).close();
+    return true;
+  }
+
+  handleSignUp = event => {
+   
+    // Preventing the default behavior of the form submit (which is to refresh the page)
+    event.preventDefault()
+
+    if (this.signUpValidation()) {
+      const userObj = {
+        username: this.state.newUsername,
+        password: this.state.newPassword,
+        firstName: this.state.newFirstName,
+        lastName: this.state.newLastName
+      }
+
+      userLogic
       .userSignUp(userObj)
       .then(response => {
         const newUser = {
@@ -99,14 +179,15 @@ class SignIn extends React.Component {
         userLogic
           .userSignIn(newUser)
           .then(resp => {
-            const fullName = response.firstName + ' ' + response.lastName
-            ls.set('myGameLibrary_userToken', response.currentToken)
+            const fullName = resp.firstName + ' ' + resp.lastName
+            ls.set('myGameLibrary_userToken', resp.currentToken)
             ls.set('myGameLibrary_userFullName', fullName.trim())
             this.props.locRedirect('/mylibrary')
           })
-          .catch(error => console.log(error))
+          .catch(error => alert(error.response.data))
       })
-      .catch(err => console.log(err))
+      .catch(err => alert(err.response.data))
+    }
   }
 
   render () {
@@ -124,47 +205,42 @@ class SignIn extends React.Component {
               <div className='row username'>
                 <div className='input-field col s12 m12 l12'>
                   <input
+                    id="usernameInput"
                     pattern='.{4,}'
                     type='text'
                     value={this.state.username}
                     name='username'
                     onChange={this.handleInputChange}
                     placeholder=''
-                    className='validate username'
+                    className='username'
                     autoComplete='username'
                     required
                   />
                   <label className='active'>Username</label>
                   <span
                     className='helper-text'
-                    data-error='Username must be at least 4 characters long'
-                    data-success=''
                   >
-                    Username must be at least 4 characters long
                   </span>
                 </div>
               </div>
               <div className='row password'>
                 <div className='input-field col s12 m12 l12'>
                   <input
+                    id="passwordInput"
                     pattern='.{8,}'
                     type='password'
                     value={this.state.password}
                     name='password'
                     onChange={this.handleInputChange}
                     placeholder=''
-                    className='validate password'
+                    className='password'
                     autoComplete='current-password'
                     required
                   />
                   <label className='active'>Password</label>
-
                   <span
                     className='helper-text'
-                    data-error='Password must be at least 8 characters long'
-                    data-success=''
                   >
-                    Password must be at least 8 characters long
                   </span>
                 </div>
               </div>
@@ -177,7 +253,7 @@ class SignIn extends React.Component {
               <div id='signUpDiv' className='row'>
                 <p>Don't have an account?</p>
                 <p>
-                  <a className='modal-trigger link sign-up' href='#modal1'>
+                  <a className='modal-trigger link sign-up' href='#signUpModal'>
                     <span data-content='SIGN UP'>SIGN UP</span>
                   </a>
                 </p>
@@ -186,7 +262,7 @@ class SignIn extends React.Component {
             </div>
             <br />
           </div>
-          <div id='modal1' className='modal'>
+          <div id='signUpModal' className='modal'>
             <div className='modal-content center'>
               <h4 id='modal-title'>Sign Up</h4>
               <div id='modal-form' className='row'>
@@ -196,7 +272,7 @@ class SignIn extends React.Component {
                       <input
                         id='first_name'
                         type='text'
-                        className='validate firstname'
+                        className='firstname'
                         value={this.state.newFirstName}
                         name='newFirstName'
                         onChange={this.handleInputChange}
@@ -210,7 +286,7 @@ class SignIn extends React.Component {
                       <input
                         id='last_name'
                         type='text'
-                        className='validate lastname'
+                        className='lastname'
                         value={this.state.newLastName}
                         name='newLastName'
                         onChange={this.handleInputChange}
@@ -226,7 +302,7 @@ class SignIn extends React.Component {
                       <input
                         id='new_username'
                         type='text'
-                        className='validate new_username'
+                        className='new_username'
                         value={this.state.newUsername}
                         name='newUsername'
                         onChange={this.handleInputChange}
@@ -237,10 +313,7 @@ class SignIn extends React.Component {
                       </label>
                       <span
                         className='helper-text'
-                        data-error='Username must be more than 4 characters.'
-                        data-success=''
                       >
-                        Username must be more than 4 characters
                       </span>
                     </div>
                   </div>
@@ -249,21 +322,18 @@ class SignIn extends React.Component {
                       <input
                         id='new_password'
                         type='password'
-                        className='validate new_password'
+                        className='new_password'
                         value={this.state.newPassword}
                         name='newPassword'
                         onChange={this.handleInputChange}
                         autoComplete='new-password'
                       />
-                      <label id='modal-label' htmlFor='new_password'>
+                      <label className='modal-label' htmlFor='new_password'>
                         Password
                       </label>
                       <span
                         className='helper-text'
-                        data-error='Password must be more than 8 characters.'
-                        data-success=''
                       >
-                        Password must be more than 8 characters
                       </span>
                     </div>
                   </div>
@@ -272,21 +342,18 @@ class SignIn extends React.Component {
                       <input
                         id='confirm_password'
                         type='password'
-                        className='validate new_password'
+                        className='new_password'
                         value={this.state.newConfirmPassword}
                         name='newConfirmPassword'
                         onChange={this.handleInputChange}
                         autoComplete='new-password'
                       />
-                      <label id='modal-label' htmlFor='confirm_password'>
+                      <label className='modal-label' htmlFor='confirm_password'>
                         Confirm Password
                       </label>
                       <span
                         className='helper-text'
-                        data-error='Oops. Not the same as above. Try again.'
-                        data-success=''
                       >
-                        Password must match text entered above
                       </span>
                     </div>
                   </div>
@@ -296,7 +363,7 @@ class SignIn extends React.Component {
             <div id='submit-modal'>
               <a
                 href='#!'
-                className='modal-close waves-effect btn-small #f44336 red center'
+                className='waves-effect btn-small #f44336 red center'
                 onClick={this.handleSignUp}
               >
                 Submit
