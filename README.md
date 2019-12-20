@@ -17,7 +17,7 @@ This application is for those that play board games with their friends. Our appl
 * [bcrypt](https://www.npmjs.com/package/bcrypt)
 * [uuid](https://www.npmjs.com/package/uuid)
 * [local-storage](https://www.npmjs.com/package/local-storage)
-
+* [Board Game Atlas API](https://www.boardgameatlas.com/api/docs)
 
 ## Authors
 Created by [Ben Goligowski](https://github.com/btgoligowski24), [Nicole Marty](https://github.com/NicoleMarty), [Hayden Larson](https://github.com/hlarson0210), [Cuong Nguyen](https://github.com/nguyenc26)
