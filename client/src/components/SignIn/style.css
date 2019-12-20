@@ -46,7 +46,7 @@ p {
   padding-left: 1rem;
 }
 
-input {
+#signup-input {
   color: white;
 }
 
@@ -87,11 +87,11 @@ input {
 }
 
 /* label color */
-.input-field label {
+#signup-input .modal-label {
   color: white;
 }
 /* label focus color */
-.input-field input[type="text"]:focus + label {
+#signup-input input[type="text"]:focus + .modal-label {
   color: white;
 }
 
@@ -101,27 +101,27 @@ input {
 }
 
 /* label underline focus color */
-.input-field input[type="text"]:focus:enabled,
-.input-field input[type="password"]:focus:enabled {
+#signup-input input[type="text"]:focus:enabled,
+#signup-input input[type="password"]:focus:enabled {
   border-bottom: 1px solid white;
   box-shadow: 0 1px 0 0 white;
 }
 
 /* valid color */
-.input-field input[type="text"]:focus.valid:enabled,
-.input-field input[type="password"]:focus.valid:enabled {
+#signup-input input[type="text"]:focus.valid:enabled,
+#signup-input input[type="password"]:focus.valid:enabled {
   border-bottom: 1px solid green;
   box-shadow: 0 1px 0 0 green;
 }
 /* invalid color */
-.input-field input[type="text"].invalid:focus:enabled,
-.input-field input[type="password"].invalid:focus:enabled {
+#signup-input input[type="text"].invalid:focus:enabled,
+#signup-input input[type="password"].invalid:focus:enabled {
   border-bottom: 1px solid red;
   box-shadow: 0 1px 0 0 red;
 }
 
 /* helper text styling */
-.input-field .helper-text {
+#signup-input .helper-text {
   display: block;
   font-size: 12px;
   color: #455a64;
@@ -131,7 +131,7 @@ input {
 }
 
 /* helper text styling on hover */
-.input-field .helper-text:hover {
+#signup-input .helper-text:hover {
   color: #b0bec5;
 }
 

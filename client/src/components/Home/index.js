@@ -6,7 +6,7 @@ import './style.css'
 class Home extends React.Component {
   componentDidMount () {
     M.AutoInit()
-    M.Toast.dismissAll();
+    M.Toast.dismissAll()
   }
 
   redirect = location => {
@@ -39,13 +39,7 @@ class Home extends React.Component {
             name='slider'
             titulo='ExploreGames'
           />
-          <input
-            type='radio'
-            className='radio-btn'
-            id='Slide4'
-            name='slider'
-            titulo='HowItWorks'
-          />
+
           <div className='labels'>
             <label className='Slide' htmlFor='Slide1' id='Slide1'>
               <div className='content'>
@@ -77,27 +71,6 @@ class Home extends React.Component {
                     take me there.
                   </a>
                 </p>
-              </div>
-            </label>
-            <label className='Slide' htmlFor='Slide4' id='Slide4'>
-              <div className='content'>
-                <h1 className='how-it-works-title'>HOW IT WORKS</h1>
-                <div className='row'>
-                  <div className='col s12 m6 l6'>
-                    <div className='card my-library'>
-                      <div className='card-content'>
-                        <div className='card-title'>My Library</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='col s12 m6 l6'>
-                    <div className='card explore-games'>
-                      <div className='card-content'>
-                        <div className='card-title'>Explore Games</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </label>
           </div>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 let style = {
   backgroundColor: 'white',
@@ -26,9 +26,7 @@ function SearchGames (props) {
           </a>
           <ul className='collapsible'>
             <li>
-              <div className='collapsible-header'>
-                <i class='material-icons'>details</i>DESCRIPTION
-              </div>
+              <div className='collapsible-header'>DESCRIPTION</div>
               <div className='collapsible-body active'>
                 <span>
                   {' '}
@@ -37,9 +35,7 @@ function SearchGames (props) {
               </div>
             </li>
             <li>
-              <div className='collapsible-header'>
-                <i class='material-icons'>details</i>GAME STATS
-              </div>
+              <div className='collapsible-header'>GAME STATS</div>
               <div className='collapsible-body'>
                 <span>
                   <div id='stats' className='row'>
@@ -107,7 +103,7 @@ function SearchGames (props) {
                 })
               }}
             >
-              <h6 className='add-to-library'>Add to library</h6>
+              <h6 className='add-to-library-button'>Add to library</h6>
             </Link>
           </div>
         </div>
