@@ -89,56 +89,32 @@ class ExploreGames extends React.Component {
       return (
         <div className='page-container'>
           <div className='row one'>
-            <div className='col s8 m8 l8'>
+            <div className='col s12 m12 l12'>
               <h1 className='title'> Explore Games </h1>
               {/* begin explore games search bar */}
-              <div className='input-field col s12 m12 l12' id='search-bar'>
+              <div className='input-field' id='search-bar'>
                 <input
                   id='nameOfGame'
                   type='text'
                   value={this.state.searchGames}
-                  placeholder='search games here...'
+                  placeholder='NAME A GAME...'
                   name='searchGames'
                   onChange={this.handleInputChange}
                   className='validate'
                 ></input>
               </div>
+              <button
+                className='waves-effect waves-light btn #f44336 red white-text'
+                type='submit'
+                onClick={this.handleFormSubmit}
+              >
+                Search
+              </button>
             </div>
-            {/* popular games column */}
-            <div className='col s4 m4 l4' id='popular-games'>
-              <div>
-                {' '}
-                <h4 className='sub-title'> Popular Games </h4>
-              </div>
-              <ul className='collection'>
-                {' '}
-                {popularGames.map((item, index) => (
-                  <GameCard
-                    name={item.name}
-                    key={`p+${index}`}
-                    price={item.price}
-                    rating={
-                      item.average_user_rating
-                        ? item.average_user_rating.toFixed(2)
-                        : ''
-                    }
-                    minplaytime={item.min_playtime}
-                    maxplaytime={item.max_playtime}
-                    minage={item.min_age}
-                    minplayers={item.min_players}
-                    maxplayers={item.max_players}
-                    officialsite={item.official_url}
-                    description={item.description_preview}
-                    image={item.images.thumb}
-                    rules={item.rules_url}
-                  ></GameCard>
-                ))}{' '}
-              </ul>{' '}
-            </div>{' '}
           </div>
-          {/* begin results row */}
-          <div className='row' id='search-games'>
-            <div className='col s8 m8 l8'>
+          <div className='row two'>
+            {/* begin results row */}
+            <div className='col s9 m9 l9' id='search-games'>
               {' '}
               {searchedGames.map((item, index) => (
                 <SearchGames
@@ -157,13 +133,40 @@ class ExploreGames extends React.Component {
                   maxplayers={item.max_players}
                   officialsite={item.official_url}
                   description={item.description_preview}
-                  image={item.images.small}
+                  image={item.images.medium}
                   rules={item.rules_url}
                   handleClick={this.context.update}
                 ></SearchGames>
               ))}{' '}
             </div>{' '}
-          </div>{' '}
+            {/* popular games column */}
+            <div className='col s3 m3 l3' id='popular-games'>
+              <ul className='collection'>
+                <h4 className='sub-title'>Trending Games</h4>{' '}
+                {popularGames.map((item, index) => (
+                  <GameCard
+                    name={item.name}
+                    key={`p+${index}`}
+                    price={item.price}
+                    rating={
+                      item.average_user_rating
+                        ? item.average_user_rating.toFixed(2)
+                        : ''
+                    }
+                    minplaytime={item.min_playtime}
+                    maxplaytime={item.max_playtime}
+                    minage={item.min_age}
+                    minplayers={item.min_players}
+                    maxplayers={item.max_players}
+                    officialsite={item.official_url}
+                    description={item.description_preview}
+                    image={item.images.small}
+                    rules={item.rules_url}
+                  ></GameCard>
+                ))}{' '}
+              </ul>{' '}
+            </div>{' '}
+          </div>
         </div>
       )
     }
