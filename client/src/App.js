@@ -21,7 +21,7 @@ class App extends Component {
       minPlaytime: "",
       maxPlaytime: "",
       minAge: "",
-      rating: null,
+      rating: "",
       rules: "",
       image: "",
       complexity: "",

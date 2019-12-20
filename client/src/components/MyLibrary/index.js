@@ -11,6 +11,7 @@ class MyLibrary extends React.Component {
     static contextType = AppContext;
 
     componentDidMount() {
+        M.Toast.dismissAll();
         const userToken = ls.get("myGameLibrary_userToken");
 
         if (userToken) {
@@ -24,7 +25,8 @@ class MyLibrary extends React.Component {
                 }).catch(err => console.log(err))
             });
         } else {
-            alert("There was an error with your sign in, please log out and try again");
+            M.toast({ inDuration: 1000, html: 'Oops! You seem to be logged out.' });
+            M.toast({ inDuration: 1000, html: '<a href="home"><button class="btn-flat toast-action">Log in to see your library</button></a>' });
         }  
         
         M.AutoInit();
