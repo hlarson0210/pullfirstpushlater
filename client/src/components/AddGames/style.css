@@ -1,0 +1,8 @@
+span[data-error]:after {
+    white-space: nowrap;
+  }
+
+input.select-dropdown.dropdown-trigger {
+    font-family: inherit;
+    font-size: 15px;
+}

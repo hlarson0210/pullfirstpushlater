@@ -6,6 +6,7 @@ import './style.css'
 class Home extends React.Component {
   componentDidMount () {
     M.AutoInit()
+    M.Toast.dismissAll();
   }
 
   redirect = location => {

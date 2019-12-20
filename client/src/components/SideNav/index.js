@@ -42,7 +42,7 @@ class SideNav extends React.Component {
                 <span id='username' className='name white-text'>
                   {ls.get('myGameLibrary_userToken')
                     ? (ls.get('myGameLibrary_userFullName') ? ls.get('myGameLibrary_userFullName')
-                    : 'Secret Agent User') : 'Please sign in'}
+                    : 'Secret Agent User') : 'Please Sign In'}
                 </span>
               </a>
             </div>
