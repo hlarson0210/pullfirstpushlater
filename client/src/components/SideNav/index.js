@@ -21,9 +21,10 @@ class SideNav extends React.Component {
   logout = event => {
     ls.remove('myGameLibrary_userToken')
     ls.remove('myGameLibrary_userFullName')
-    this.props.history.history.push('/home')
+    this.props.history.history.push('/')
     this.closeNav()
   }
+  
   render () {
     return (
       <header>
@@ -39,9 +40,9 @@ class SideNav extends React.Component {
               </a>
               <a>
                 <span id='username' className='name white-text'>
-                  {ls.get('myGameLibrary_userFullName')
-                    ? ls.get('myGameLibrary_userFullName')
-                    : 'Hi User'}
+                  {ls.get('myGameLibrary_userToken')
+                    ? (ls.get('myGameLibrary_userFullName') ? ls.get('myGameLibrary_userFullName')
+                    : 'Secret Agent User') : 'Please Sign In'}
                 </span>
               </a>
             </div>

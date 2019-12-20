@@ -10,6 +10,11 @@
   text-align: left;
 }
 
+.sign-in-error {
+  color: red;
+  margin-top: 18px;
+}
+
 /* FORM HEADER */
 h4 {
   color: #263238;
@@ -131,7 +136,7 @@ input {
 }
 
 /* modal styling */
-#modal1 {
+#signUpModal {
   background-color: #263238;
 }
 .modal-content.center {
@@ -159,12 +164,12 @@ input {
   border-left-color: #455a64;
 }
 
-#modal-label,
+.modal-label,
 #modal-title {
   color: #f44336;
 }
 
-#modal-label {
+.modal-label {
   font-size: 18px;
 }
 
@@ -615,3 +620,7 @@ body {
 /*---------------------------------------------------------------------------------------*/
 /* END CUBE ANIMATIONS ------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------------*/
+
+span[data-error]:after {
+  white-space: nowrap;
+}

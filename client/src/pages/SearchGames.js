@@ -2,79 +2,113 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 let style = {
-  height: '10em',
-  display: 'block',
-  overflowY: 'scroll',
-  transform: 'translateY(0%)'
+  backgroundColor: 'white',
+  fontFamily: '"Open Sans", sans-serif',
+  lineHeight: '1.5'
 }
 
 function SearchGames (props) {
   return (
-    <div className='row'>
-      <div className='left col s12'>
-        <div className='card horizontal'>
-          <div className='card-image'>
-            <a
-              href={props.officialsite}
-              target='_blank'
-              rel='noopener noreferrer'
+    <div className='card horizontal'>
+      <div id='searchCardImage' className='card-image'>
+        <a href={props.officialsite} target='_blank' rel='noopener noreferrer'>
+          <img className='searchImage' alt='' src={props.image}></img>
+        </a>
+      </div>
+      <div className='card-stacked'>
+        <div id='searchCardContent' className='card-content'>
+          <a
+            href={props.officialsite}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <h4 className='header'>{props.name}</h4>
+          </a>
+          <ul className='collapsible'>
+            <li>
+              <div className='collapsible-header'>
+                <i class='material-icons'>details</i>DESCRIPTION
+              </div>
+              <div className='collapsible-body active'>
+                <span>
+                  {' '}
+                  <p style={style}>{props.description}</p>
+                </span>
+              </div>
+            </li>
+            <li>
+              <div className='collapsible-header'>
+                <i class='material-icons'>details</i>GAME STATS
+              </div>
+              <div className='collapsible-body'>
+                <span>
+                  <div id='stats' className='row'>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>PRICE</td>
+                          <td>${props.price}</td>
+                        </tr>
+                        <tr>
+                          <td>PLAYERS</td>
+                          <td>
+                            {props.minplayers}-{props.maxplayers}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>PLAY TIME</td>
+                          <td>
+                            {props.minplaytime}-{props.maxplaytime}min
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>FOR AGES</td>
+                          <td>{props.minage}+</td>
+                        </tr>
+                        <tr>
+                          <td>RATING</td>
+                          <td>{props.rating}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div id='searchCardAction' className='card-action'>
+          <a
+            href={props.officialsite}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Buy it here
+          </a>
+          <a href={props.rules_url} target='_blank' rel='noopener noreferrer'>
+            Rules
+          </a>
+
+          <div className='btn #f44336 red'>
+            <Link
+              to='/addgames'
+              onClick={() => {
+                props.handleClick({
+                  gameName: props.name,
+                  minPlayers: props.minplayers,
+                  maxPlayers: props.maxplayers,
+                  minPlaytime: props.minplaytime,
+                  maxPlaytime: props.maxplaytime,
+                  minAge: props.minage,
+                  rating: props.rating,
+                  rules: props.rules_url,
+                  image: props.image,
+                  complexity: ''
+                })
+              }}
             >
-              <img className='searchImage' alt='' src={props.image}></img>
-            </a>
-          </div>
-          <div className='card-stacked'>
-            <div className='card-content'>
-              <a
-                href={props.officialsite}
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <h4 className='header'>{props.name}</h4>
-              </a>
-              <p style={style}>{props.description}</p>
-            </div>
-            <div className='card-action'>
-              <div>Price: ${props.price}</div>
-              <div>
-                Players: {props.minplayers}-{props.maxplayers}
-              </div>
-              <div>
-                Play Time: {props.minplaytime}-{props.maxplaytime}min
-              </div>
-              <div>For ages {props.minage}+</div>
-              <div>Rating: {props.rating}</div>
-              <a
-                href={props.officialsite}
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                Buy it here
-              </a>
-              <a href={props.rules} target='_blank' rel='noopener noreferrer'>
-                Rules
-              </a>
-              <div className='btn-small blue lighten-1'>
-                <Link
-                  to='/addgames'
-                  onClick={() => {
-                    props.handleClick({
-                      gameName: props.name,
-                      minPlayers: props.minplayers,
-                      maxPlayers: props.maxplayers,
-                      minPlaytime: props.minplaytime,
-                      maxPlaytime: props.maxplaytime,
-                      minAge: props.minage,
-                      rating: props.rating ? props.rating : null,
-                      rules: props.rules,
-                      image: props.image,
-                      complexity: ''
-                    })
-                  }}
-                >
-                  <h6>Add to library</h6>
-                </Link>
-              </div>
-            </div>
+              <h6 className='add-to-library'>Add to library</h6>
+            </Link>
           </div>
         </div>
       </div>
