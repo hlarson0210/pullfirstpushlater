@@ -245,7 +245,7 @@ class SignIn extends React.Component {
                     name='username'
                     onChange={this.handleInputChange}
                     placeholder=''
-                    className='username'
+                    className='username sign-in'
                     autoComplete='username'
                     required
                   />
@@ -254,7 +254,7 @@ class SignIn extends React.Component {
                 </div>
               </div>
               <div className='row password'>
-                <div className='input-field col s12 m12 l12'>
+                <div className='input-field col s12 m12 l12 '>
                   <input
                     id='passwordInput'
                     pattern='.{8,}'
@@ -263,7 +263,7 @@ class SignIn extends React.Component {
                     name='password'
                     onChange={this.handleInputChange}
                     placeholder=''
-                    className='password'
+                    className='password sign-in'
                     autoComplete='current-password'
                     required
                   />

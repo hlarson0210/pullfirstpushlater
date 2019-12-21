@@ -2,6 +2,7 @@ import React from 'react'
 import GameCard from '../../pages/GameCard'
 import SearchGames from '../../pages/SearchGames'
 import bgaApiCall from '../../utils/bgaApiCall'
+import $ from 'jquery'
 import M from 'materialize-css'
 import { AppContext } from '../../appContext'
 import './style.css'
@@ -68,6 +69,7 @@ class ExploreGames extends React.Component {
   handleFormSubmit = event => {
     event.preventDefault()
 
+    $('.clearFields').removeClass('valid')
     if (!this.state.searchGames) {
       alert(`Please enter the game you'd like to search`)
       return
@@ -102,7 +104,7 @@ class ExploreGames extends React.Component {
                   placeholder='NAME A GAME...'
                   name='searchGames'
                   onChange={this.handleInputChange}
-                  className='validate'
+                  className='validate clearFields'
                 ></input>
               </div>
               <div className='col s2 m2 l2' id='search-button'>
@@ -117,7 +119,7 @@ class ExploreGames extends React.Component {
           </div>
           <div className='row two'>
             {/* begin results row */}
-            <div className='col s9 m9 l9' id='search-games'>
+            <div className='col s9 m9 l9' id='searchGames'>
               {' '}
               {searchedGames.map((item, index) => (
                 <SearchGames

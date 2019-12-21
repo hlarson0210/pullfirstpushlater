@@ -3,6 +3,7 @@
   color: white;
   text-align: center;
 }
+
 .page-container {
   padding-left: 8em;
   padding-right: 6em;
@@ -25,7 +26,7 @@
 }
 
 #popular-games,
-#search-games {
+#searchGames {
   display: block;
 }
 
@@ -55,8 +56,7 @@
 }
 
 .searchImage {
-  padding-top: 20px;
-  padding-left: 20px;
+  padding: 20px;
 }
 
 .collection {
