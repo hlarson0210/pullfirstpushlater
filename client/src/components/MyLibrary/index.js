@@ -31,7 +31,7 @@ class MyLibrary extends React.Component {
       M.toast({
         inDuration: 1000,
         html:
-          '<a href="home"><button class="btn-flat toast-action">Log in to see your library</button></a>'
+          '<a href="/"><button class="btn-flat toast-action">Log in to see your library</button></a>'
       })
     }
 

@@ -20,7 +20,7 @@ class AddGames extends React.Component {
       M.toast({
         inDuration: 1000,
         html:
-          '<a href="home"><button class="btn-flat toast-action center-align">Log in to add to your library</button></a>'
+          '<a href="/"><button class="btn-flat toast-action center-align">Log in to add to your library</button></a>'
       })
     }
 
@@ -218,6 +218,10 @@ class AddGames extends React.Component {
         gameObj.maxPlayers = gameObj.minPlayers
       }
 
+      if (!gameObj.image) {
+        gameObj.image =  "https://image.flaticon.com/icons/png/512/103/103226.png";
+      }
+
       gameLogic.saveGame(gameObj).then(resp => {
         this.context.update({
           gameName: '',
@@ -246,7 +250,7 @@ class AddGames extends React.Component {
           },
           () => {
             M.updateTextFields()
-            $('.yuppertupper').removeClass('valid')
+            $('.clearFields').removeClass('valid')
             M.toast({
               html:
                 '<span>Game added!</span><a href="/mylibrary"><button class="btn-flat toast-action">Go to Library</button></a>'
@@ -274,7 +278,7 @@ class AddGames extends React.Component {
                     name='gameName'
                     onChange={this.handleInputChange}
                     value={this.state.gameName}
-                    className='yuppertupper'
+                    className='clearFields'
                   ></input>
                   <label htmlFor='gameName'>Name of Game</label>
                   <span className='helper-text'></span>
@@ -290,7 +294,7 @@ class AddGames extends React.Component {
                     name='minPlayers'
                     onChange={this.handleInputChange}
                     value={this.state.minPlayers}
-                    className='validate yuppertupper'
+                    className='validate clearFields'
                   ></input>
                   <label htmlFor='minPlayers'>Minimum Players</label>
                   <span className='helper-text'></span>
@@ -304,7 +308,7 @@ class AddGames extends React.Component {
                     name='maxPlayers'
                     onChange={this.handleInputChange}
                     value={this.state.maxPlayers}
-                    className='validate yuppertupper'
+                    className='validate clearFields'
                   ></input>
                   <label htmlFor='maxPlayers'>Maximum Players</label>
                   <span className='helper-text'></span>
@@ -318,7 +322,7 @@ class AddGames extends React.Component {
                     name='minPlaytime'
                     onChange={this.handleInputChange}
                     value={this.state.minPlaytime}
-                    className='validate yuppertupper'
+                    className='validate clearFields'
                   ></input>
                   <label htmlFor='minPlaytime'>Minimum Playtime</label>
                   <span className='helper-text'></span>
@@ -332,7 +336,7 @@ class AddGames extends React.Component {
                     name='maxPlaytime'
                     onChange={this.handleInputChange}
                     value={this.state.maxPlaytime}
-                    className='validate yuppertupper'
+                    className='validate clearFields'
                   ></input>
                   <label htmlFor='maxPlaytime'>Maximum Playtime</label>
                   <span className='helper-text'></span>
@@ -348,7 +352,7 @@ class AddGames extends React.Component {
                     name='minAge'
                     onChange={this.handleInputChange}
                     value={this.state.minAge}
-                    className='validate yuppertupper'
+                    className='validate clearFields'
                   ></input>
                   <label htmlFor='minAge'>Minimum Age</label>
                   <span className='helper-text'></span>
@@ -359,9 +363,9 @@ class AddGames extends React.Component {
                     name='complexity'
                     onChange={this.handleInputChange}
                     value={this.state.complexity}
-                    className='validate yuppertupper'
+                    className='validate clearFields'
                   >
-                    <option id='complexity-placeholder' defaultValue=''>
+                    <option id='complexity-placeholder' defaultValue='' value=''>
                       Complexity
                     </option>
                     <option value='Light'>Light</option>
@@ -379,7 +383,7 @@ class AddGames extends React.Component {
                     name='rating'
                     onChange={this.handleInputChange}
                     value={this.state.rating}
-                    className='validate yuppertupper'
+                    className='validate clearFields'
                   ></input>
                   <label htmlFor='rating'>Rating</label>
                   <span className='helper-text'></span>
@@ -390,22 +394,23 @@ class AddGames extends React.Component {
                     type='text'
                     name='image'
                     onChange={this.handleInputChange}
-                    defaultValue={this.state.image}
-                    className='validate yuppertupper'
+                    value={this.state.image}
+                    className='validate clearFields'
                   ></input>
                   <label htmlFor='image'>Image URL</label>
                 </div>
               </div>
               <div className='row'>
                 <div className='input-field col s12'>
-                  <textarea
+                  <input
                     id='rules'
-                    palceholder='Rules text goes here'
+                    type='text'
+                    placeholder='Rules text goes here'
                     name='rules'
                     onChange={this.handleInputChange}
                     value={this.state.rules}
-                    className='materialize-textarea'
-                  ></textarea>
+                    className='validate clearFields'
+                  ></input>
                   <label htmlFor='rules'>Rules URL</label>
                 </div>
               </div>
