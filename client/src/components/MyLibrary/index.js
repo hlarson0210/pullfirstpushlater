@@ -28,11 +28,11 @@ class MyLibrary extends React.Component {
       })
     } else {
       M.toast({ inDuration: 1000, html: 'Oops! You seem to be logged out.' })
-      // M.toast({
-      //   inDuration: 1000,
-      //   html:
-      //     '<a href="/"><button class="btn-flat toast-action">Log in to see your library</button></a>'
-      // })
+      M.toast({
+        inDuration: 1000,
+        html:
+          '<a href="/"><button class="btn-flat toast-action">Log in to see your library</button></a>'
+      })
     }
 
     M.AutoInit()

@@ -17,11 +17,11 @@ class AddGames extends React.Component {
       this.setState({ token: userToken })
     } else {
       M.toast({ inDuration: 1000, html: 'Oops! You seem to be logged out.' })
-      // M.toast({
-      //   inDuration: 1000,
-      //   html:
-      //     '<a href="/"><button class="btn-flat toast-action center-align">Log in to add to your library</button></a>'
-      // })
+      M.toast({
+        inDuration: 1000,
+        html:
+          '<a href="/"><button class="btn-flat toast-action center-align">Log in to add to your library</button></a>'
+      })
     }
 
     M.AutoInit()
