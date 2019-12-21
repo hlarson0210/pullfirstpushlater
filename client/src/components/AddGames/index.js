@@ -405,7 +405,6 @@ class AddGames extends React.Component {
                   <input
                     id='rules'
                     type='text'
-                    placeholder='Rules text goes here'
                     name='rules'
                     onChange={this.handleInputChange}
                     value={this.state.rules}
