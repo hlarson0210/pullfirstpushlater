@@ -58,7 +58,7 @@ module.exports = {
             req.user = user;
             const filters = createFilter(req);
 
-            db.Game.find(filters)
+            db.Game.find(filters).sort({name: "asc"})
                 .then(dbModel => res.json(dbModel))
                 .catch(err => res.status(400).send("There was a problem with your game search request. Please try again."));
         }).catch(error => res.status(400).send("There was a problem with initializing your request. Please try again."));
