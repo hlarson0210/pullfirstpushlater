@@ -81,7 +81,7 @@ function SearchGames (props) {
           >
             Buy it here
           </a>
-          <a href={props.rules_url} target='_blank' rel='noopener noreferrer'>
+          <a href={props.rules} target='_blank' rel='noopener noreferrer'>
             Rules
           </a>
 

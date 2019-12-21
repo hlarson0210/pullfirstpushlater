@@ -253,7 +253,8 @@ class AddGames extends React.Component {
             $('.clearFields').removeClass('valid')
             M.toast({
               html:
-                '<span>Game added!</span><a href="/mylibrary"><button class="btn-flat toast-action">Go to Library</button></a>'
+                '<span>Game added!</span>'
+                // <a href="/mylibrary"><button class="btn-flat toast-action">Go to Library</button></a>
             })
           }
         )
@@ -405,7 +406,6 @@ class AddGames extends React.Component {
                   <input
                     id='rules'
                     type='text'
-                    placeholder='Rules text goes here'
                     name='rules'
                     onChange={this.handleInputChange}
                     value={this.state.rules}
